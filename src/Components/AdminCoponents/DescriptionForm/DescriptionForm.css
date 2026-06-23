@@ -1,0 +1,72 @@
+.decForm {
+    border: 1px solid var(--admin-border-light, rgba(0,0,0,0.1));
+    border-radius: 12px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--admin-card-bg-alt, #fdfdfd);
+    color: var(--admin-text-main, #333);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.decForm:focus-within {
+    border-color: var(--main-color);
+    box-shadow: 0 0 0 3px rgba(255, 75, 0, 0.1);
+}
+
+.decForm .ql-toolbar.ql-snow {
+    background-color: var(--admin-card-bg, #fff);
+    border-color: var(--admin-border-light, rgba(0,0,0,0.1));
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.decForm .ql-container.ql-snow {
+    border-color: var(--admin-border-light, rgba(0,0,0,0.1));
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    font-size: 1rem;
+    min-height: 150px;
+}
+
+.decForm .ql-editor {
+    color: var(--admin-text-main, #333);
+}
+
+.decForm .ql-editor.ql-blank::before {
+    color: var(--admin-text-sec, #888) !important;
+    font-style: normal;
+}
+
+/* Fix stroke colors for toolbar icons in dark mode */
+.decForm .ql-snow .ql-stroke {
+    stroke: var(--admin-text-main, #333);
+}
+.decForm .ql-snow .ql-fill {
+    fill: var(--admin-text-main, #333);
+}
+.decForm .ql-snow .ql-picker {
+    color: var(--admin-text-main, #333);
+}
+
+/* استهداف زرار الخلفية الشفافة في التولبار */
+.ql-snow .ql-picker.ql-background .ql-picker-options [data-value="transparent"]::before {
+    content: "⌀";
+    /* ✅ أيقونة X */
+    color: #ff0000;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 0;
+
+}
+
+/* نخلي المستطيل العادي يختفي */
+.ql-snow .ql-picker.ql-background .ql-picker-options [data-value="transparent"] {
+    background: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

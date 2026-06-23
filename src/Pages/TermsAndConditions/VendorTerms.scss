@@ -1,0 +1,153 @@
+@use "../../breakpoints" as *;
+
+.vendor-terms-page {
+    direction: rtl;
+    padding-top: 140px;
+    background-color: var(--sec-color);
+    min-height: 100vh;
+    padding-bottom: 50px;
+
+    @include md {
+        padding-top: 110px;
+    }
+
+    .hero-section {
+        text-align: center;
+        padding: 50px 20px;
+        background: linear-gradient(135deg, rgba(255,111,51,0.08), rgba(255,111,51,0.02));
+        border-radius: 24px;
+        margin: 0 5% 50px 5%;
+        border: 1px solid rgba(255,111,51,0.1);
+
+        h1 {
+            color: var(--main-color);
+            font-weight: 900;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+
+            @include xs {
+                font-size: 2rem;
+            }
+        }
+
+        p {
+            color: var(--main-text-color);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            opacity: 0.85;
+            font-weight: 500;
+        }
+    }
+
+    .terms-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 5%;
+
+        .term-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            }
+
+            .term-header {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                margin-bottom: 20px;
+
+                .icon-container {
+                    width: 60px;
+                    height: 60px;
+                    background-color: rgba(255, 111, 51, 0.1);
+                    color: var(--main-color);
+                    border-radius: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.8rem;
+                    box-shadow: inset 0 0 0 1px rgba(255, 111, 51, 0.2);
+                }
+
+                h3 {
+                    margin: 0;
+                    color: #2c3e50;
+                    font-weight: 800;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .term-body {
+                padding-right: 78px; /* Align text with title, offset by icon width+gap */
+
+                @include xs {
+                    padding-right: 0;
+                    margin-top: 15px;
+                }
+
+                p {
+                    color: #5a6a77;
+                    font-size: 1.15rem;
+                    line-height: 1.9;
+                    margin: 0;
+
+                    strong {
+                        color: #2c3e50;
+                        font-weight: 700;
+                    }
+                }
+            }
+
+            &.danger-card {
+                background: linear-gradient(135deg, #fff, #fffaf9);
+                border: 1px solid rgba(231, 76, 60, 0.2);
+
+                .icon-container {
+                    background-color: rgba(231, 76, 60, 0.1);
+                    color: #e74c3c;
+                    box-shadow: inset 0 0 0 1px rgba(231, 76, 60, 0.2);
+                }
+                
+                .term-header h3 {
+                    color: #c0392b;
+                }
+
+                .term-body p {
+                    color: #c0392b;
+                    font-weight: 600;
+                    
+                    strong {
+                        color: #a93226;
+                        text-decoration: underline;
+                        text-decoration-color: rgba(169, 50, 38, 0.3);
+                        text-underline-offset: 4px;
+                    }
+                }
+            }
+        }
+    }
+
+    .footer-note {
+        text-align: center;
+        margin-top: 60px;
+        color: #7f8c8d;
+        font-size: 1.1rem;
+        padding: 30px;
+        font-weight: 500;
+        border-top: 1px dashed rgba(0,0,0,0.1);
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

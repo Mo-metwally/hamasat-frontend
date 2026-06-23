@@ -1,0 +1,27 @@
+@use '../../../breakpoints' as *;
+
+.showcase {
+    max-height: 90vh;
+    padding-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include lg2 {
+        height: 60vh;
+    }
+
+    @include md2 {
+        padding-top: 0rem;
+    }
+
+    img {
+        width: 100vw;
+        max-height: 90vh;
+        object-fit: cover;
+
+        @include lg2 {
+            height: 60vh;
+        }
+    }
+}

@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+// ديسكتوب كبير جداً
+@mixin xxxl2 {
+    @media (max-width: 1470px) {
+        @content;
+    }
+}
+
+@mixin xxxl {
+    @media (max-width: 1360px) {
+        @content;
+    }
+}
+
+@mixin xxl {
+    @media (min-width: 1201px) {
+        @content;
+    }
+}
+
+// لابتوب
+@mixin xl {
+    @media (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin xl2 {
+    @media (max-width: 1100px) {
+        @content;
+    }
+}
+
+// تابلت
+@mixin lg {
+    @media (max-width: 992px) {
+        @content;
+    }
+}
+
+@mixin lg2 {
+    @media (max-width: 900px) {
+        @content;
+    }
+}
+
+@mixin md2 {
+    @media (max-width: 800px) {
+        @content;
+    }
+}
+
+// موبايلات متوسطة
+@mixin md {
+    @media (max-width: 700px) {
+        @content;
+    }
+}
+
+
+// موبايلات صغيرة
+@mixin sm {
+    @media (max-width: 570px) {
+        @content;
+    }
+}
+
+@mixin sm2 {
+    @media (max-width: 500px) {
+        @content;
+    }
+}
+
+// الموبايلات الصغيرة جداً
+@mixin xs {
+    @media (max-width: 480px) {
+        @content;
+    }
+}
+
+@mixin xxs {
+    @media (max-width: 400px) {
+        @content;
+    }
+}

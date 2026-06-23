@@ -1,0 +1,67 @@
+@use "../../breakpoints" as *;
+
+.Home-body {
+  position: relative;
+  overflow: hidden;
+  top: -5rem;
+  height: 100%;
+  width: 100%;
+  padding-top: 1rem;
+  border-radius: 3rem 3rem 0 0;
+  background-color: var(--body-color);
+  z-index: 2;
+
+  @include xl {
+    top: -7rem;
+  }
+
+  @include lg2 {
+    top: -4rem;
+  }
+
+
+  .sticky-i {
+    position: fixed;
+    bottom: -8%;
+    right: 1%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 999999;
+  }
+
+  // .sticky-i a {
+  //     display: block;
+  //     text-align: center;
+  //     padding: 14px;
+  //     margin-bottom: 15px;
+  //     transition: all 0.3s ease;
+  //     color: rgb(255, 255, 255);
+  //     font-size: 24px;
+  //     border-radius: 10px 10px 0 0;
+  // }
+
+  .SI-btn {
+    background: var(--main-text-color-op);
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px;
+    transition: all 0.3s ease;
+    color: #fff;
+    font-size: 24px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .SI-btn:hover {
+    background: var(--main-color);
+  }
+
+
+  .sticky-i .hidden {
+    cursor: default;
+    opacity: 0 !important;
+  }
+}

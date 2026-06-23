@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Theme Color (for Android status bar) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- * Developed by Mohamed Metwally
+ * © 2025 - All rights reserved
+ * This source code is proprietary and licensed only for client build usage. -->
+
+  <!-- Apple Touch Icon (iOS Home Screen) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://hamsathome.com/apple-touch-icon.png">
+
+  <!-- Favicon (Desktop Browsers) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://hamsathome.com/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://hamsathome.com/favicon-16x16.png">
+
+  <!-- Android Icons -->
+  <link rel="icon" type="image/png" sizes="192x192" href="https://hamsathome.com/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="https://hamsathome.com/android-chrome-512x512.png">
+
+  <!-- Web Manifest -->
+
+  <!-- Safari Pinned Tab (macOS Safari) -->
+  <link rel="mask-icon" href="https://hamsathome.com/android-chrome-192x192.png" color="#5bbad5">
+  <meta name="description"
+    content="معرض همسات هوم لتجهيز العرائس والمنزل العصري يقدم لكِ كل ما تحتاجينه تحت سقف واحد: أحدث الأجهزة الكهربائية، مفروشات راقية، وأدوات مطبخ متكاملة (زجاج، كاسات، أطقم صيني وخزف، أدوات المائدة، أطقم عشاء، والمزيد). استمتعي بتشكيلة واسعة من التصاميم الأنيقة، جودة عالية، وأسعار تنافسية تناسب جميع الأذواق." />
+  <!-- 🔑 Meta Keywords -->
+  <meta name="keywords"
+    content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+
+  <!-- ✅ Robots -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow" />
+  <meta name="bingbot" content="index, follow" />
+
+  <!-- 🌐 Canonical -->
+  <link rel="canonical" href="" />
+  <!-- 📍 Geo Location -->
+  <meta name="geo.region" content="EG-SHR" />
+  <meta name="geo.placename" content="Faqous, Sharqia, Egypt" />
+  <meta name="geo.position" content="30.733;31.800" />
+  <meta name="ICBM" content="30.733, 31.800" />
+
+  <!-- 📊 Structured Data (JSON-LD) -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="معرض همسات للأدوات المنزلية" />
+  <meta property="og:description"
+    content="معرض همسات هوم لتجهيز العرائس والمنزل العصري يقدم لكِ كل ما تحتاجينه تحت سقف واحد: أحدث الأجهزة الكهربائية، مفروشات راقية، وأدوات مطبخ متكاملة (زجاج، كاسات، أطقم صيني وخزف، أدوات المائدة، أطقم عشاء، والمزيد). استمتعي بتشكيلة واسعة من التصاميم الأنيقة، جودة عالية، وأسعار تنافسية تناسب جميع الأذواق." />
+  <meta property="og:image" content="https://hamsathome.com/Hamasat-ShowCase.webp" />
+  <meta property="og:url" content="https://hamsathome.com/" />
+  <meta property="og:site_name" content="همسات هوم" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="معرض همسات للأدوات المنزلية" />
+  <meta name="twitter:description"
+    content="معرض همسات هوم لتجهيز العرائس والمنزل العصري يقدم لكِ كل ما تحتاجينه تحت سقف واحد: أحدث الأجهزة الكهربائية، مفروشات راقية، وأدوات مطبخ متكاملة (زجاج، كاسات، أطقم صيني وخزف، أدوات المائدة، أطقم عشاء، والمزيد). استمتعي بتشكيلة واسعة من التصاميم الأنيقة، جودة عالية، وأسعار تنافسية تناسب جميع الأذواق." />
+  <meta name="twitter:image" content="https://hamsathome.com/Hamasat-ShowCase.webp" />
+  <!-- Windows Tiles -->
+  <meta name="msapplication-TileColor" content="#2d89ef" />
+  <meta name="msapplication-TileImage" content="https://hamsathome.com/android-chrome-192x192.png" />
+  <meta name="author" content="Mohamed Metwally" />
+  <meta name="publisher" content="همسات هوم" />
+
+  <meta name="copyright" content="© 2025 معرض همسات. All Rights Reserved." />
+  <title>معرض همسات هوم للأدوات المنزلية</title>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=GTM-TPX5W4ZJ' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TPX5W4ZJ');
+  </script>
+  <!-- End Google Tag Manager -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1466718311206728');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=1466718311206728&ev=PageView&noscript=1" />
+  </noscript>
+  <!-- ✅ End Facebook Pixel Code -->
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPX5W4ZJ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End GTM noscript -->
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+
+</html>

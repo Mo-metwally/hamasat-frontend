@@ -1,0 +1,111 @@
+.p-all-preview {
+    .pagination {
+        padding-top: 0rem;
+        width: 100%;
+        display: flex;
+        justify-content: start !important;
+        align-items: center;
+
+        button {
+            border: none;
+            background: var(--sec-color);
+            margin: 0.1rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--main-text-color);
+
+            &.active {
+                background: var(--main-color-op);
+                color: #fff;
+            }
+        }
+    }
+}
+
+.parent-preview,
+.child-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    background-color: var(--admin-card-bg, var(--body-color));
+    border: 1px solid var(--admin-border-light, rgba(0,0,0,0.1));
+    border-radius: 12px;
+    transition: all 0.3s ease-in-out;
+    color: var(--admin-text-main, var(--main-text-color));
+
+    span {
+        color: var(--main-color);
+    }
+}
+
+.preview-content {
+    width: 75%;
+}
+
+.parent-preview.active {
+    background-color: rgba(255, 111, 51, 0.1);
+    border-color: var(--main-color);
+    box-shadow: 0 4px 15px rgba(255, 111, 51, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.preview-content-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* الأب يكون أوضح */
+.parent-preview {
+    cursor: pointer;
+}
+
+
+.parent-preview.inactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border-color: rgba(255, 111, 51, 0.5);
+}
+
+/* الأبناء أصغر شوية */
+.child-item {
+    margin-left: 1.5rem;
+    font-size: 0.9rem;
+    opacity: 0.95;
+    background-color: var(--admin-card-bg-alt, var(--sec-color));
+    border-color: var(--admin-border-light, rgba(0,0,0,0.05));
+}
+
+/* الصور */
+.parent-preview-img {
+    border-radius: 0.5rem;
+    width: 150px;
+}
+
+.child-preview-img {
+    border-radius: 0.5rem;
+    width: 100px;
+    /* أصغر من الأب */
+}
+
+/* العناوين */
+.title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+
+
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.previowLoading {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+}

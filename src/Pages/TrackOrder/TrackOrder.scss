@@ -1,0 +1,317 @@
+@use "../../breakpoints" as *;
+
+#OrderDataSec {
+    padding-top: 7rem;
+
+    @include md {
+        padding: 2rem 0.8rem 1rem;
+
+    }
+
+    @include sm2 {
+        padding: 1rem 0.8rem;
+
+    }
+}
+
+#TrackOrder {
+    position: relative;
+    height: 100%;
+    font-family: "Cairo", sans-serif;
+    direction: rtl;
+    min-height: 80vh;
+
+    .loading {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .cart-check-items {
+        .loading {
+            background-color: var(--sec-color);
+        }
+
+    }
+
+    .adress-section {
+        background-color: var(--body-color);
+        border: 1px solid var(--main-color);
+        padding: 1rem;
+
+        h6 {
+            line-height: 1.5rem;
+            display: flex;
+            gap: 0.3rem;
+
+        }
+
+    }
+
+    #FollowUp {
+        min-height: 90vh;
+
+
+        .FollowUp-Container {
+            border-radius: 1rem;
+
+            @include xs {}
+        }
+
+        .FollowUp-Img {
+            width: 30%;
+            border-radius: 2rem;
+
+            @include xs {
+                width: 60%;
+                border-radius: 0.5rem;
+            }
+        }
+
+        .followupLink {
+            color: var(--main-text-color);
+            text-decoration: underline !important;
+            font-weight: 600;
+
+            &:hover {
+                color: var(--main-color);
+            }
+        }
+    }
+
+    .error-message {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    .CartPage {
+        min-height: 100vh;
+    }
+
+
+    .cartHead-wrapper {
+        .cartHead-wrapper-left {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+    }
+
+    @include sm2 {
+        .cartHead-wrapper {
+            flex-direction: column;
+            align-items: start;
+        }
+
+        .cartHead {
+            padding: 1rem 0;
+        }
+    }
+
+
+    .order-indecator-container {
+        width: 70%;
+    }
+
+    .cart-container {
+        padding-top: 2rem;
+
+        .order-card {
+            width: 70%;
+
+            @include xl {
+                width: 100%;
+            }
+        }
+
+        .order-header {
+            width: 100%;
+            flex-direction: column;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .order-header-Items {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+
+            .order-header-col2 {
+                width: 40%;
+
+                @include sm {
+                    width: 5% !important;
+                    padding: 0 0.5rem;
+
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .totalPice {
+        background-color: var(--body-color);
+        padding: 1rem;
+    }
+
+    .order-header-col2 {
+        width: 100%;
+    }
+
+    .C-Sbtn {
+        margin-top: 1rem;
+        width: 100%;
+        background-color: var(--body-color);
+        color: var(--main-color);
+
+        &:hover {
+            font-weight: bold;
+        }
+
+    }
+
+    .FollowUp-Content2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .orderCodeInput-container {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--main-color-op);
+        border-radius: 2rem;
+        overflow: hidden;
+
+        @include xs {
+            width: 80%;
+
+            input::placeholder {
+                font-size: 0.6rem;
+            }
+        }
+
+        &:focus-within {
+            border: 1px solid var(--main-color); // يوضح التركيز على الـ input
+            box-shadow: 0 0 5px var(--main-text-color-op);
+
+            input::placeholder {
+                color: var(--main-text-color-op);
+            }
+        }
+
+        input {
+            padding: 0 1rem;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border: none;
+            outline: none;
+
+            &::placeholder {
+                color: var(--main-text-color);
+            }
+        }
+
+        button {
+            padding: 0.4rem 0.8rem;
+            display: inline-block;
+            width: 60%;
+
+            &:hover {
+                border: 1px solid transparent;
+                background-color: var(--main-color);
+                font-weight: bold;
+                color: var(--body-color);
+            }
+        }
+    }
+
+}
+
+
+
+
+
+//======================== StatusIndicator styles =======================//
+.status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin: 30px auto 0;
+    position: relative;
+
+
+}
+
+.status-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+}
+
+.status-line {
+    position: absolute;
+    top: 20px;
+    left: -50%;
+    width: 100%;
+    height: 3px;
+    background: var(--main-text-color-op);
+    z-index: -1;
+}
+
+.status-line.active {
+    background: var(--main-color);
+    /* أخضر */
+}
+
+.status-icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--main-text-color-op);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--main-text-color-op);
+    background: var(--body-color);
+    z-index: 1;
+
+
+}
+
+.status-icon.active {
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+
+.status-icon.completed {
+    background: var(--main-color);
+    color: #fff;
+    border-color: var(--main-color);
+}
+
+.status-label {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--main-text-color);
+
+    @include sm {
+        font-size: 10px;
+    }
+}
+
+.status-label.active {
+    color: var(--main-color);
+    font-weight: bold;
+}

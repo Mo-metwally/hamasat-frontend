@@ -1,0 +1,608 @@
+@use "../../breakpoints" as *;
+
+.CartCard {
+    width: 70%;
+    display: flex;
+    gap: 1rem;
+
+    @include lg2 {
+        width: 100%;
+    }
+
+    .CartImg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .CartCardInfo {
+        font-size: 0.8rem;
+        width: 100%;
+
+        p {
+            color: var(--main-text-color);
+            margin: 0;
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        p.Cname {
+            width: 100%;
+            overflow: hidden;
+
+            @include xl2 {
+                overflow: hidden;
+                max-width: 100px;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+        }
+    }
+}
+
+.cartHead {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem 1rem;
+    align-items: center;
+    color: var(--main-text-color);
+
+    p {
+        margin: 0;
+    }
+
+    @include lg2 {
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+.CartPage {
+    padding: 6rem 2rem 2rem;
+    height: 100%;
+    direction: rtl;
+
+    @include md {
+        padding: 2rem 1rem 1rem;
+    }
+
+    .cart-container {
+        width: 100%;
+        height: 100%;
+        gap: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+
+        @include xl {
+            flex-direction: column;
+        }
+
+        .cartT-container {
+            width: 75%;
+            height: 100%;
+            height: 80vh;
+            padding: 0 2rem 2rem 2rem;
+            background-color: var(--sec-color);
+            border: 1px solid var(--main-color);
+            border-radius: 40px;
+            box-shadow: 5px 5px 10px var(--main-text-color-op);
+            overflow: hidden;
+
+            @include xl {
+                width: 100%;
+            }
+
+            @include xs {
+                padding: 0 1rem 2rem;
+            }
+
+            .counter-container {
+                height: 15px;
+                width: 60px;
+            }
+        }
+    }
+
+
+    .cart-check {
+        width: 25%;
+        height: 100%;
+        padding: 2rem 1rem;
+        border-radius: 40px;
+        background-color: var(--sec-color);
+        border: 1px solid var(--main-color);
+
+        @include xl {
+            width: 100%;
+        }
+
+
+        .cart-check-items {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: start;
+            gap: 2rem;
+
+            @include xl {
+                width: 100%;
+                flex-direction: row-reverse;
+            }
+
+            @include sm2 {
+                width: 100%;
+                flex-direction: column;
+            }
+
+
+            .cart-check-item {
+                width: 100%;
+                color: var(--main-text-color);
+                // border: 1px solid var();
+                border-radius: 1rem;
+
+                h5 {
+                    margin-bottom: 1rem;
+                }
+
+                P {
+                    font-size: 0.9rem;
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            .total-section {
+                h4 {
+                    margin-bottom: 0.8rem;
+                }
+
+                p {
+                    font-size: 0.9rem;
+
+                    span {
+                        color: var(--main-color);
+                        font-weight: 600;
+                    }
+                }
+
+                .pageSelect {
+                    margin: 1rem 0;
+                }
+            }
+
+            .info-section {
+                position: relative;
+                overflow: hidden;
+                padding: 1rem 0.5rem;
+                color: #fff;
+                background-color: var(--main-color);
+
+                .loading {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 998;
+                    background-color: var(--main-color);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+
+                }
+
+                .checkBtn {
+                    width: 100%;
+                    display: block;
+                    cursor: pointer;
+                    background-color: var(--body-color);
+                    border: 1px solid var(--main-color);
+                    color: var(--main-color);
+                    border: 1px solid transparent;
+                    padding: 5px 25px;
+                    text-align: center;
+                    border-radius: 50px;
+                    transition: all 0.3s ease;
+
+                    &:disabled {
+                        cursor: not-allowed;
+                        font-weight: 400 !important;
+                    }
+
+                    &:hover {
+                        font-weight: bold;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+
+    td:not(:first-child) {
+        width: 20%;
+    }
+
+    /* Scrollbar Styling */
+    &::-webkit-scrollbar {
+        width: 8px;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--main-color);
+        border-radius: 10px;
+        border: 2px solid transparent;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: var(--main-color);
+    }
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--main-color) transparent;
+}
+
+
+.cart-table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    border: none;
+    text-align: start;
+    background: none;
+    position: relative;
+
+
+
+    thead {
+        background: none;
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+
+        th {
+            padding: 12px 12px;
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--main-text-color);
+            border: none;
+
+            @include xl2 {
+                font-size: 14px;
+            }
+
+            @include lg2 {
+                display: none;
+                font-size: 14px;
+            }
+        }
+
+        th:first-child {
+            width: 65%;
+        }
+
+        th:not(:first-child) {
+            width: 20%;
+        }
+    }
+
+    tbody {
+        display: block;
+        max-height: 60vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 100%;
+
+        @include md {
+
+            width: 600px;
+        }
+
+        .loading {
+            position: absolute;
+            width: 100%;
+            height: 70vh;
+            top: 0;
+            left: 0;
+            z-index: 998;
+            background-color: var(--sec-color);
+
+            .tdLoading {
+                width: 100%;
+                height: 100%;
+                background-color: var(--sec-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        tr {
+            display: table;
+            width: 100%;
+            border: none;
+            overflow: hidden;
+            border-radius: 20px;
+            table-layout: fixed;
+            margin-bottom: 0.5rem;
+            background-color: var(--body-color);
+
+            // عند الشاشات الصغيرة
+            // @include lg2 {
+            //     display: grid;
+            //     grid-template-columns: repeat(3, 1fr); // 3 أعمدة متساويين
+            //     grid-template-rows: auto auto; // صفين
+            //     gap: 12px;
+
+            //     // الصف الأول (ياخدوا كامل العرض)
+            //     td:nth-child(1) {
+            //         grid-column: 1 / 3; // ياخد أول عمودين
+            //         grid-row: 1;
+            //         padding-bottom: 0rem;
+
+            //         width: 100%;
+            //     }
+
+            //     td:nth-child(2) {
+            //         grid-column: 3 / 4; // ياخد العمود الثالث
+            //         grid-row: 1;
+            //         padding-bottom: 0rem;
+
+            //         width: 100%;
+            //     }
+
+            //     // الصف التاني (3 جنب بعض)
+            //     td:nth-child(3) {
+            //         grid-column: 1 / 2;
+            //         grid-row: 2;
+            //         width: 100%;
+            //     }
+
+            //     td:nth-child(4) {
+            //         grid-column: 2 / 3;
+            //         grid-row: 2;
+            //         width: 100%;
+            //     }
+
+            //     td:nth-child(5) {
+            //         grid-column: 3 / 4;
+            //         grid-row: 2;
+            //         width: 100%;
+            //     }
+
+            // }
+
+        }
+
+        td {
+            padding: 16px;
+            border: none;
+            vertical-align: middle;
+            color: var(--main-text-color);
+            font-size: 15px;
+
+
+            @include xl2 {
+                font-size: 12px;
+            }
+        }
+
+        td:first-child {
+            width: 65%;
+
+
+
+            .CartCardInfo p {
+                @include xl2 {
+                    font-size: 10px;
+                }
+            }
+        }
+
+        td:not(:first-child) {
+            width: 20%;
+        }
+
+        /* Scrollbar Styling */
+        &::-webkit-scrollbar {
+            width: 8px;
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--main-color);
+            border-radius: 10px;
+            border: 2px solid transparent;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: var(--main-color);
+        }
+
+        scrollbar-width: thin;
+        scrollbar-color: var(--main-color) transparent;
+    }
+
+
+    tbody.emptyCart {
+        width: 100%;
+        height: 80%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--main-text-color);
+
+        tr {
+            background-color: transparent;
+        }
+
+        td.emptyCart {
+            text-align: center;
+            font-size: 2rem;
+            background-color: transparent;
+
+            @include md {
+                font-size: 1.2rem;
+            }
+        }
+
+        tr:hover {
+            transform: scale(1);
+            border-bottom: none;
+        }
+    }
+}
+
+/* ممكن تضيف تظليل بسيط عند مرور الماوس */
+.cart-table tbody tr:hover {
+    transform: scale(1.005);
+    transition: all 0.2s ease-in-out;
+}
+
+/* تصغير حجم الصورة داخل CartCard لو حابب */
+.CartCard img {
+    width: 70px;
+    height: auto;
+    border-radius: 6px;
+}
+
+.cartActions-conatinaer {
+    padding: 1rem 0 0.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include lg2 {
+        padding-bottom: 1rem;
+    }
+
+    @include sm {
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    .cartActions-btns {
+        width: 70%;
+        display: flex;
+        gap: 1.5rem;
+        justify-content: start;
+        align-items: center;
+    }
+
+    .cartActions-counter {
+        color: var(--main-text-color);
+
+        @include lg2 {
+            font-size: 0.8rem;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        strong {
+            color: var(--main-color);
+        }
+    }
+}
+
+.catAction-btn {
+    color: var(--main-text-color);
+    background-color: transparent;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+
+    @include lg2 {
+        font-size: 0.7rem;
+    }
+
+    @include xxs {
+        font-size: 0.55rem;
+    }
+
+    .del,
+    .reload {
+        font-size: 2rem;
+        padding: 0.2rem;
+        transition: all 0.2s ease;
+
+        @include lg2 {
+            font-size: 1.5rem;
+        }
+
+        @include xxs {
+            font-size: 1.3rem;
+        }
+
+        &:hover {
+            padding: 0rem;
+        }
+    }
+
+    .del {
+        color: red;
+    }
+
+    .reload {
+        color: green;
+    }
+
+    .remove {
+        color: red;
+        font-size: 1.5rem;
+        padding: 0.1rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+            padding: 0rem;
+        }
+    }
+}
+
+@include xl {
+    .cart-container {
+        flex-direction: column;
+    }
+
+}

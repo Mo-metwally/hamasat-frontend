@@ -1,0 +1,84 @@
+{
+  "name": "hamasat-home",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.11",
+    "@tanstack/react-query": "^5.85.3",
+    "axios": "^1.7.9",
+    "bootstrap": "^5.3.3",
+    "cra-template": "1.2.0",
+    "egylist": "^1.0.3",
+    "jsonpath-plus": "^10.3.0",
+    "mdb-react-ui-kit": "^9.0.0",
+    "quill": "^2.0.3",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.7",
+    "react-dom": "^18.3.1",
+    "react-ga4": "^2.1.0",
+    "react-helmet-async": "^2.0.5",
+    "react-icons": "^5.4.0",
+    "react-lazy-load-image-component": "^1.6.3",
+    "react-loading-indicators": "^1.0.1",
+    "react-modal": "^3.16.3",
+    "react-quilljs": "^2.0.5",
+    "react-router-dom": "^7.1.5",
+    "react-scripts": "5.0.1",
+    "react-scroll": "^1.9.3",
+    "react-select": "^5.10.1",
+    "react-slick": "^0.30.3",
+    "react-snap": "^1.23.0",
+    "react-to-print": "^3.1.1",
+    "react-toastify": "^11.0.5",
+    "slick-carousel": "^1.8.1",
+    "web-vitals": "^4.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "postbuild": "react-snap",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "reactSnap": {
+    "inlineCss": true,
+    "puppeteerArgs": [
+      "--no-sandbox"
+    ],
+    "skipThirdPartyRequests": true,
+    "fixWebpackChunksIssue": "CRA2",
+    "minifyHtml": {
+      "collapseWhitespace": true,
+      "removeComments": true
+    },
+    "include": [
+      "/cart",
+      "/followup",
+      "/orders"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "sass": "^1.89.2",
+    "sass-loader": "^13.0.0"
+  }
+}

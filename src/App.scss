@@ -1,0 +1,326 @@
+@use "./breakpoints" as *;
+@use "./fonts";
+
+html,
+#root {
+  max-width: 1920px;
+}
+
+html,
+body {
+  height: 100%; // يخلي الصفحة كلها بارتفاع الشاشة
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+:root {
+  --main-color: #ff4b00;
+  --main-color-op: #ff4d008a;
+  --main-color-variant: #ffa480;
+  --main-color-variant2: #ffded1;
+  --sec-color: #fdf4f0;
+  --main-text-color: #4a1e0a;
+  --main-text-color-placeholder: #4a1e0aa4;
+  --main-text-color-op: #4a1e0a67;
+  --body-color: #ffffff;
+
+  --scroller-thumb: #a13000;
+  --admin-main-color: #4d3930;
+
+  /* Admin Panel Light Theme (Default) */
+  --admin-bg: #f9fbfd;
+  --admin-card-bg: #ffffff;
+  --admin-card-bg-alt: #f1f3f5;
+  --admin-card-gradient: linear-gradient(145deg, #ffffff, #fdfdfd);
+  --admin-border-color: rgba(0, 0, 0, 0.06);
+  --admin-border-light: rgba(0, 0, 0, 0.03);
+  --admin-text-main: #333333;
+  --admin-text-sec: #666666;
+  --admin-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  --admin-shadow-hover: 0 10px 25px rgba(255, 75, 0, 0.08);
+  --admin-glass: rgba(255, 255, 255, 0.85);
+  --admin-input-bg: #f8f9fa;
+  --admin-hover-bg: rgba(255, 75, 0, 0.04);
+}
+
+/* Admin Panel Dark Theme */
+[data-theme='dark'] {
+  --admin-bg: #0f1115;
+  --admin-card-bg: #1a1d24;
+  --admin-card-bg-alt: #22262f;
+  --admin-card-gradient: linear-gradient(145deg, #1a1d24, #22262f);
+  --admin-border-color: rgba(255, 255, 255, 0.08);
+  --admin-border-light: rgba(255, 255, 255, 0.04);
+  --admin-text-main: #f0f2f5;
+  --admin-text-sec: #a0aec0;
+  --admin-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  --admin-shadow-hover: 0 10px 25px rgba(255, 75, 0, 0.15);
+  --admin-glass: rgba(26, 29, 36, 0.85);
+  --admin-input-bg: #22262f;
+  --admin-hover-bg: rgba(255, 255, 255, 0.04);
+
+  /* Overrides for some main app vars to prevent stark contrast in admin */
+  --main-text-color: #f0f2f5;
+  --body-color: #0f1115;
+}
+
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  background-color: var(--body-color) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.loading {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: var(--body-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "cairo";
+}
+
+.C-btn {
+  cursor: pointer;
+  color: var(--sec-color);
+  background-color: var(--main-color);
+  border: 1px solid transparent;
+  padding: 5px 25px;
+  text-align: center;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--body-color);
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+  }
+}
+
+.C-Sbtn {
+  cursor: pointer;
+  color: var(--main-text-color-color);
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 5px 25px;
+  text-align: center;
+  border-radius: 50px;
+  border: var(--main-color-variant) 1px solid;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--main-color);
+    color: var(--body-color);
+  }
+}
+
+.head-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  color: var(--main-text-color);
+
+  h1,
+  a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  @include xs {
+
+    h1,
+    a {
+      font-size: 1rem;
+
+    }
+  }
+
+  i {
+    font-size: 1rem;
+  }
+}
+
+.head-spaced {
+  justify-content: space-between;
+  padding: 0.8rem 2rem;
+}
+
+.main-head {
+  position: relative;
+  color: var(--main-text-color);
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include md {
+      font-size: 1.5rem;
+    }
+
+    @include xs {
+      font-size: 1.1rem;
+    }
+
+    &::before {
+      content: "";
+      z-index: 2;
+      position: absolute;
+      top: 10px;
+      width: 9rem;
+
+      @include md {
+        width: 7rem;
+      }
+
+      @include xs {
+        width: 5rem;
+      }
+
+      /* Extend across the full width of h1 */
+      height: 2px;
+      /* Make the border visible */
+      border-top: 2px solid var(--main-text-color);
+      background-color: #ff4b00;
+    }
+  }
+}
+
+#Value .main-head {
+  h1 {
+    &::before {
+      width: 5rem;
+
+      @include md {
+        width: 4rem;
+      }
+    }
+  }
+}
+
+.cart-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  background-color: var(--main-color);
+  color: var(--sec-color);
+  border-radius: 100%;
+  border: 1px solid transparent;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    color: var(--main-color);
+    background: transparent;
+    border: 1px solid var(--main-color);
+  }
+}
+
+.App {
+  max-width: 1920px;
+  position: relative;
+}
+
+.orderNow {
+  position: relative;
+  width: 140px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  color: var(--sec-color);
+  background-color: var(--main-color);
+  border: 1px solid transparent;
+  padding: 5px 25px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+
+  span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: #fff;
+  }
+
+  .icon {
+    font-size: 1.8rem;
+    transform: translateX(-200%);
+    transition: transform 0.3s linear;
+  }
+
+  .text {
+    padding: 0;
+    margin: 0;
+    background-color: var(--main-color);
+    width: 100%;
+    z-index: 2;
+    transform: translateX(0);
+    transition: transform 0.3s linear;
+  }
+
+  &:hover {
+    .text {
+      transform: translateX(200%);
+    }
+
+    .icon {
+      transform: translateX(0);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+
+  .cart-btn,
+  .C-Sbtn,
+  .C-btn {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  .cart-btn,
+  .C-Sbtn,
+  .C-btn {
+    font-size: 0.67rem;
+  }
+
+  .orderNow span {
+    font-size: 0.7rem;
+    height: 100%;
+    width: 100%;
+  }
+}

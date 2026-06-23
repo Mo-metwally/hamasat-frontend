@@ -1,0 +1,122 @@
+.comptitionHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--body-color);
+    padding-bottom: 0.5rem;
+
+}
+
+.comptitionHeadSort {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.6rem 0;
+
+
+    label {
+        color: var(--body-color);
+    }
+
+    select {
+        background-color: var(--body-color);
+        border: 1px solid transparent;
+        max-width: 280px;
+        min-width: 220px;
+        outline: none;
+        border-radius: 0.5rem;
+        color: var(--main-text-color);
+
+        &:focus {
+            border: 1px solid var(--main-color);
+        }
+    }
+}
+
+.print-btn {
+    margin-left: 15px;
+    padding: 8px 14px;
+    background: var(--main-color);
+    border: 1px solid transparent;
+    color: #fff;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.print-btn:hover {
+    background: var(--body-color);
+    color: var(--main-color);
+    border: 1px solid var(--main-color);
+}
+
+.print-cards {
+    visibility: hidden;
+    display: none;
+    page-break-inside: avoid;
+}
+
+.print-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+    font-weight: 500;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.print-card .name {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.print-card .code {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+
+/* ✅ خاص بالطباعة */
+@media print {
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+
+    .print-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 5px;
+    }
+
+    .print-refComp {
+        width: 704px;
+        height: 1048px;
+        margin: 0 auto;
+        background: white;
+    }
+
+
+    .print-cards,
+    .print-cards * {
+        visibility: visible;
+    }
+
+    .print-cards {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .print-btn {
+        display: none !important;
+    }
+}

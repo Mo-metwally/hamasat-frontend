@@ -1,0 +1,136 @@
+
+.admin_page_tabl_cr {
+    width: 100%;
+    background-color: var(--admin-card-bg, #ffffff);
+    border: 1px solid var(--admin-border-light, rgba(0,0,0,0.05));
+    box-shadow: var(--admin-shadow, 0 10px 40px rgba(0,0,0,0.05));
+    border-radius: 10px 0 10px 10px;
+    padding: 2rem;
+    z-index: 1;
+
+    input,
+    .selector {
+        width: 80%;
+        border: 1px solid var(--admin-border-light, rgba(0,0,0,0.1));
+        background-color: var(--admin-card-bg-alt, #fdfdfd);
+        color: var(--admin-text-main, #333);
+        border-radius: 8px;
+        padding-right: 0.8rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        outline: none;
+        transition: all 0.3s ease;
+        
+        &:focus {
+            border-color: var(--main-color);
+            box-shadow: 0 0 0 3px rgba(255, 75, 0, 0.1);
+        }
+    }
+
+    .selector {
+        padding-right: 0 !important;
+    }
+
+    .css-13cymwt-control input:focus {
+        border-color: #f4b400;
+        /* لون الإطار عند التركيز */
+        box-shadow: 0 0 0 2px rgba(244, 180, 0, 0.2);
+        /* ظل خفيف */
+    }
+
+    label {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        color: var(--admin-text-main, var(--main-text-color));
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+
+        .star {
+            color: var(--main-color);
+            font-size: 0.5rem;
+        }
+    }
+
+    .mainCatForm {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 40px;
+        align-items: start;
+        width: 100%;
+
+        .form-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+
+            label {
+                flex-direction: column;
+                align-items: start;
+                gap: 8px;
+                
+                input, .selector {
+                    width: 100%;
+                }
+            }
+        }
+        
+        .admin-btn-container {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+    }
+    
+    @media (max-width: 900px) {
+        .mainCatForm {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    }
+}
+
+
+.addImg {
+    padding: 2rem 0;
+    width: 100%;
+}
+
+.uploadBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--admin-border-light, rgba(0,0,0,0.1));
+    background: var(--admin-card-bg-alt, #fafafa);
+    padding: 40px;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.uploadBox:hover {
+    border-color: var(--main-color);
+    background: var(--admin-hover-bg, rgba(255, 75, 0, 0.02));
+    
+    .plus {
+        transform: translateY(-5px) scale(1.1);
+        color: var(--main-color);
+    }
+}
+
+.plus {
+    font-size: 50px;
+    color: var(--admin-text-sec, #999);
+    transition: all 0.3s ease-in-out;
+}
+
+.text {
+    margin-top: 15px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--admin-text-main, var(--main-text-color));
+}

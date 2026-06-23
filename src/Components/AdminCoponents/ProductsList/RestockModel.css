@@ -1,0 +1,53 @@
+.reStock-model-container {
+    position: fixed;
+    /* أهم حاجة علشان يثبت فوق كل الصفحة */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* غطّي العرض كله */
+    height: 100vh;
+    /* غطّي الطول كله */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* خلفية شفافة */
+    z-index: 9999;
+    /* فوق كل العناصر */
+}
+
+.reStock-model {
+    background-color: var(--admin-light-color);
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 400px;
+    /* حجم مناسب بدل 800px */
+    max-width: 90%;
+    /* علشان يظبط على الموبايل */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    color: var(--main-text-color);
+
+    h3 {
+        padding-bottom: 1rem;
+    }
+
+    input {
+        border: 1px solid var(--main-color);
+        outline: none;
+        border-radius: 1rem;
+        padding: 0.4rem 1rem;
+    }
+
+    strong {
+        text-decoration: underline;
+        color: var(--main-color);
+    }
+}
+
+.reStock-model-buttons {
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

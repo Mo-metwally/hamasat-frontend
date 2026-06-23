@@ -1,0 +1,314 @@
+@use "../../breakpoints" as *;
+
+#checkOut {
+
+    .cartT-container {
+        min-height: 80vh;
+        height: 100%;
+
+        @include xs {
+            padding: 0;
+        }
+    }
+
+    @include xs {
+        padding: 2rem 0.8rem 1rem;
+    }
+}
+
+.check-sucss {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.custom-toast {
+    background-color: var(--body-color);
+    border: 1px solid var(--main-color);
+    color: var(--main-text-color);
+    border-radius: 12px;
+    font-weight: bold;
+    padding: 12px;
+    overflow: hidden;
+}
+
+
+.check-sucss-container {
+    max-width: 50%;
+    height: 100%;
+    padding: 2rem;
+    background-color: var(--sec-color);
+    border: 1px solid var(--main-color);
+    border-radius: 40px;
+    box-shadow: 5px 5px 10px var(--main-text-color-op);
+    color: var(--main-text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    @include lg2 {
+        max-width: 80%;
+    }
+
+    @include sm {
+        max-width: 100%;
+    }
+
+    @include xs {
+        p {
+            margin: 0;
+            font-size: 80%;
+        }
+    }
+
+    @include xxs {
+        h2 {
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin: 0;
+            font-size: 72%;
+        }
+    }
+
+    .check-sucss-head {
+
+        .success-icon {
+            background-color: var(--main-color);
+            color: var(--sec-color);
+            padding: 1rem;
+            border-radius: 50%;
+            font-size: 6rem;
+            margin-bottom: 1rem;
+
+            @include xs {
+                padding: 0.7rem;
+                font-size: 4rem;
+            }
+        }
+
+
+    }
+
+    .order-id-box {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin: 1.5rem 0;
+
+        span {
+            padding-bottom: 0.5rem;
+        }
+    }
+
+    .order-id-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .codeBox {
+            flex: 1;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid var(--main-color);
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            background-color: var(--body-color);
+
+            span {
+                padding-right: 1rem;
+                font-weight: bold;
+                color: var(--main-color);
+            }
+        }
+
+        button {
+            background: var(--main-color);
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: var(--main-color-op);
+            }
+        }
+    }
+
+    .order-track-message {
+        p {
+            line-height: 2rem;
+            padding-bottom: 1rem;
+        }
+
+    }
+}
+
+// Check Out Order Form
+
+.checkOut-form {
+    padding: 2rem 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .CheckForm-items {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+
+        @include sm2 {
+            flex-direction: column;
+        }
+
+
+
+        .CheckForm-item {
+            color: var(--main-text-color);
+            width: 100%;
+            height: 100%;
+
+
+        }
+
+        .label-text {
+            padding-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+
+
+        .CheckForm-selector {
+
+            .css-13cymwt-control {
+                border: 1px solid var(--main-color-op);
+                background-color: var(--body-color);
+                border-radius: 0.6rem;
+            }
+
+            .css-t3ipsp-control {
+                border: 1px solid var(--main-color);
+                background-color: var(--body-color);
+                box-shadow: 0 0 1px var(--main-color);
+                outline: none;
+            }
+
+        }
+
+        .css-16xfy0z-control[aria-disabled="true"] {
+            background-color: var(--body-color);
+            opacity: 0.6;
+            cursor: not-allowed;
+            border-radius: 8px;
+        }
+
+        input,
+        textarea {
+
+            width: 100%;
+            background-color: var(--body-color);
+            outline: none;
+            border: none;
+            padding: 0.4rem 0.6rem;
+            border-radius: 0.6rem;
+            border: 1px solid var(--main-color-op);
+            color: var(--main-text-color);
+
+            &:focus {
+                color: var(--main-text-color);
+                border: 1px solid var(--main-color);
+                box-shadow: 0 0 1px var(--main-color);
+
+                &::placeholder {
+                    color: var(--main-text-color);
+
+                }
+            }
+
+            &::placeholder {
+                color: var(--main-text-color-placeholder);
+                text-align: start;
+            }
+        }
+
+        .conf-btn {
+            width: 100%;
+
+        }
+    }
+}
+
+#checkOut {
+    .cart-check {
+        .info-head {
+            color: #fff;
+        }
+
+        h4 {
+            margin-bottom: 1rem;
+            color: var(--main-text-color);
+        }
+    }
+
+    .cart-check-items {
+        .cart-check-itemsCard {
+            background-color: var(--body-color);
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0.4rem;
+            gap: 0.5rem;
+            overflow: hidden;
+            border-radius: 1rem;
+            border: 1px solid var(--main-color);
+            color: var(--main-text-color);
+
+            .cart-check-itemsCard-content {
+                max-width: 70%;
+            }
+
+            p {
+                font-size: 0.8rem;
+                margin-bottom: 0.3rem;
+                width: 100%;
+                padding-left: 1rem;
+                white-space: nowrap;
+                /* يمنع النزول لسطر جديد */
+                overflow: hidden;
+                /* يخفي أي نص زائد */
+                text-overflow: ellipsis;
+                /* يحول الزائد لـ ... */
+            }
+
+
+            img {
+
+                border-radius: 0.5rem;
+                width: 80px;
+                height: 100px;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+.checkout-agreement {
+    font-size: 0.7rem;
+
+    a {
+        color: var(--main-text-color);
+        text-decoration: underline !important;
+
+        &:hover {
+            color: var(--main-color);
+        }
+    }
+}

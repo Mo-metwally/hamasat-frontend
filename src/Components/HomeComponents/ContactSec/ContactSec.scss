@@ -1,0 +1,305 @@
+@use '../../../breakpoints' as *;
+
+.vendor-cta-section {
+    position: relative;
+    width: 100%;
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, var(--body-color), var(--sec-color));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.vendor-cta-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 111, 51, 0.15);
+    border-radius: 30px;
+    padding: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(20px);
+    z-index: 2;
+
+    @include xl {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 2rem;
+    }
+}
+
+/* Background Glowing Orbs */
+.vendor-cta-container::before,
+.vendor-cta-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+}
+
+.vendor-cta-container::before {
+    top: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 111, 51, 0.15);
+}
+
+.vendor-cta-container::after {
+    bottom: -50px;
+    left: -50px;
+    width: 250px;
+    height: 250px;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* Typography & Content */
+.cta-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include xl {
+        align-items: center;
+    }
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 111, 51, 0.1);
+    color: var(--main-color, #ff6f33);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 111, 51, 0.2);
+}
+
+.cta-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--main-text-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    background: linear-gradient(90deg, var(--main-color, #ff6f33), #ff9b70);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @include md {
+        font-size: 2.2rem;
+    }
+}
+
+.cta-description {
+    font-size: 1.15rem;
+    color: var(--main-text-color);
+    opacity: 0.8;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+
+    @include xl {
+        max-width: 100%;
+    }
+}
+
+.cta-features {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    @include md {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--main-text-color);
+    font-weight: 600;
+    font-size: 1rem;
+
+    .icon {
+        color: var(--main-color, #ff6f33);
+        font-size: 1.2rem;
+    }
+}
+
+/* Premium Glowing Button */
+.cta-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 40px;
+    border-radius: 50px;
+    background: var(--main-color, #ff6f33);
+    color: #fff !important;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 25px rgba(255, 111, 51, 0.4);
+
+    &:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(255, 111, 51, 0.5);
+        color: #fff;
+
+        .btn-glow {
+            transform: translateX(100%);
+            transition: transform 0.6s ease;
+        }
+    }
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    z-index: 1;
+}
+
+/* Glassmorphism Illustration Wrapper */
+.cta-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    @media (max-width: 600px) {
+       display: none;
+    }
+}
+
+.glass-card-contact {
+    width: 100%;
+    max-width: 400px;
+    height: 350px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    position: relative;
+    transform: rotateY(-15deg) rotateX(10deg);
+    transition: transform 0.5s ease;
+
+    &:hover {
+        transform: rotateY(-5deg) rotateX(5deg) translateY(-10px);
+    }
+
+    @include xl {
+        transform: none;
+        &:hover {
+            transform: translateY(-10px);
+        }
+    }
+}
+
+.glass-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.floating-element {
+    position: absolute;
+    background: var(--main-color, #ff6f33);
+    opacity: 0.8;
+    box-shadow: 0 10px 30px rgba(255, 111, 51, 0.4);
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-element.circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    top: -20px;
+    right: -20px;
+    background: linear-gradient(135deg, #ff6f33, #ff9b70);
+}
+
+.floating-element.square {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    bottom: -10px;
+    left: -10px;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    animation-delay: -3s;
+    opacity: 0.6;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+.mockup-content {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.line {
+    height: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    width: 100%;
+}
+
+.line.title {
+    height: 30px;
+    width: 70%;
+    background: rgba(255, 111, 51, 0.2);
+    margin-bottom: 20px;
+}
+
+.line.short {
+    width: 50%;
+}
+
+.mockup-btn {
+    margin-top: auto;
+    height: 40px;
+    width: 100%;
+    background: rgba(255, 111, 51, 0.8);
+    border-radius: 10px;
+}

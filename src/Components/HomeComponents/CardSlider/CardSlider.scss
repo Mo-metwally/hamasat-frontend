@@ -1,0 +1,82 @@
+@use '../../../breakpoints' as *;
+
+.products-slider-container {
+    margin: 0 1rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: var(--sec-color);
+    height: 100%;
+
+
+    // CardSlider.scss
+    .slick-slide[aria-hidden="true"] a,
+    .slick-slide[aria-hidden="true"] button {
+        pointer-events: none;
+        /* يمنع النقر */
+        user-select: none;
+        /* يمنع التحديد */
+        opacity: 0.9;
+        /* اختياري: توضح العنصر مخفي */
+    }
+
+
+    @include xs {
+
+        .card-container {
+            .card-price-Container {
+                @include xs {
+
+                    .prodPrice,
+                    .mainprice {
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+        }
+
+        .cart-btn {
+            padding: 0.25rem;
+        }
+
+        .C-Sbtn {
+            font-size: 0.5rem !important;
+            padding: 4px 15px;
+        }
+
+    }
+
+    @include xxs {
+        margin: 0 0;
+
+    }
+
+}
+
+.head-more {
+    a {
+        color: var(--main-text-color);
+    }
+}
+
+
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+    color: var(--main-color) !important;
+}
+
+.slick-arrow::before {
+    color: var(--main-color) !important;
+}
+
+.slick-dots li button:before {
+    color: var(--main-color-op) !important;
+    /* Change this to your desired inactive color */
+}
+
+/* Change the color of the active dot */
+.slick-dots li.slick-active button:before {
+    color: var(--main-color) !important;
+    /* Change this to your desired active color */
+}

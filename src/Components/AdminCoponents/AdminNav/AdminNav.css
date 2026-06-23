@@ -1,0 +1,95 @@
+.adminNav {
+    position: fixed;
+    width: 100%;
+    background: var(--admin-glass, rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--admin-border-color, rgba(0, 0, 0, 0.05));
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+
+    .adminNavItem.title {
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--admin-text-main, var(--main-text-color));
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 24px;
+            background: linear-gradient(to bottom, var(--main-color), #ff8a5c);
+            border-radius: 4px;
+        }
+    }
+}
+
+.theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--admin-border-color, rgba(0,0,0,0.1));
+    color: var(--admin-text-main, #333);
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: var(--admin-hover-bg, rgba(255, 75, 0, 0.05));
+        color: var(--main-color);
+        border-color: var(--main-color);
+        transform: rotate(15deg) scale(1.05);
+    }
+
+    .sun-icon {
+        color: #f59e0b;
+    }
+    .moon-icon {
+        color: #3b82f6;
+    }
+}
+.adminNav-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.admin-username {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+@media (max-width: 500px) {
+    .adminNav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 1rem;
+    }
+
+    .adminNav-group {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .left-group {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .right-group {
+        justify-content: space-between;
+    }
+}

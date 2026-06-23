@@ -1,0 +1,16 @@
+.pagination {
+    justify-content: center !important;
+    padding: 1rem 0;
+
+    .page-link {
+        color: var(--main-color);
+        background-color: var(--sec-color);
+        border: 1px solid var(--body-color);
+        border-radius: 5px;
+    }
+
+    .active>.page-link {
+        background-color: var(--main-text-color);
+        color: var(--sec-color);
+    }
+}

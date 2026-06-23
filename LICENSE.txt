@@ -1,0 +1,23 @@
+Proprietary License – Mohamed Metwally
+
+Copyright (c) 2025 Mohamed Metwally. All rights reserved.
+
+This source code is proprietary and confidential.  
+It is developed exclusively by Mohamed Metwally and provided only in its compiled build form to the client (Hamasat Kitchenware).  
+
+Permissions:  
+- The client (Hamasat Kitchenware) is granted the right to use, host, and display the compiled build of this project for their business purposes.  
+
+Restrictions:  
+- The client is NOT permitted to access, modify, redistribute, or sell the original source code.  
+- The source code remains the sole property of Mohamed Metwally.  
+
+Any unauthorized use, reproduction, or distribution of the source code is strictly prohibited.
+
+-----------------------------------
+Developer Information:
+Mohamed Metwally
+GitHub: https://github.com/Mo-metwally
+Portfolio: https://mohammed-metwally.web.app/
+LinkedIn: https://www.linkedin.com/in/mohamed-metwally-rzq/
+-----------------------------------

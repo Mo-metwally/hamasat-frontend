@@ -1,0 +1,27 @@
+@use "../../breakpoints" as *;
+
+.terms-conditions {
+    direction: rtl;
+    padding: 7rem 5%;
+
+    @include md {
+        padding: 2rem 5%;
+    }
+
+    .term {
+        padding: 1rem;
+        background-color: var(--sec-color);
+        border-radius: 1rem;
+        border: 1px solid var(--main-color-op);
+        margin-bottom: 1rem;
+
+        a {
+            color: var(--main-color);
+            text-decoration: underline !important;
+
+            &:hover {
+                color: var(--main-text-color);
+            }
+        }
+    }
+}

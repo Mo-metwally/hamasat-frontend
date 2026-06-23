@@ -1,0 +1,562 @@
+/* src/components/PrintInvoice.scss */
+.printPage {
+    width: 90%;
+    background-color: var(--admin-main-color);
+    border-radius: 1rem;
+    padding: 1rem;
+
+    .print-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            margin: 0;
+            color: var(--body-color);
+        }
+    }
+
+    .invoice_name {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+.print-ref {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.invoice-info {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+
+.print-area {
+    width: 100%;
+    background-color: var(--body-color);
+    border-radius: 1rem;
+    padding: 1rem;
+
+
+    .invoice-dataSec {
+        margin: 1rem 0 0.8rem;
+
+        h4 {
+            margin-bottom: 1rem;
+        }
+    }
+
+    h4,
+    h5 {
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    h6,
+    p {
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    p {
+        margin: 0;
+        padding: 0.4rem 0;
+
+        width: 100%;
+    }
+
+    .invoice-total {
+        border-top: 1px solid var(--main-text-color);
+    }
+
+    color: var(--main-text-color);
+
+    img {
+        display: none;
+    }
+
+    ul {
+        list-style: decimal !important;
+        padding: 0;
+        margin-bottom: 0.2rem;
+    }
+
+    .invoice-dataSec-head {
+        display: flex;
+        align-self: center;
+        justify-content: space-between;
+
+        div:last-child {
+            width: 12%;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+
+    li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 6px;
+        margin-bottom: 0.4rem;
+        border-bottom: 1px solid var(--main-text-color-op);
+
+        div:first-child {
+            display: flex;
+            align-items: center;
+        }
+
+        div:last-child {
+            width: 35%;
+            display: flex;
+            justify-content: space-between;
+
+
+            h6 {
+                width: 100%;
+                display: inline-block;
+                text-align: center;
+
+                border-right: 1px solid var(--main-text-color-op);
+            }
+        }
+    }
+
+    li:last-child {
+        border-bottom: none;
+        /* إزالة الحد السفلي فقط عن آخر عنصر */
+        margin-bottom: 0;
+        /* تعديل المسافة السفلية لو تحب */
+    }
+
+}
+
+.invoice-dataOne {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+
+.invoice-Details {
+    display: flex;
+    width: 92%;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 1.2rem;
+    padding: 0 0.5rem;
+    border: 1px solid var(--main-text-color);
+
+    .Pricing {
+        width: 28%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    .Adress {
+        width: 70%;
+        border-left: 1px solid var(--main-text-color);
+        font-size: 1rem;
+    }
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 5mm;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .printPage {
+        width: 100%;
+        border-radius: 0rem;
+        padding: 0rem;
+    }
+
+    .adminRoutes {
+        margin: 0;
+    }
+
+    .print-ref {
+        margin: 0 !important;
+        padding: 0 !important;
+        direction: rtl;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+    }
+
+    button {
+        display: none !important;
+    }
+
+    .print-area {
+        border-radius: 0;
+        padding: 0;
+        width: 793px;
+        height: 1122px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        overflow: hidden;
+
+    }
+
+    /* خلي الصفحة الجديدة تتولد بس بين الفواتير */
+    .print-area:not(:last-child) {
+        page-break-after: always;
+    }
+
+    .invoice-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    img.invoice-bg {
+        display: block !important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        z-index: 0;
+    }
+
+    .invoice-data {
+        color: var(--admin-main-color);
+        position: absolute;
+        top: 8.2rem;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        width: 90%;
+        margin: 0 auto;
+        height: 72%;
+        box-sizing: border-box;
+    }
+
+    .invoice-justify {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    h2,
+    h3 {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    ul {
+        padding-left: 0;
+        list-style: none;
+        margin: 10px 0 0px;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    li:last-child {
+        border-bottom: none;
+        margin-bottom: 0 !important;
+    }
+}
+@media print {
+    /* Ensure the background images and colors are printed */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .vendor-id-card-print {
+        display: block !important;
+        width: 85mm;
+        height: 54mm; /* Standard ID card size (Landscape) */
+        border-radius: 8px;
+        background: linear-gradient(135deg, #ffffff 0%, #fdfbfb 100%);
+        border: 2px solid #ff6f33; /* Main Brand Color */
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+        margin: auto;
+        page-break-inside: avoid;
+        font-family: 'Tajawal', 'Cairo', sans-serif;
+        color: #333;
+
+        /* Decorative Background Pattern */
+        &::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 111, 51, 0.1);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 120px;
+            height: 120px;
+            background: rgba(44, 62, 80, 0.05);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .id-card-inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 0;
+        }
+
+        .id-card-header {
+            // background: linear-gradient(90deg, #ff6f33 0%, #e65c22 100%);
+            padding: 8px 15px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #cc4e1a;
+            
+            .header-logo-container {
+                text-align: center;
+                .brand-title {
+                    color: #ff6f33;
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: 800;
+                    letter-spacing: 0.5px;
+                }
+                .card-subtitle {
+                    color: #e65c22;
+                    margin: 0;
+                    font-size: 8px;
+                    opacity: 0.9;
+                }
+            }
+        }
+
+        .id-card-body {
+            flex: 1;
+            padding: 10px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .vendor-name {
+                margin: 0 0 2px 0;
+                font-size: 16px;
+                font-weight: 800;
+                color: #2c3e50;
+            }
+
+            .business-field {
+                margin: 0 0 10px 0;
+                font-size: 10px;
+                color: #ff6f33;
+                font-weight: 600;
+                background: rgba(255, 111, 51, 0.1);
+                display: inline-block;
+                padding: 2px 6px;
+                border-radius: 4px;
+                align-self: flex-start;
+            }
+
+            .id-card-details {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+                font-size: 9px;
+
+                .detail-item {
+                    display: flex;
+                    flex-direction: column;
+
+                    .detail-label {
+                        color: #7f8c8d;
+                        font-size: 8px;
+                        margin-bottom: 2px;
+                    }
+                    .detail-value {
+                        color: #2c3e50;
+                        font-weight: 700;
+                    }
+                }
+
+                .full-width {
+                    grid-column: 1 / -1;
+                }
+            }
+        }
+
+        .id-card-footer {
+            background: #f8f9fa;
+            padding: 5px 15px;
+            border-top: 1px solid #eee;
+            text-align: center;
+
+            .footer-content {
+                p {
+                    margin: 0;
+                    font-size: 8px;
+                    color: #7f8c8d;
+                    font-weight: 600;
+                }
+                .scan-text {
+                    font-size: 7px;
+                    color: #bdc3c7;
+                    margin-top: 1px;
+                }
+            }
+        }
+    }
+}
+
+/* Hide large vendor card from screen view */
+.invoice-vendor-card-page {
+    display: none;
+}
+
+@media print {
+    .invoice-vendor-card-page {
+        display: flex !important;
+        page-break-before: always;
+        width: 100%;
+        min-height: 100vh;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        box-sizing: border-box;
+        background: #fff;
+    }
+
+    .large-vendor-card {
+        width: 100%;
+        max-width: 900px;
+        border: 6px solid #ff6f33;
+        border-radius: 30px;
+        padding: 50px;
+        background: #fff;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        text-align: center;
+        margin: auto;
+        
+        .lvc-header {
+            margin-bottom: 50px;
+            border-bottom: 4px solid #eee;
+            padding-bottom: 30px;
+            
+            .brand-title {
+                font-size: 48px;
+                color: #ff6f33;
+                font-weight: 900;
+                margin: 0;
+            }
+            .card-subtitle {
+                font-size: 28px;
+                color: #64748b;
+                margin: 15px 0 0;
+                font-weight: 700;
+            }
+        }
+        
+        .lvc-body {
+            .vendor-name {
+                font-size: 60px;
+                color: #1e293b;
+                font-weight: 900;
+                margin-bottom: 15px;
+            }
+            
+            .business-field {
+                font-size: 28px;
+                color: #ff6f33;
+                background: rgba(255,111,51,0.1);
+                display: inline-block;
+                padding: 10px 25px;
+                border-radius: 15px;
+                margin-bottom: 50px;
+                font-weight: 700;
+            }
+            
+            .lvc-details {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                text-align: right;
+                background: #f8fafc;
+                padding: 40px;
+                border-radius: 20px;
+                border: 2px solid #e2e8f0;
+                
+                .detail-item {
+                    display: flex;
+                    flex-direction: column;
+                    
+                    .detail-label {
+                        font-size: 22px;
+                        color: #64748b;
+                        margin-bottom: 10px;
+                        font-weight: 700;
+                    }
+                    
+                    .detail-value {
+                        font-size: 32px;
+                        color: #0f172a;
+                        font-weight: 800;
+                    }
+                }
+                
+                .full-width {
+                    grid-column: 1 / -1;
+                }
+            }
+        }
+        
+        .lvc-footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 3px dashed #cbd5e1;
+            font-size: 24px;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+    }
+}

@@ -1,0 +1,224 @@
+@use "../../../breakpoints" as *;
+
+.Categories-body {
+  padding: 1rem 2rem;
+  width: 100%;
+  text-align: center;
+  position: relative;
+
+  .svgDic {
+    width: 22%;
+    padding-top: 3.5rem;
+    position: absolute;
+    top: -4rem;
+    right: -4%;
+
+    @include md {
+      width: 35%;
+    }
+  }
+
+  @include md {
+    padding: 1rem;
+  }
+}
+
+.small-category-container {
+  position: relative;
+  margin-top: 2rem;
+  padding: 1rem 7.5%;
+  z-index: 10;
+}
+
+.ScategoryCard {
+  background-color: var(--sec-color);
+  border-radius: 50% 50% 5px 5px;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.356);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all ease 0.2s;
+  margin: 0rem 0.5rem 1rem;
+  max-width: 180px;
+
+  @include xxxl {
+    width: 140px;
+  }
+
+  @include md {
+    width: 120px;
+  }
+
+  @include sm {
+    width: 100px;
+  }
+
+  @include xs {
+    width: 90%;
+  }
+
+  img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+
+    // موبايلات صغيرة جدًا
+    // تابلت
+    @include xxxl {
+      height: 110px;
+    }
+
+    @include xl2 {
+      height: 90px;
+    }
+
+    @include md {
+      height: 80px;
+    }
+
+    @include sm {
+      height: 70px;
+    }
+
+    @include xs {
+      height: 80px;
+    }
+
+    // موبايلات متوسطة
+  }
+
+  h2 {
+    font-size: 1rem;
+    padding: 0.2rem 0;
+    margin-top: 0.2rem;
+    font-weight: bold;
+    color: var(--main-text-color);
+
+    @include xl2 {
+      font-size: 0.8rem;
+    }
+
+    @include md {
+      font-size: 0.7rem;
+    }
+
+    @include xs {
+      font-size: 0.57rem;
+    }
+  }
+
+  // responsive card sizing
+  @include sm {
+    max-width: 100px;
+    border-radius: 40px 40px 5px 5px;
+  }
+
+  @include md {
+    max-width: 120px;
+    border-radius: 50px 50px 5px 5px;
+  }
+
+  @include lg {
+    max-width: 130px;
+  }
+
+  &:hover {
+    transition: all ease 0.2s;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.356);
+  }
+}
+
+.main-category-container {
+  background-color: var(--sec-color);
+  width: 100%;
+  margin-top: 5rem;
+  padding: 4rem 2rem;
+  border-radius: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  justify-items: center;
+  gap: 30px;
+
+  // ✅ لما يكون تابلت
+  @include md2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  // ✅ لما يكون موبايل صغير جداً
+  @include sm {
+    margin-top: 2rem;
+    padding: 1rem 0.5rem;
+    border-radius: 20px;
+  }
+}
+
+
+
+.McategoryCard {
+  max-width: 460px;
+  background-color: var(--sec-color);
+  border-radius: 50% 50% 5px 5px;
+  box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.356);
+  overflow: hidden;
+  text-align: center;
+  transition: all ease 0.2s;
+
+  img {
+    width: 440px;
+    height: 350px;
+    object-fit: cover;
+
+    @include xxxl2 {
+      width: 360px;
+      height: 280px;
+    }
+
+    @include xl {
+      width: 260px;
+      height: 200px;
+    }
+
+    @include lg2 {
+      width: 220px;
+      height: 180px;
+    }
+
+    @include sm {
+      width: 180px;
+      height: 150px;
+    }
+
+    @include xs {
+      width: 140px;
+      height: 110px;
+    }
+
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    padding: 0.4rem 0;
+    margin-top: 0.2rem;
+    font-weight: bold;
+    color: var(--main-text-color);
+
+    @include sm {
+      font-size: 1rem;
+    }
+
+    @include md {
+      font-size: 0.8rem;
+    }
+  }
+
+  &:hover {
+    transition: all ease 0.2s;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.356);
+  }
+}
