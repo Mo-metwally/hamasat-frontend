@@ -59,7 +59,7 @@ const ShowCase = () => {
                     <Link to="/shop">
                         <img
                             src={fallbackImage}
-                            alt="همسات هوم للأدوات المنزلية"
+                            alt="همسات هوم لتجهيز المنازل"
                             fetchpriority="high"
                             decoding="async"
                         />
@@ -74,7 +74,7 @@ const ShowCase = () => {
                                 <Link to={slide.link}>
                                     <img
                                         src={slide.img}
-                                        alt="همسات هوم للأدوات المنزلية"
+                                        alt="همسات هوم لتجهيز المنازل"
                                         fetchpriority="high"
                                         decoding="async"
                                     />
@@ -83,7 +83,7 @@ const ShowCase = () => {
                                 <Link to="/shop">
                                     <img
                                         src={slide.img}
-                                        alt="همسات هوم للأدوات المنزلية"
+                                        alt="همسات هوم لتجهيز المنازل"
                                         fetchpriority="high"
                                         decoding="async"
                                     />

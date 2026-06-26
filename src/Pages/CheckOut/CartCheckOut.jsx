@@ -255,9 +255,9 @@ const CartCheckOut = () => {
                 {/* Basic Meta */}
                 <meta
                     name="description"
-                    content="تم تأكيد طلبك بنجاح في معرض همسات هوم. شكراً لتسوقك معنا، سيتم التواصل معك لإتمام عملية التوصيل في أسرع وقت."
+                    content="تم تأكيد طلبك بنجاح في منصة همسات هوم. شكراً لتسوقك معنا، سيتم التواصل معك لإتمام عملية التوصيل في أسرع وقت."
                 />
-                <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+                <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
                 <meta name="robots" content="noindex, nofollow" />
                 <meta name="googlebot" content="noindex, nofollow" />
@@ -270,10 +270,10 @@ const CartCheckOut = () => {
 
                 {/* Open Graph / Facebook / WhatsApp */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="تأكيد الطلب - معرض همسات للأدوات المنزلية" />
+                <meta property="og:title" content="تأكيد الطلب - منصة همسات لتجهيز المنازل" />
                 <meta
                     property="og:description"
-                    content="شكراً لتسوقك من معرض همسات هوم. تم تأكيد طلبك وسيتم تجهيز الشحنة الخاصة بك قريباً."
+                    content="شكراً لتسوقك من منصة همسات هوم. تم تأكيد طلبك وسيتم تجهيز الشحنة الخاصة بك قريباً."
                 />
                 <meta property="og:image" content="/Hamasat-ShowCase.webp" />
                 <meta property="og:url" content={`${process.env.REACT_APP_API_URL}/checkout`} />
@@ -281,10 +281,10 @@ const CartCheckOut = () => {
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="تأكيد الطلب - معرض همسات للأدوات المنزلية" />
+                <meta name="twitter:title" content="تأكيد الطلب - منصة همسات لتجهيز المنازل" />
                 <meta
                     name="twitter:description"
-                    content="تم تأكيد طلبك بنجاح من معرض همسات هوم. شكراً على ثقتك بنا."
+                    content="تم تأكيد طلبك بنجاح من منصة همسات هوم. شكراً على ثقتك بنا."
                 />
                 <meta name="twitter:image" content="/Hamasat-ShowCase.webp" />
 

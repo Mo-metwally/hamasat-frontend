@@ -16,8 +16,8 @@ const DeliveryAndPrivacy = () => {
     return (
         <>
             <Helmet>
-                <title>سياسة التوصيل والاسترجاع - همسات للأدوات المنزلية</title>
-                <meta name="description" content="تعرف على سياسة التوصيل، مدة التوصيل، رسوم الشحن، وسياسة الاستبدال والاسترجاع في موقع همسات للأدوات المنزلية." />
+                <title>سياسة التوصيل والاسترجاع - همسات لتجهيز المنازل</title>
+                <meta name="description" content="تعرف على سياسة التوصيل، مدة التوصيل، رسوم الشحن، وسياسة الاستبدال والاسترجاع في منصة همسات لتجهيز المنازل." />
                 <meta name="keywords" content="توصيل, استبدال, استرجاع, سياسة الموقع, همسات, أدوات منزلية, مصر" />
                 <link rel="canonical" href={`${process.env.REACT_APP_API_URL}/deliverypolicy`} />
             </Helmet>

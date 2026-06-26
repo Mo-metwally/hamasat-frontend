@@ -351,7 +351,7 @@ const ProductsList = () => {
                                 onChange={(e) => setSelectedVendorId(e.target.value)}
                             >
                                 <option value="">كل البائعين</option>
-                                <option value="hamasat">معرض همسات</option>
+                                <option value="hamasat">منصة همسات</option>
                                 {Array.isArray(vendors) && vendors.map(v => (
                                     <option key={v.id} value={v.id}>{v.name}</option>
                                 ))}
@@ -493,7 +493,7 @@ const ProductsList = () => {
                                                         <p><strong>المنشأ/الخامة:</strong> {item.model_en || '—'}</p>
                                                         <p><strong>البراند:</strong> {item.model_ar || '—'}</p>
                                                         {user?.role === 'superAdmin' && (
-                                                            <p><strong>البائع:</strong> {item.vendor ? item.vendor.name : 'معرض همسات هوم'}</p>
+                                                            <p><strong>البائع:</strong> {item.vendor ? item.vendor.name : 'منصة همسات هوم'}</p>
                                                         )}
                                                         <p>
                                                             <strong>السعر:</strong> {item.price ? Number(item.price).toLocaleString('en-EG') : '—'}

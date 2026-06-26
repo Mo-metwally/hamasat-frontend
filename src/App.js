@@ -70,15 +70,15 @@ function CategoryProductsWrapper() {
     <>
       <Helmet>
         {/* عنوان ووصف المتجر */}
-        <title>{`معرض همسات - ${subCatName}`}</title>
+        <title>{`منصة همسات - ${subCatName}`}</title>
 
 
         <meta
           name="description"
-          content="اكتشف أحدث منتجات همسات للأدوات المنزلية. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
+          content="اكتشف أحدث منتجات همسات لتجهيز المنازل. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
         />
 
-        <meta name="keywords" content={`همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت ,${subCatName}`} />
+        <meta name="keywords" content={`همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت ,${subCatName}`} />
         <link rel="manifest" href="https://hamsathome.com/site.webmanifest" />
 
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -90,10 +90,10 @@ function CategoryProductsWrapper() {
 
         {/* OG Tags الأساسية */}
         <meta property="og:type" content="product.group" />
-        <meta property="og:title" content={`معرض همسات - ${subCatName}`} />
+        <meta property="og:title" content={`منصة همسات - ${subCatName}`} />
         <meta
           property="og:description"
-          content="تسوق أحدث منتجات همسات للأدوات المنزلية."
+          content="تسوق أحدث منتجات همسات لتجهيز المنازل."
         />
         <meta property="og:site_name" content="همسات هوم" />
         <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/subcategory/${subCatId}/${subCatName}`} />
@@ -126,10 +126,10 @@ function CategoryProductsWrapper() {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`معرض همسات - ${subCatName}`} />
+        <meta name="twitter:title" content={`منصة همسات - ${subCatName}`} />
         <meta
           name="twitter:description"
-          content="اكتشف أحدث منتجات همسات للأدوات المنزلية."
+          content="اكتشف أحدث منتجات همسات لتجهيز المنازل."
         />
         {featuredProducts[0] && (
           <meta
@@ -159,14 +159,14 @@ function BrandProductsWrapper() {
     <>
       <Helmet>
         {/* عنوان ووصف المتجر */}
-        <title>{`معرض همسات - ${brandName}`}</title>
+        <title>{`منصة همسات - ${brandName}`}</title>
 
 
         <meta
           name="description"
-          content="اكتشف أحدث منتجات همسات للأدوات المنزلية. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
+          content="اكتشف أحدث منتجات همسات لتجهيز المنازل. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
         />
-        <meta name="keywords" content={`${brandName},همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت`} />
+        <meta name="keywords" content={`${brandName},همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت`} />
 
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow" />
@@ -178,10 +178,10 @@ function BrandProductsWrapper() {
 
         {/* OG Tags الأساسية */}
         <meta property="og:type" content="product.group" />
-        <meta property="og:title" content={`معرض همسات - ${brandName}`} />
+        <meta property="og:title" content={`منصة همسات - ${brandName}`} />
         <meta
           property="og:description"
-          content="تسوق أحدث منتجات همسات للأدوات المنزلية."
+          content="تسوق أحدث منتجات همسات لتجهيز المنازل."
         />
         <meta property="og:site_name" content="همسات هوم" />
         <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/brand/${brandId}/${brandName}`} />
@@ -214,10 +214,10 @@ function BrandProductsWrapper() {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`معرض همسات - ${brandName}`} />
+        <meta name="twitter:title" content={`منصة همسات - ${brandName}`} />
         <meta
           name="twitter:description"
-          content="اكتشف أحدث منتجات همسات للأدوات المنزلية."
+          content="اكتشف أحدث منتجات همسات لتجهيز المنازل."
         />
         {featuredProducts[0] && (
           <meta
@@ -256,13 +256,13 @@ function SuggestionPageWrapper() {
 
       <Helmet>
         {/* عنوان ووصف المتجر */}
-        <title>{`معرض همسات - رأيت مؤخراً`}</title>
+        <title>{`منصة همسات - رأيت مؤخراً`}</title>
 
         <meta
           name="description"
-          content="اكتشف أحدث منتجات همسات للأدوات المنزلية. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
+          content="اكتشف أحدث منتجات همسات لتجهيز المنازل. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
         />
-        <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+        <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow" />
@@ -273,10 +273,10 @@ function SuggestionPageWrapper() {
 
         {/* OG Tags الأساسية */}
         <meta property="og:type" content="product.group" />
-        <meta property="og:title" content={`معرض همسات - رأيت مؤخراً`} />
+        <meta property="og:title" content={`منصة همسات - رأيت مؤخراً`} />
         <meta
           property="og:description"
-          content="تسوق أحدث منتجات همسات للأدوات المنزلية."
+          content="تسوق أحدث منتجات همسات لتجهيز المنازل."
         />
         <meta property="og:site_name" content="همسات هوم" />
         <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/suggestion`} />
@@ -309,10 +309,10 @@ function SuggestionPageWrapper() {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`معرض همسات - رأيت مؤخراً`} />
+        <meta name="twitter:title" content={`منصة همسات - رأيت مؤخراً`} />
         <meta
           name="twitter:description"
-          content="اكتشف أحدث منتجات همسات للأدوات المنزلية."
+          content="اكتشف أحدث منتجات همسات لتجهيز المنازل."
         />
         {featuredProducts[0] && (
           <meta
@@ -561,13 +561,13 @@ function App() {
           <>
             <Helmet>
               {/* عنوان ووصف المتجر */}
-              <title>{`معرض همسات - المتجر`}</title>
+              <title>{`منصة همسات - المتجر`}</title>
 
               <meta
                 name="description"
-                content="معرض همسات - المتجر معرض همسات هوم لتجهيز العرائس والمنزل العصري يقدم لكِ كل ما تحتاجينه تحت سقف واحد: أحدث الأجهزة الكهربائية، مفروشات راقية، وأدوات مطبخ متكاملة (زجاج، كاسات، أطقم صيني وخزف، أدوات المائدة، أطقم عشاء، والمزيد). استمتعي بتشكيلة واسعة من التصاميم الأنيقة، جودة عالية، وأسعار تنافسية تناسب جميع الأذواق. "
+                content="منصة همسات - المتجر منصة همسات هوم لتجهيز العرائس والمنزل العصري يقدم لكِ كل ما تحتاجينه تحت سقف واحد: أحدث الأجهزة الكهربائية، مفروشات راقية، وأدوات مطبخ متكاملة (زجاج، كاسات، أطقم صيني وخزف، أدوات المائدة، أطقم عشاء، والمزيد). استمتعي بتشكيلة واسعة من التصاميم الأنيقة، جودة عالية، وأسعار تنافسية تناسب جميع الأذواق. "
               />
-              <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+              <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
               <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
               <meta name="googlebot" content="index, follow" />
@@ -579,10 +579,10 @@ function App() {
 
               {/* OG Tags الأساسية */}
               <meta property="og:type" content="product.group" />
-              <meta property="og:title" content={`معرض همسات - المتجر`} />
+              <meta property="og:title" content={`منصة همسات - المتجر`} />
               <meta
                 property="og:description"
-                content="تسوق أحدث منتجات همسات للأدوات المنزلية."
+                content="تسوق أحدث منتجات همسات لتجهيز المنازل."
               />
               <meta property="og:site_name" content="همسات هوم" />
               <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/shop`} />
@@ -615,10 +615,10 @@ function App() {
 
               {/* Twitter Card */}
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content={`معرض همسات - المتجر`} />
+              <meta name="twitter:title" content={`منصة همسات - المتجر`} />
               <meta
                 name="twitter:description"
-                content="اكتشف أحدث منتجات همسات للأدوات المنزلية."
+                content="اكتشف أحدث منتجات همسات لتجهيز المنازل."
               />
               {featuredProducts[0] && (
                 <meta
@@ -636,13 +636,13 @@ function App() {
           <>
             <Helmet>
               {/* عنوان ووصف المتجر */}
-              <title>{`معرض همسات - وصل حديثاً`}</title>
+              <title>{`منصة همسات - وصل حديثاً`}</title>
 
               <meta
                 name="description"
-                content="اكتشف أحدث منتجات همسات للأدوات المنزلية. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
+                content="اكتشف أحدث منتجات همسات لتجهيز المنازل. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
               />
-              <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+              <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
               <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
               <meta name="googlebot" content="index, follow" />
@@ -653,10 +653,10 @@ function App() {
 
               {/* OG Tags الأساسية */}
               <meta property="og:type" content="product.group" />
-              <meta property="og:title" content={`معرض همسات - وصل حديثاً`} />
+              <meta property="og:title" content={`منصة همسات - وصل حديثاً`} />
               <meta
                 property="og:description"
-                content="تسوق أحدث منتجات همسات للأدوات المنزلية."
+                content="تسوق أحدث منتجات همسات لتجهيز المنازل."
               />
               <meta property="og:site_name" content="همسات هوم" />
               <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/newarrival`} />
@@ -689,10 +689,10 @@ function App() {
 
               {/* Twitter Card */}
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content={`معرض همسات - وصل حديثاً`} />
+              <meta name="twitter:title" content={`منصة همسات - وصل حديثاً`} />
               <meta
                 name="twitter:description"
-                content="اكتشف أحدث منتجات همسات للأدوات المنزلية."
+                content="اكتشف أحدث منتجات همسات لتجهيز المنازل."
               />
               {featuredProducts[0] && (
                 <meta
@@ -708,14 +708,14 @@ function App() {
           <>
             <Helmet>
               {/* عنوان ووصف المتجر */}
-              <title>{`معرض همسات - الأكثر مبيعاً`}</title>
+              <title>{`منصة همسات - الأكثر مبيعاً`}</title>
 
               <meta
                 name="description"
-                content="اكتشف أحدث منتجات همسات للأدوات المنزلية. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
+                content="اكتشف أحدث منتجات همسات لتجهيز المنازل. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
               />
 
-              <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+              <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
               <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
               <meta name="googlebot" content="index, follow" />
@@ -726,10 +726,10 @@ function App() {
 
               {/* OG Tags الأساسية */}
               <meta property="og:type" content="product.group" />
-              <meta property="og:title" content={`معرض همسات - الأكثر مبيعاً`} />
+              <meta property="og:title" content={`منصة همسات - الأكثر مبيعاً`} />
               <meta
                 property="og:description"
-                content="تسوق أحدث منتجات همسات للأدوات المنزلية."
+                content="تسوق أحدث منتجات همسات لتجهيز المنازل."
               />
               <meta property="og:site_name" content="همسات هوم" />
               <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/bestselling`} />
@@ -762,10 +762,10 @@ function App() {
 
               {/* Twitter Card */}
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content={`معرض همسات - الأكثر مبيعاً`} />
+              <meta name="twitter:title" content={`منصة همسات - الأكثر مبيعاً`} />
               <meta
                 name="twitter:description"
-                content="اكتشف أحدث منتجات همسات للأدوات المنزلية."
+                content="اكتشف أحدث منتجات همسات لتجهيز المنازل."
               />
               {featuredProducts[0] && (
                 <meta
@@ -780,13 +780,13 @@ function App() {
         <Route path="/offers" element={
           <>
             <Helmet>
-              <title>{`معرض همسات - عروض خاصة`}</title>
+              <title>{`منصة همسات - عروض خاصة`}</title>
 
               <meta
                 name="description"
-                content="استمتع بأفضل العروض والتخفيضات على منتجات همسات للأدوات المنزلية. معرض همسات هوم لتجهيز العرائس والمنزل العصري يقدم لكِ كل ما تحتاجينه تحت سقف واحد: أحدث الأجهزة الكهربائية، مفروشات راقية، وأدوات مطبخ متكاملة (زجاج، كاسات، أطقم صيني وخزف، أدوات المائدة، أطقم عشاء، والمزيد). استمتعي بتشكيلة واسعة من التصاميم الأنيقة، جودة عالية، وأسعار تنافسية تناسب جميع الأذواق."
+                content="استمتع بأفضل العروض والتخفيضات على منتجات همسات لتجهيز المنازل. منصة همسات هوم لتجهيز العرائس والمنزل العصري يقدم لكِ كل ما تحتاجينه تحت سقف واحد: أحدث الأجهزة الكهربائية، مفروشات راقية، وأدوات مطبخ متكاملة (زجاج، كاسات، أطقم صيني وخزف، أدوات المائدة، أطقم عشاء، والمزيد). استمتعي بتشكيلة واسعة من التصاميم الأنيقة، جودة عالية، وأسعار تنافسية تناسب جميع الأذواق."
               />
-              <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+              <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
               <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
               <meta name="googlebot" content="index, follow" />
@@ -795,10 +795,10 @@ function App() {
               <link rel="manifest" href="https://hamsathome.com/site.webmanifest" />
 
               <meta property="og:type" content="product.group" />
-              <meta property="og:title" content={`معرض همسات - عروض خاصة`} />
+              <meta property="og:title" content={`منصة همسات - عروض خاصة`} />
               <meta
                 property="og:description"
-                content="تسوق أحدث منتجات همسات للأدوات المنزلية."
+                content="تسوق أحدث منتجات همسات لتجهيز المنازل."
               />
               <meta property="og:site_name" content="همسات هوم" />
               <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/offers`} />
@@ -828,10 +828,10 @@ function App() {
               })}
 
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content={`معرض همسات - عروض خاصة`} />
+              <meta name="twitter:title" content={`منصة همسات - عروض خاصة`} />
               <meta
                 name="twitter:description"
-                content="اكتشف أحدث منتجات همسات للأدوات المنزلية."
+                content="اكتشف أحدث منتجات همسات لتجهيز المنازل."
               />
               {featuredProducts[0] && (
                 <meta
@@ -854,9 +854,9 @@ function App() {
               {/* Basic Meta */}
               <meta
                 name="description"
-                content="استعرض جميع الفئات المتوفرة في معرض همسات هوم للأدوات المنزلية. تسوق من مجموعات متنوعة تشمل أواني الطهي، أدوات المطبخ، أطقم تقديم، والمزيد بأفضل الأسعار."
+                content="استعرض جميع الفئات المتوفرة في منصة همسات هوم لتجهيز المنازل. تسوق من مجموعات متنوعة تشمل أواني الطهي، أدوات المطبخ، أطقم تقديم، والمزيد بأفضل الأسعار."
               />
-              <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+              <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
               <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
               <meta name="googlebot" content="index, follow" />
@@ -869,10 +869,10 @@ function App() {
 
               {/* Open Graph / Facebook / WhatsApp */}
               <meta property="og:type" content="website" />
-              <meta property="og:title" content="كل الفئات - معرض همسات للأدوات المنزلية" />
+              <meta property="og:title" content="كل الفئات - منصة همسات لتجهيز المنازل" />
               <meta
                 property="og:description"
-                content="اكتشف جميع الفئات المتاحة في معرض همسات هوم. أدوات مطبخ، أواني طهي، أطقم تقديم والمزيد في مكان واحد."
+                content="اكتشف جميع الفئات المتاحة في منصة همسات هوم. أدوات مطبخ، أواني طهي، أطقم تقديم والمزيد في مكان واحد."
               />
               <meta property="og:image" content="/Hamasat-ShowCase.webp" />
               <meta property="og:url" content={`${process.env.REACT_APP_API_URL}/allsubcategories`} />
@@ -880,10 +880,10 @@ function App() {
 
               {/* Twitter Card */}
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content="كل الفئات - معرض همسات للأدوات المنزلية" />
+              <meta name="twitter:title" content="كل الفئات - منصة همسات لتجهيز المنازل" />
               <meta
                 name="twitter:description"
-                content="تصفح جميع أقسام معرض همسات هوم للأدوات المنزلية بأفضل الأسعار والجودة العالية."
+                content="تصفح جميع أقسام منصة همسات هوم لتجهيز المنازل بأفضل الأسعار والجودة العالية."
               />
               <meta name="twitter:image" content="/Hamasat-ShowCase.webp" />
 
@@ -902,9 +902,9 @@ function App() {
               {/* Basic Meta */}
               <meta
                 name="description"
-                content="استعرض جميع الفئات المتوفرة في معرض همسات هوم للأدوات المنزلية. تسوق من مجموعات متنوعة تشمل أواني الطهي، أدوات المطبخ، أطقم تقديم، والمزيد بأفضل الأسعار."
+                content="استعرض جميع الفئات المتوفرة في منصة همسات هوم لتجهيز المنازل. تسوق من مجموعات متنوعة تشمل أواني الطهي، أدوات المطبخ، أطقم تقديم، والمزيد بأفضل الأسعار."
               />
-              <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+              <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
               <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
               <meta name="googlebot" content="index, follow" />
@@ -916,10 +916,10 @@ function App() {
 
               {/* Open Graph / Facebook / WhatsApp */}
               <meta property="og:type" content="website" />
-              <meta property="og:title" content="كل الفئات - معرض همسات للأدوات المنزلية" />
+              <meta property="og:title" content="كل الفئات - منصة همسات لتجهيز المنازل" />
               <meta
                 property="og:description"
-                content="اكتشف جميع الفئات المتاحة في معرض همسات هوم. أدوات مطبخ، أواني طهي، أطقم تقديم والمزيد في مكان واحد."
+                content="اكتشف جميع الفئات المتاحة في منصة همسات هوم. أدوات مطبخ، أواني طهي، أطقم تقديم والمزيد في مكان واحد."
               />
               <meta property="og:image" content="/Hamasat-ShowCase.webp" />
               <meta property="og:url" content={`${process.env.REACT_APP_API_URL}/allbrands`} />
@@ -927,10 +927,10 @@ function App() {
 
               {/* Twitter Card */}
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content="كل الفئات - معرض همسات للأدوات المنزلية" />
+              <meta name="twitter:title" content="كل الفئات - منصة همسات لتجهيز المنازل" />
               <meta
                 name="twitter:description"
-                content="تصفح جميع أقسام معرض همسات هوم للأدوات المنزلية بأفضل الأسعار والجودة العالية."
+                content="تصفح جميع أقسام منصة همسات هوم لتجهيز المنازل بأفضل الأسعار والجودة العالية."
               />
               <meta name="twitter:image" content="/Hamasat-ShowCase.webp" />
 

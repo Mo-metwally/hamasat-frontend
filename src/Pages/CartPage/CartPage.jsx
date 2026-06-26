@@ -110,9 +110,9 @@ const CartPage = () => {
             {/* Basic Meta */}
             <meta
                 name="description"
-                content="استعرض عربة المشتريات الخاصة بك في معرض همسات هوم، وتابع خطوات إتمام الطلب للحصول على أفضل الأدوات المنزلية بأعلى جودة وأفضل سعر."
+                content="استعرض عربة المشتريات الخاصة بك في منصة همسات هوم، وتابع خطوات إتمام الطلب للحصول على أفضل الأدوات المنزلية بأعلى جودة وأفضل سعر."
             />
-            <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+            <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
             <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
             <meta name="googlebot" content="index, follow" />
@@ -125,10 +125,10 @@ const CartPage = () => {
 
             {/* Open Graph / Facebook / WhatsApp */}
             <meta property="og:type" content="website" />
-            <meta property="og:title" content="عربة المشتريات - معرض همسات للأدوات المنزلية" />
+            <meta property="og:title" content="عربة المشتريات - منصة همسات لتجهيز المنازل" />
             <meta
                 property="og:description"
-                content="اعرض محتويات عربة التسوق الخاصة بك وأكمل عملية الشراء بسهولة مع معرض همسات للأدوات المنزلية."
+                content="اعرض محتويات عربة التسوق الخاصة بك وأكمل عملية الشراء بسهولة مع منصة همسات لتجهيز المنازل."
             />
             <meta property="og:image" content="/Hamasat-ShowCase.webp" />
             <meta property="og:url" content={`${process.env.REACT_APP_API_URL}/cart`} />
@@ -136,10 +136,10 @@ const CartPage = () => {
 
             {/* Twitter Card */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="عربة المشتريات - معرض همسات للأدوات المنزلية" />
+            <meta name="twitter:title" content="عربة المشتريات - منصة همسات لتجهيز المنازل" />
             <meta
                 name="twitter:description"
-                content="اعرض محتويات عربة التسوق الخاصة بك وأكمل عملية الشراء بسهولة مع معرض همسات للأدوات المنزلية."
+                content="اعرض محتويات عربة التسوق الخاصة بك وأكمل عملية الشراء بسهولة مع منصة همسات لتجهيز المنازل."
             />
             <meta name="twitter:image" content="/Hamasat-ShowCase.webp" />
 

@@ -13,7 +13,7 @@ const VendorTerms = () => {
         <div className="vendor-terms-page">
             <Helmet>
                 <title>شروط وأحكام البائع - همسات هوم</title>
-                <meta name="description" content="اقرأ شروط وأحكام الانضمام كبائع في منصة همسات هوم للأدوات المنزلية والتزامات سياسة التوصيل." />
+                <meta name="description" content="اقرأ شروط وأحكام الانضمام كبائع في منصة همسات هوم لتجهيز المنازل والتزامات سياسة التوصيل." />
             </Helmet>
 
             <div className="hero-section">
@@ -22,7 +22,7 @@ const VendorTerms = () => {
                     مرحباً بك كشريك نجاح في منصة همسات هوم. لضمان أفضل تجربة تسوق لعملائنا، يُرجى قراءة الشروط والأحكام التالية بعناية والموافقة عليها قبل بدء البيع على المنصة.
                 </p>
             </div>
-            
+
             <div className="terms-content">
                 <div className="term-card">
                     <div className="term-header">

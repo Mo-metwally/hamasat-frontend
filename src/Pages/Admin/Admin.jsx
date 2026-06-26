@@ -62,7 +62,7 @@ const Admin = () => {
                 <title>لوحة التحكم </title>
                 <meta
                     name="description"
-                    content="منطقة الإدارة الخاصة بموقع همسات هوم. لإدارة المنتجات، الطلبات، الفواتير والألبومات."
+                    content="منطقة الإدارة الخاصة بمنصة همسات هوم. لإدارة المنتجات، الطلبات، الفواتير والألبومات."
                 />
                 <meta name="robots" content="noindex, nofollow" />
                 <meta name="theme-color" content={theme === 'dark' ? "#0f1115" : "#f9fbfd"} />

@@ -360,7 +360,7 @@ const ProductDetails = () => {
                 <title>{productOG.name} - همسات هوم</title>
                 <meta name="keywords" content={`
                   ${addCommas(productOG.name)},${addCommas(productOG.description)},
-                همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت`} />
+                همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت`} />
 
                 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
                 <meta name="googlebot" content="index, follow" />
@@ -592,7 +592,7 @@ const ProductDetails = () => {
                                 <FaStore />
                             </div>
                             <div className="vendor-details">
-                                <h4>{filteredProduct.vendor ? filteredProduct.vendor.name : "معرض همسات هوم"}</h4>
+                                <h4>{filteredProduct.vendor ? filteredProduct.vendor.name : "منصة همسات هوم"}</h4>
 
                                 {filteredProduct.vendor && (
                                     <div className="vendor-contact">

@@ -44,14 +44,14 @@ const SubCategoriesPage = () => {
         <>
             <Helmet>
                 {/* عنوان ووصف المتجر */}
-                <title>{`معرض همسات - ${catName}`}</title>
+                <title>{`منصة همسات - ${catName}`}</title>
                 <link rel="manifest" href="https://hamsathome.com/site.webmanifest" />
 
                 <meta
                     name="description"
-                    content="اكتشف أحدث منتجات همسات للأدوات المنزلية. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
+                    content="اكتشف أحدث منتجات همسات لتجهيز المنازل. مجموعة متنوعة من الأدوات المميزة بجودة عالية وأسعار مناسبة."
                 />
-                <meta name="keywords" content={`${catName},همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت`} />
+                <meta name="keywords" content={`${catName},همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت`} />
 
                 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
                 <meta name="googlebot" content="index, follow" />
@@ -61,20 +61,20 @@ const SubCategoriesPage = () => {
 
                 {/* OG Tags الأساسية */}
                 <meta property="og:type" content="product.group" />
-                <meta property="og:title" content={`معرض همسات - ${catName}`} />
+                <meta property="og:title" content={`منصة همسات - ${catName}`} />
                 <meta
                     property="og:description"
-                    content="تسوق أحدث منتجات همسات للأدوات المنزلية."
+                    content="تسوق أحدث منتجات همسات لتجهيز المنازل."
                 />
                 <meta property="og:site_name" content="همسات هوم" />
                 <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/subcategory/${catId}/${catName}`} />
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={`معرض همسات - ${catName}`} />
+                <meta name="twitter:title" content={`منصة همسات - ${catName}`} />
                 <meta
                     name="twitter:description"
-                    content="اكتشف أحدث منتجات همسات للأدوات المنزلية."
+                    content="اكتشف أحدث منتجات همسات لتجهيز المنازل."
                 />
 
             </Helmet>

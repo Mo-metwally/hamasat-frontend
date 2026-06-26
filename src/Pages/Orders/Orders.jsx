@@ -158,12 +158,12 @@ const Orders = () => {
                 {/* Basic Meta */}
                 <meta
                     name="description"
-                    content="تصفح قائمة طلباتك السابقة والحالية في معرض همسات هوم، وتابع حالة كل طلب بسهولة."
+                    content="تصفح قائمة طلباتك السابقة والحالية في منصة همسات هوم، وتابع حالة كل طلب بسهولة."
                 />
                 <meta name="robots" content="noindex, nofollow" />
                 <meta name="googlebot" content="noindex, nofollow" />
                 <meta name="bingbot" content="noindex, nofollow" />
-                <meta name="keywords" content="همسات, همسات هوم, معرض همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
+                <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
                 <link rel="manifest" href="https://hamsathome.com/site.webmanifest" />
 
@@ -174,10 +174,10 @@ const Orders = () => {
 
                 {/* Open Graph / Facebook / WhatsApp */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="طلباتي - معرض همسات للأدوات المنزلية" />
+                <meta property="og:title" content="طلباتي - منصة همسات لتجهيز المنازل" />
                 <meta
                     property="og:description"
-                    content="اعرض جميع طلباتك وتتبع حالتها في معرض همسات هوم للأدوات المنزلية."
+                    content="اعرض جميع طلباتك وتتبع حالتها في منصة همسات هوم لتجهيز المنازل."
                 />
                 <meta property="og:image" content="/Hamasat-ShowCase.webp" />
                 <meta property="og:url" content={`${process.env.REACT_APP_API_URL}/orders`} />
@@ -185,10 +185,10 @@ const Orders = () => {
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="طلباتي - معرض همسات للأدوات المنزلية" />
+                <meta name="twitter:title" content="طلباتي - منصة همسات لتجهيز المنازل" />
                 <meta
                     name="twitter:description"
-                    content="تابع حالة طلباتك السابقة والجديدة في معرض همسات هوم بسهولة."
+                    content="تابع حالة طلباتك السابقة والجديدة في منصة همسات هوم بسهولة."
                 />
                 <meta name="twitter:image" content="/Hamasat-ShowCase.webp" />
 
