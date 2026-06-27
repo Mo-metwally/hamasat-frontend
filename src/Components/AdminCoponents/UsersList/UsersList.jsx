@@ -356,7 +356,7 @@ const UsersList = () => {
                   <div className="col-md-6">
                     <Form.Group className="form-floating-custom">
                       <Form.Label>عن المتجر/المستخدم</Form.Label>
-                      <Form.Control as="textarea" rows={4} value={currentUser.userDescription || ''} onChange={(e) => setCurrentUser({ ...currentUser, userDescription: e.target.value })} className="advanced-input" />
+                      <Form.Control as="textarea" rows={4} value={currentUser.vendorDescription || ''} onChange={(e) => setCurrentUser({ ...currentUser, vendorDescription: e.target.value })} className="advanced-input" />
                     </Form.Group>
                   </div>
                   <div className="col-md-6">

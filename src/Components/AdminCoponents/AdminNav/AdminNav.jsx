@@ -8,17 +8,20 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 const AdminNav = ({ theme, toggleTheme }) => {
     const navigate = useNavigate();
     const location = useLocation().pathname;
-    const { user } = useAuth();
+    const { user, checkAuth } = useAuth();
 
 
     const handleLogout = async () => {
-        const confirmLogout = window.confirm("هل ترغب في تسجيل الخروج؟");
+        const confirmLogout = window.confirm("هل أنت متأكد من تسجيل الخروج؟");
 
         if (!confirmLogout) return;
 
         try {
             // إرسال طلب logout إلى السيرفر
             await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/auth/logout`, {}, { withCredentials: true });
+
+            // Clear context after successful logout
+            await checkAuth();
 
             // إعادة توجيه المستخدم إلى صفحة تسجيل الدخول بعد الخروج
             navigate('/login');
