@@ -16,7 +16,7 @@ const ContactSec = () => {
                     <div className="cta-features">
                         <div className="feature">
                             <FaStore className="icon" />
-                            <span>متجرك الخاص مجاناً</span>
+                            <span>متجرك الخاص</span>
                         </div>
                         <div className="feature">
                             <FaUsers className="icon" />

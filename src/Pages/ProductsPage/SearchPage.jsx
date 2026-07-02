@@ -243,7 +243,7 @@ const SearchPage = ({ products, loading, error, hotName }) => {
                                                         <ul>
                                                             {advancedResults.categories.map(cat => (
                                                                 <li key={`cat-${cat.id}`}>
-                                                                    <Link className="suggestion-item" to={`/category/${cat.id}/${cat.name_ar}`} onMouseDown={() => setIsFocused(false)}>
+                                                                    <Link className="suggestion-item" to={`/category/${cat.id}/${cat.name_ar}`} onClick={() => setIsFocused(false)}>
                                                                         {cat.image && <img src={cat.image} alt={cat.name_ar} className="suggestion-img" />}
                                                                         <span>{cat.name_ar}</span>
                                                                     </Link>
@@ -259,7 +259,7 @@ const SearchPage = ({ products, loading, error, hotName }) => {
                                                         <ul>
                                                             {advancedResults.subCategories.map(sub => (
                                                                 <li key={`sub-${sub.id}`}>
-                                                                    <Link className="suggestion-item" to={`/subcategory/${sub.id}/${sub.name_ar}`} onMouseDown={() => setIsFocused(false)}>
+                                                                    <Link className="suggestion-item" to={`/subcategory/${sub.id}/${sub.name_ar}`} onClick={() => setIsFocused(false)}>
                                                                         {sub.image && <img src={sub.image} alt={sub.name_ar} className="suggestion-img" />}
                                                                         <span>{sub.name_ar}</span>
                                                                     </Link>
@@ -275,7 +275,7 @@ const SearchPage = ({ products, loading, error, hotName }) => {
                                                         <ul>
                                                             {advancedResults.vendors.map(vendor => (
                                                                 <li key={`ven-${vendor.id}`}>
-                                                                    <Link className="suggestion-item" to={`/searchresults?vendorId=${vendor.id}`} onMouseDown={() => setIsFocused(false)}>
+                                                                    <Link className="suggestion-item" to={`/vendor/${vendor.id}/products`} onClick={() => setIsFocused(false)}>
                                                                         {vendor.profileImage ? <img src={vendor.profileImage} alt={vendor.name} className="suggestion-img suggestion-img-rounded" /> : <div className="suggestion-img-placeholder">بائع</div>}
                                                                         <span>{vendor.name}</span>
                                                                     </Link>
@@ -293,7 +293,7 @@ const SearchPage = ({ products, loading, error, hotName }) => {
                                                                 const subName = prod.category?.name_ar || 'تفاصيل';
                                                                 return (
                                                                     <li key={`prod-${prod.id}`}>
-                                                                        <Link className="suggestion-item" to={`/subcategory/${prod.categoryId}/${subName}/product/${prod.id}/${prod.name_ar}`} onMouseDown={() => setIsFocused(false)}>
+                                                                        <Link className="suggestion-item" to={`/subcategory/${prod.categoryId}/${subName}/product/${prod.id}/${prod.name_ar}`} onClick={() => setIsFocused(false)}>
                                                                             {prod.image && <img src={prod.image} alt={prod.name_ar} className="suggestion-img" />}
                                                                             <span>{prod.name_ar}</span>
                                                                         </Link>

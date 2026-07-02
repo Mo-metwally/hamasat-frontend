@@ -156,7 +156,7 @@ const ProductsPage = ({ products, loading, error, hotName }) => {
                                         <>
                                             <Link to="/" aria-label="الرئيسية"> <FaHome /> </Link>
                                             &gt;
-                                            <Link to="/allbrands">كل البراندات</Link>
+                                            <Link to="/allvendor">كل البائعين</Link>
                                             &gt;
                                             <p>{brandName}</p>
                                         </>

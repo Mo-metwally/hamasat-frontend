@@ -181,7 +181,7 @@ const CategoriesList = () => {
             <div className="categories-header">
                 <h2>
                     {dataSource === 'categories' ? 'فئات رئيسية' :
-                        dataSource === 'subcategories' ? 'فئات فرعية' : 'براندات'}
+                        dataSource === 'subcategories' ? 'فئات فرعية' : 'البائعين'}
                 </h2>
                 <Link className='C-btn' to="/admin/addcategories">+ اضف فئة</Link>
             </div>
@@ -216,7 +216,7 @@ const CategoriesList = () => {
                             checked={dataSource === 'brands'}
                             onChange={(e) => setDataSource(e.target.value)}
                         />
-                        براندات
+                        البائعين
                     </label>
                 </div>
 

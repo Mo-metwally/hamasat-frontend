@@ -214,10 +214,10 @@ const AddProducts = () => {
     const formatOptionLabel = ({ label, image }) => (
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             {image && (
-                <img 
-                    src={image} 
-                    alt={label} 
-                    style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '6px', border: '1px solid #eee' }} 
+                <img
+                    src={image}
+                    alt={label}
+                    style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '6px', border: '1px solid #eee' }}
                 />
             )}
             <span>{label}</span>
@@ -510,307 +510,307 @@ const AddProducts = () => {
             </Helmet>
 
 
-                <div className='admin_page' id='addProducts'>
-                    <div className='admin_page_tabl'>
-                        <ToastContainer toastClassName="custom-toast" position="top-right" autoClose={3000} />
-                        <div className='secHead'><h5>إضافة منتج</h5></div>
-                        <div className='admin_page_tabl_cr'>
+            <div className='admin_page' id='addProducts'>
+                <div className='admin_page_tabl'>
+                    <ToastContainer toastClassName="custom-toast" position="top-right" autoClose={3000} />
+                    <div className='secHead'><h5>إضافة منتج</h5></div>
+                    <div className='admin_page_tabl_cr'>
 
-                            <ParentPreviow parentId={selectedParent} />
+                        <ParentPreviow parentId={selectedParent} />
 
-                            <form onSubmit={handleSubmit} className='mainCatForm'>
-                                <div className="products-grid">
-                                    <div className="product-card">
-                                        <h5><span>الفئة والصنف</span></h5>
-                                        <div className='addProducts-Org-section'>
-                                            <div className="addProducts-Org selectCat">
-                                                {/* الفئة */}
-                                                <label className="custom-select-wrapper">
-                                                    اختر الفئة <span className="star"><FaStarOfLife /></span>
-                                                    <Select
-                                                        className="selector"
-                                                        options={categoryOptions}
-                                                        formatOptionLabel={formatOptionLabel}
-                                                        value={categoryOptions.find(option => option.value === form.categoryId)}
-                                                        onChange={handleCategoryChange}
-                                                        placeholder="اختر فئة..."
-                                                        isClearable
-                                                        isSearchable
-                                                        menuPortalTarget={document.body}
-                                                        styles={customStyles}
-                                                        isLoading={loading}
-                                                        noOptionsMessage={() => 'لا يوجد نتائج'}
-                                                    />
-                                                </label>
-                                                {errors.categoryId && <p className="error-message">* {errors.categoryId}</p>}
+                        <form onSubmit={handleSubmit} className='mainCatForm'>
+                            <div className="products-grid">
+                                <div className="product-card">
+                                    <h5><span>الفئة والصنف</span></h5>
+                                    <div className='addProducts-Org-section'>
+                                        <div className="addProducts-Org selectCat">
+                                            {/* الفئة */}
+                                            <label className="custom-select-wrapper">
+                                                اختر الفئة <span className="star"><FaStarOfLife /></span>
+                                                <Select
+                                                    className="selector"
+                                                    options={categoryOptions}
+                                                    formatOptionLabel={formatOptionLabel}
+                                                    value={categoryOptions.find(option => option.value === form.categoryId)}
+                                                    onChange={handleCategoryChange}
+                                                    placeholder="اختر فئة..."
+                                                    isClearable
+                                                    isSearchable
+                                                    menuPortalTarget={document.body}
+                                                    styles={customStyles}
+                                                    isLoading={loading}
+                                                    noOptionsMessage={() => 'لا يوجد نتائج'}
+                                                />
+                                            </label>
+                                            {errors.categoryId && <p className="error-message">* {errors.categoryId}</p>}
 
-                                                {/* Subcategory Selector */}
-                                                <label className="custom-select-wrapper">
-                                                    اختر الفئة الفرعية <span className="star"><FaStarOfLife /></span>
-                                                    <Select
-                                                        className="selector"
-                                                        options={filteredSubcategoryOptions}
-                                                        formatOptionLabel={formatOptionLabel}
-                                                        value={filteredSubcategoryOptions.find(option => option.value === form.subcategoryId)}
-                                                        onChange={handleSubcategoryChange}
-                                                        placeholder="اختر فئة فرعية..."
-                                                        isDisabled={!form.categoryId}  // Disable if no category is selected
-                                                        isClearable
-                                                        isSearchable
-                                                        menuPortalTarget={document.body}
-                                                        styles={customStyles}
-                                                        isLoading={loading}
-                                                        noOptionsMessage={() => 'لا يوجد نتائج'}
-                                                    />
-                                                </label>
-                                                {errors.subcategoryId && <p className="error-message">* {errors.subcategoryId}</p>}
+                                            {/* Subcategory Selector */}
+                                            <label className="custom-select-wrapper">
+                                                اختر الفئة الفرعية <span className="star"><FaStarOfLife /></span>
+                                                <Select
+                                                    className="selector"
+                                                    options={filteredSubcategoryOptions}
+                                                    formatOptionLabel={formatOptionLabel}
+                                                    value={filteredSubcategoryOptions.find(option => option.value === form.subcategoryId)}
+                                                    onChange={handleSubcategoryChange}
+                                                    placeholder="اختر فئة فرعية..."
+                                                    isDisabled={!form.categoryId}  // Disable if no category is selected
+                                                    isClearable
+                                                    isSearchable
+                                                    menuPortalTarget={document.body}
+                                                    styles={customStyles}
+                                                    isLoading={loading}
+                                                    noOptionsMessage={() => 'لا يوجد نتائج'}
+                                                />
+                                            </label>
+                                            {errors.subcategoryId && <p className="error-message">* {errors.subcategoryId}</p>}
 
-                                                {/* البراند */}
-                                                <label className='custom-select-wrapper'>
-                                                    اختر البراند <span className='star'><FaStarOfLife /></span>
-                                                    <Select
-                                                        className='selector'
-                                                        options={brandOptions}
-                                                        formatOptionLabel={formatOptionLabel}
-                                                        value={brandOptions.find(option => option.value === form.brandId)}
-                                                        onChange={(selectedOption) => {
-                                                            const value = selectedOption ? selectedOption.value : '';
-                                                            setForm(prev => ({ ...prev, brandId: value }));
-                                                            setErrors(prev => ({ ...prev, brandId: '' }));
-                                                        }}
-                                                        placeholder="اختر البراند..."
-                                                        noOptionsMessage={() => 'لا يوجد نتائج'}
-                                                        isClearable
-                                                        isSearchable
-                                                        menuPortalTarget={document.body}
-                                                        styles={customStyles}
-                                                    />
-                                                </label>
-                                                {errors.brandId && <p className="error-message">* {errors.brandId}</p>}
+                                            {/* البراند */}
+                                            <label className='custom-select-wrapper'>
+                                                اختر البائع <span className='star'><FaStarOfLife /></span>
+                                                <Select
+                                                    className='selector'
+                                                    options={brandOptions}
+                                                    formatOptionLabel={formatOptionLabel}
+                                                    value={brandOptions.find(option => option.value === form.brandId)}
+                                                    onChange={(selectedOption) => {
+                                                        const value = selectedOption ? selectedOption.value : '';
+                                                        setForm(prev => ({ ...prev, brandId: value }));
+                                                        setErrors(prev => ({ ...prev, brandId: '' }));
+                                                    }}
+                                                    placeholder="اختر البائع..."
+                                                    noOptionsMessage={() => 'لا يوجد نتائج'}
+                                                    isClearable
+                                                    isSearchable
+                                                    menuPortalTarget={document.body}
+                                                    styles={customStyles}
+                                                />
+                                            </label>
+                                            {errors.brandId && <p className="error-message">* {errors.brandId}</p>}
 
-                                                <label className="custom-select-wrapper">
-                                                    اختر المنتج الرئيسي
-                                                    <Select
-                                                        className="selector"
-                                                        options={filteredParentOptions}
-                                                        formatOptionLabel={formatOptionLabel}
-                                                        value={
-                                                            filteredParentOptions.find(option => option.value === form.parentId) ||
-                                                            filteredParentOptions[0]
-                                                        }
-                                                        onChange={(selectedOption) => {
-                                                            if (!selectedOption || selectedOption.value === "") {
-                                                                // ✅ منتج جديد → فرم فاضي
-                                                                setForm({
-                                                                    name_ar: '',
-                                                                    slug: '',
-                                                                    model_ar: '',
-                                                                    model_en: '',
-                                                                    description_ar: '',
-                                                                    description_en: '',
-                                                                    price: '',
-                                                                    basePrice: '',
-                                                                    stock: '',
-                                                                    categoryId: form.categoryId, // 👈 يخلي الكاتيجوري زي ما هو
-                                                                    subcategoryId: form.subcategoryId,
-                                                                    brandId: form.brandId,
-                                                                    newExpireDate: "",
-                                                                    saleExpireDate: "",
-                                                                    sold: '',
-                                                                    keywords: '',
-                                                                    isNew: true,
-                                                                    isSale: false,
-                                                                    parentId: "",
-                                                                    color_ar: [],
-                                                                    size_ar: [],
-                                                                    size_en: [],
-                                                                });
-                                                                setSelectedParent();
-                                                            } else {
-                                                                // ✅ تم اختيار منتج → هات بياناته من الـ products
-                                                                const parentProduct = products.find(p => p.id === selectedOption.value);
-                                                                if (parentProduct) {
-                                                                    setForm(prev => ({
-                                                                        ...prev,
-                                                                        parentId: parentProduct.id,
-                                                                        name_ar: parentProduct.name_ar || '',
-                                                                        slug: parentProduct.slug || '',
-                                                                        model_ar: parentProduct.model_ar || '',
-                                                                        model_en: parentProduct.model_en || '',
-                                                                        description_ar: parentProduct.description_ar || '',
-                                                                        description_en: parentProduct.description_en || '',
-                                                                        price: parentProduct.price || '',
-                                                                        basePrice: parentProduct.basePrice || '',
-                                                                        salePrice: parentProduct.salePrice || '',
-                                                                        stock: parentProduct.stock || '',
-                                                                        sold: 0,
-                                                                        keywords: parentProduct.keywords?.join(", ") || '',
-                                                                        isNew: parentProduct.isNew || false,
-                                                                        isSale: parentProduct.isSale || false,
-                                                                        saleExpireDate: parentProduct.saleExpireDate
-                                                                            ? parentProduct.saleExpireDate.slice(0, 10)
-                                                                            : '',
-                                                                        newExpireDate: parentProduct.newExpireDate
-                                                                            ? parentProduct.newExpireDate.slice(0, 10)
-                                                                            : '',
-                                                                        categoryId: parentProduct.categoryId || '',
-                                                                        subcategoryId: parentProduct.subcategoryId || '',
-                                                                        brandId: parentProduct.brandId || '',
-                                                                        color_ar: parentProduct.color_ar || [],
-                                                                        size_ar: parentProduct.size_ar || [],
-                                                                        size_en: parentProduct.size_en || [],
-                                                                    }));
-                                                                    setImagePreview(parentProduct.image || '');
-                                                                    setImagesPreview(parentProduct.images || []);
-                                                                    setSelectedParent(parentProduct.id);
-                                                                }
+                                            <label className="custom-select-wrapper">
+                                                اختر المنتج الرئيسي
+                                                <Select
+                                                    className="selector"
+                                                    options={filteredParentOptions}
+                                                    formatOptionLabel={formatOptionLabel}
+                                                    value={
+                                                        filteredParentOptions.find(option => option.value === form.parentId) ||
+                                                        filteredParentOptions[0]
+                                                    }
+                                                    onChange={(selectedOption) => {
+                                                        if (!selectedOption || selectedOption.value === "") {
+                                                            // ✅ منتج جديد → فرم فاضي
+                                                            setForm({
+                                                                name_ar: '',
+                                                                slug: '',
+                                                                model_ar: '',
+                                                                model_en: '',
+                                                                description_ar: '',
+                                                                description_en: '',
+                                                                price: '',
+                                                                basePrice: '',
+                                                                stock: '',
+                                                                categoryId: form.categoryId, // 👈 يخلي الكاتيجوري زي ما هو
+                                                                subcategoryId: form.subcategoryId,
+                                                                brandId: form.brandId,
+                                                                newExpireDate: "",
+                                                                saleExpireDate: "",
+                                                                sold: '',
+                                                                keywords: '',
+                                                                isNew: true,
+                                                                isSale: false,
+                                                                parentId: "",
+                                                                color_ar: [],
+                                                                size_ar: [],
+                                                                size_en: [],
+                                                            });
+                                                            setSelectedParent();
+                                                        } else {
+                                                            // ✅ تم اختيار منتج → هات بياناته من الـ products
+                                                            const parentProduct = products.find(p => p.id === selectedOption.value);
+                                                            if (parentProduct) {
+                                                                setForm(prev => ({
+                                                                    ...prev,
+                                                                    parentId: parentProduct.id,
+                                                                    name_ar: parentProduct.name_ar || '',
+                                                                    slug: parentProduct.slug || '',
+                                                                    model_ar: parentProduct.model_ar || '',
+                                                                    model_en: parentProduct.model_en || '',
+                                                                    description_ar: parentProduct.description_ar || '',
+                                                                    description_en: parentProduct.description_en || '',
+                                                                    price: parentProduct.price || '',
+                                                                    basePrice: parentProduct.basePrice || '',
+                                                                    salePrice: parentProduct.salePrice || '',
+                                                                    stock: parentProduct.stock || '',
+                                                                    sold: 0,
+                                                                    keywords: parentProduct.keywords?.join(", ") || '',
+                                                                    isNew: parentProduct.isNew || false,
+                                                                    isSale: parentProduct.isSale || false,
+                                                                    saleExpireDate: parentProduct.saleExpireDate
+                                                                        ? parentProduct.saleExpireDate.slice(0, 10)
+                                                                        : '',
+                                                                    newExpireDate: parentProduct.newExpireDate
+                                                                        ? parentProduct.newExpireDate.slice(0, 10)
+                                                                        : '',
+                                                                    categoryId: parentProduct.categoryId || '',
+                                                                    subcategoryId: parentProduct.subcategoryId || '',
+                                                                    brandId: parentProduct.brandId || '',
+                                                                    color_ar: parentProduct.color_ar || [],
+                                                                    size_ar: parentProduct.size_ar || [],
+                                                                    size_en: parentProduct.size_en || [],
+                                                                }));
+                                                                setImagePreview(parentProduct.image || '');
+                                                                setImagesPreview(parentProduct.images || []);
+                                                                setSelectedParent(parentProduct.id);
                                                             }
-                                                        }}
-                                                        placeholder="اختر المنتج الرئيسي..."
-                                                        isClearable
-                                                        isSearchable
-                                                        menuPortalTarget={document.body}
-                                                        styles={customStyles}
-                                                        isLoading={!products}
-                                                        noOptionsMessage={() => 'لا يوجد منتجات'}
-                                                    />
-                                                </label>
-                                            </div>
+                                                        }
+                                                    }}
+                                                    placeholder="اختر المنتج الرئيسي..."
+                                                    isClearable
+                                                    isSearchable
+                                                    menuPortalTarget={document.body}
+                                                    styles={customStyles}
+                                                    isLoading={!products}
+                                                    noOptionsMessage={() => 'لا يوجد منتجات'}
+                                                />
+                                            </label>
                                         </div>
-
                                     </div>
-                                    <div className="product-card">
-                                        <h5><span>بيانات اساسية</span></h5>
-                                        <div className='addProducts-Org-section'>
-                                            <div className="addProducts-Org">
-                                                <label className="lable-col" htmlFor='name_ar'>
-                                                    اسم المنتج
-                                                    <input name="name_ar" placeholder="أدخل اسم المنتج" value={form.name_ar} onChange={handleChange} />
-                                                    {errors.name_ar && <p className="error-message">* {errors.name_ar}</p>}
-                                                </label>
-                                                <label className="lable-col" htmlFor='name_en'>
-                                                    وصف قصير
-                                                    <input name="slug" placeholder="أدخل وصفاً قصيراً أو رابط" value={form.slug} onChange={handleChange} />
-                                                    {errors.slug && <p className="error-message">* {errors.slug}</p>}
-                                                </label>
-                                            </div>
-                                            <div className="addProducts-Org">
 
-                                                <label className="lable-col" htmlFor='model_ar'>
-                                                    البراند
-                                                    <input name="model_ar" placeholder="اسم البراند بالعربية" value={form.model_ar} onChange={handleChange} />
-                                                    {errors.model_ar && <p className="error-message">* {errors.model_ar}</p>}
-                                                </label>
-
-                                                <label className="lable-col" htmlFor='model_en'>
-                                                    المنشأ/الخامة
-                                                    <input name="model_en" placeholder="المنشأ أو خامة الصنع" value={form.model_en} onChange={handleChange} />
-                                                    {errors.model_en && <p className="error-message">* {errors.model_en}</p>}
-                                                </label>
-                                            </div>
-
-                                            <div className="addProducts-Org">
-
-                                                <label className="lable-col" htmlFor='basePrice'>
-                                                    السعر الأساسي
-                                                    <input name="basePrice" placeholder="سعر التكلفة" type="number" value={form.basePrice} onChange={handleChange} />
-                                                    {errors.basePrice && <p className="error-message">* {errors.basePrice}</p>}
-                                                </label>
-
-                                                <label className="lable-col" htmlFor='price'>
-                                                    السعر
-                                                    <input name="price" placeholder="سعر البيع للجمهور" type="number" value={form.price} onChange={handleChange} />
-                                                    {errors.price && <p className="error-message">* {errors.price}</p>}
-                                                </label>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div className="product-card">
-                                        <h5><span>المخزون والخصائص</span></h5>
-
+                                </div>
+                                <div className="product-card">
+                                    <h5><span>بيانات اساسية</span></h5>
+                                    <div className='addProducts-Org-section'>
                                         <div className="addProducts-Org">
-                                            <label className="lable-col" htmlFor='stock'>
-                                                المخزون
-                                                <input name="stock" placeholder="الكمية المتاحة في المخزن" type="number" value={form.stock} onChange={handleChange} min="0" />
-                                                {errors.stock && <p className="error-message">* {errors.stock}</p>}
+                                            <label className="lable-col" htmlFor='name_ar'>
+                                                اسم المنتج
+                                                <input name="name_ar" placeholder="أدخل اسم المنتج" value={form.name_ar} onChange={handleChange} />
+                                                {errors.name_ar && <p className="error-message">* {errors.name_ar}</p>}
+                                            </label>
+                                            <label className="lable-col" htmlFor='name_en'>
+                                                وصف قصير
+                                                <input name="slug" placeholder="أدخل وصفاً قصيراً أو رابط" value={form.slug} onChange={handleChange} />
+                                                {errors.slug && <p className="error-message">* {errors.slug}</p>}
+                                            </label>
+                                        </div>
+                                        <div className="addProducts-Org">
+
+                                            <label className="lable-col" htmlFor='model_ar'>
+                                                البراند
+                                                <input name="model_ar" placeholder="اسم البراند بالعربية" value={form.model_ar} onChange={handleChange} />
+                                                {errors.model_ar && <p className="error-message">* {errors.model_ar}</p>}
                                             </label>
 
-                                            <label className="lable-col" htmlFor="sold">
-                                                المبيعات
-                                                <input type="number" name="sold" placeholder="عدد المبيعات السابقة (اختياري)" value={form.sold} onChange={handleChange} min="0" />
+                                            <label className="lable-col" htmlFor='model_en'>
+                                                المنشأ/الخامة
+                                                <input name="model_en" placeholder="المنشأ أو خامة الصنع" value={form.model_en} onChange={handleChange} />
+                                                {errors.model_en && <p className="error-message">* {errors.model_en}</p>}
                                             </label>
                                         </div>
 
                                         <div className="addProducts-Org">
-                                            <label className="lable-col" htmlFor="size_ar">
-                                                <p>أختر العدد <small> (يمكن ادخال قيمة جديدة) </small></p>
-                                                <CreatableSelect
-                                                    className="selector"
-                                                    name="size_ar"
-                                                    options={sizeOptions}
-                                                    value={form.size_ar?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
-                                                    onChange={(selected) =>
-                                                        setForm({
-                                                            ...form,
-                                                            size_ar: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
-                                                        })
-                                                    }
-                                                    placeholder="اختر عدد القطع"
-                                                    isClearable
-                                                    formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
-                                                    styles={customStyles}
-                                                />
 
-                                                {errors.size_ar && <p className="error-message">* {errors.size_ar}</p>}
+                                            <label className="lable-col" htmlFor='basePrice'>
+                                                السعر الأساسي
+                                                <input name="basePrice" placeholder="سعر التكلفة" type="number" value={form.basePrice} onChange={handleChange} />
+                                                {errors.basePrice && <p className="error-message">* {errors.basePrice}</p>}
                                             </label>
-                                            <label className="lable-col" htmlFor="size_en">
-                                                <p>أختر الحجم <small>(يمكن ادخال قيمة جديدة)</small></p>
-                                                <CreatableSelect
-                                                    className="selector"
-                                                    name="size_en"
-                                                    options={size2Options}
-                                                    value={form.size_en?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
-                                                    onChange={(selected) =>
-                                                        setForm({
-                                                            ...form,
-                                                            size_en: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
-                                                        })
-                                                    }
-                                                    placeholder="اختر عدد القطع"
-                                                    isClearable
-                                                    formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
-                                                    styles={customStyles}
-                                                />
 
-                                                {errors.size_en && <p className="error-message">* {errors.size_en}</p>}
+                                            <label className="lable-col" htmlFor='price'>
+                                                السعر
+                                                <input name="price" placeholder="سعر البيع للجمهور" type="number" value={form.price} onChange={handleChange} />
+                                                {errors.price && <p className="error-message">* {errors.price}</p>}
                                             </label>
-                                        </div> *
-                                        <label className="lable-col" htmlFor="color_ar">
-                                            <p>اللون <small>(يمكن ادخال قيمة جديدة)</small></p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className="product-card">
+                                    <h5><span>المخزون والخصائص</span></h5>
+
+                                    <div className="addProducts-Org">
+                                        <label className="lable-col" htmlFor='stock'>
+                                            المخزون
+                                            <input name="stock" placeholder="الكمية المتاحة في المخزن" type="number" value={form.stock} onChange={handleChange} min="0" />
+                                            {errors.stock && <p className="error-message">* {errors.stock}</p>}
+                                        </label>
+
+                                        <label className="lable-col" htmlFor="sold">
+                                            المبيعات
+                                            <input type="number" name="sold" placeholder="عدد المبيعات السابقة (اختياري)" value={form.sold} onChange={handleChange} min="0" />
+                                        </label>
+                                    </div>
+
+                                    <div className="addProducts-Org">
+                                        <label className="lable-col" htmlFor="size_ar">
+                                            <p>أختر العدد <small> (يمكن ادخال قيمة جديدة) </small></p>
                                             <CreatableSelect
                                                 className="selector"
-                                                name="color_ar"
-                                                options={colorOptions}
-                                                formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
-                                                value={form.color_ar?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
+                                                name="size_ar"
+                                                options={sizeOptions}
+                                                value={form.size_ar?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
                                                 onChange={(selected) =>
                                                     setForm({
                                                         ...form,
-                                                        color_ar: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
+                                                        size_ar: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
                                                     })
                                                 }
                                                 placeholder="اختر عدد القطع"
                                                 isClearable
-                                                menuPortalTarget={document.body}
+                                                formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
                                                 styles={customStyles}
                                             />
-                                            {errors.color_ar && <p className="error-message">* {errors.color_ar}</p>}
-                                        </label>
 
-                                        <br />
-                                        {/* <label className="lable-col" htmlFor='keywords'>
+                                            {errors.size_ar && <p className="error-message">* {errors.size_ar}</p>}
+                                        </label>
+                                        <label className="lable-col" htmlFor="size_en">
+                                            <p>أختر الحجم <small>(يمكن ادخال قيمة جديدة)</small></p>
+                                            <CreatableSelect
+                                                className="selector"
+                                                name="size_en"
+                                                options={size2Options}
+                                                value={form.size_en?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
+                                                onChange={(selected) =>
+                                                    setForm({
+                                                        ...form,
+                                                        size_en: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
+                                                    })
+                                                }
+                                                placeholder="اختر عدد القطع"
+                                                isClearable
+                                                formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
+                                                styles={customStyles}
+                                            />
+
+                                            {errors.size_en && <p className="error-message">* {errors.size_en}</p>}
+                                        </label>
+                                    </div> *
+                                    <label className="lable-col" htmlFor="color_ar">
+                                        <p>اللون <small>(يمكن ادخال قيمة جديدة)</small></p>
+                                        <CreatableSelect
+                                            className="selector"
+                                            name="color_ar"
+                                            options={colorOptions}
+                                            formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
+                                            value={form.color_ar?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
+                                            onChange={(selected) =>
+                                                setForm({
+                                                    ...form,
+                                                    color_ar: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
+                                                })
+                                            }
+                                            placeholder="اختر عدد القطع"
+                                            isClearable
+                                            menuPortalTarget={document.body}
+                                            styles={customStyles}
+                                        />
+                                        {errors.color_ar && <p className="error-message">* {errors.color_ar}</p>}
+                                    </label>
+
+                                    <br />
+                                    {/* <label className="lable-col" htmlFor='keywords'>
                                             بندل
                                             <input
                                                 type="text"
@@ -823,150 +823,150 @@ const AddProducts = () => {
                                         </label> */}
 
 
+                                </div>
+                                <div className="product-card">
+                                    <h5><span>تفاصيل الوصف</span></h5>
+                                    <div className="addProducts-Org">
+                                        <div className='lable-col'>
+                                            <strong style={{ paddingBottom: '0.8rem' }}>الوصف</strong>
+                                            <DescriptionForm name="description_ar" value={form.description_ar} onChange={handleChange} />
+                                            {errors.description_ar && <p className="error-message">* {errors.description_ar}</p>}
+                                        </div>
                                     </div>
-                                    <div className="product-card">
-                                        <h5><span>تفاصيل الوصف</span></h5>
+                                    <br />
+                                    <div className="addProducts-Org">
+                                        <div className='lable-col'>
+                                            <strong style={{ paddingBottom: '0.8rem' }}>الوصف إضافي + </strong>
+                                            <DescriptionForm name="description_en" value={form.description_en} onChange={handleChange} />
+                                            {errors.description_en && <p className="error-message">* {errors.description_en}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="product-card">
+                                    <h5><span>العروض والحالة</span></h5>
+                                    <div className='check_sec'>
+                                        <Switch color="warning"
+                                            id="isSale"
+                                            name="isSale"
+                                            checked={form.isSale}
+                                            onChange={handleChange} />
+                                        <h5><span>الخصم والعروض</span></h5>
+                                    </div>
+                                    <div className='optinalSec'>
+                                        <div className={`secBlocked ${form.isSale ? 'secUnBlock' : ''}`}> <p>تحديد المنتج في صفحة العروض</p></div>
                                         <div className="addProducts-Org">
-                                            <div className='lable-col'>
-                                                <strong style={{ paddingBottom: '0.8rem' }}>الوصف</strong>
-                                                <DescriptionForm name="description_ar" value={form.description_ar} onChange={handleChange} />
-                                                {errors.description_ar && <p className="error-message">* {errors.description_ar}</p>}
-                                            </div>
+                                            <label className="lable-col" htmlFor="salePrice">
+                                                السعر بعد الخصم
+                                                <input
+                                                    type="number"
+                                                    disabled={!form.isSale}
+                                                    name="salePrice"
+                                                    value={form.isSale ? form.salePrice || "" : ""}   // 👈 خليه فاضي مش صفر
+                                                    onChange={handleChange}
+                                                />
+                                                {errors.salePrice && <p className="error-message">* {errors.salePrice}</p>}
+                                            </label>
+
+                                            <label className="lable-col" htmlFor="saleExpireDate">
+                                                انتهاء الخصم
+                                                <input
+                                                    type="date"
+                                                    disabled={!form.isSale}
+                                                    name="saleExpireDate"
+                                                    value={form.isSale ? form.saleExpireDate || "" : ""} // 👈 يفضل يبقى "" مش صفر
+                                                    onChange={handleChange}
+                                                />
+                                                {errors.saleExpireDate && <p className="error-message">* {errors.saleExpireDate}</p>}
+                                            </label>
                                         </div>
-                                        <br />
+                                    </div>
+
+                                    <br />
+                                    <div className='check_sec'>
+                                        <Switch color="warning"
+                                            id="isNew"
+                                            name="isNew"
+                                            checked={form.isNew}
+                                            onChange={handleChange} />
+                                        <h5><span>وصل حديثاً</span></h5>
+                                    </div>
+                                    <div className='optinalSec'>
+                                        <div className={`secBlocked ${form.isNew ? 'secUnBlock' : ''}`}> <p>تحديد المنتج في صفحة وصل حديثاً</p> </div>
                                         <div className="addProducts-Org">
-                                            <div className='lable-col'>
-                                                <strong style={{ paddingBottom: '0.8rem' }}>الوصف إضافي + </strong>
-                                                <DescriptionForm name="description_en" value={form.description_en} onChange={handleChange} />
-                                                {errors.description_en && <p className="error-message">* {errors.description_en}</p>}
-                                            </div>
+                                            <label className="lable-col" htmlFor="newExpireDate">
+                                                انتهاء الجديد
+                                                <input type="date" disabled={!form.isNew} name="newExpireDate" id="newExpireDate" value={form.newExpireDate} onChange={handleChange} />
+                                                {errors.newExpireDate && <p className="error-message">* {errors.newExpireDate}</p>}
+                                            </label>
+
                                         </div>
                                     </div>
-                                    <div className="product-card">
-                                        <h5><span>العروض والحالة</span></h5>
-                                        <div className='check_sec'>
-                                            <Switch color="warning"
-                                                id="isSale"
-                                                name="isSale"
-                                                checked={form.isSale}
-                                                onChange={handleChange} />
-                                            <h5><span>الخصم والعروض</span></h5>
-                                        </div>
-                                        <div className='optinalSec'>
-                                            <div className={`secBlocked ${form.isSale ? 'secUnBlock' : ''}`}> <p>تحديد المنتج في صفحة العروض</p></div>
-                                            <div className="addProducts-Org">
-                                                <label className="lable-col" htmlFor="salePrice">
-                                                    السعر بعد الخصم
-                                                    <input
-                                                        type="number"
-                                                        disabled={!form.isSale}
-                                                        name="salePrice"
-                                                        value={form.isSale ? form.salePrice || "" : ""}   // 👈 خليه فاضي مش صفر
-                                                        onChange={handleChange}
-                                                    />
-                                                    {errors.salePrice && <p className="error-message">* {errors.salePrice}</p>}
-                                                </label>
 
-                                                <label className="lable-col" htmlFor="saleExpireDate">
-                                                    انتهاء الخصم
-                                                    <input
-                                                        type="date"
-                                                        disabled={!form.isSale}
-                                                        name="saleExpireDate"
-                                                        value={form.isSale ? form.saleExpireDate || "" : ""} // 👈 يفضل يبقى "" مش صفر
-                                                        onChange={handleChange}
-                                                    />
-                                                    {errors.saleExpireDate && <p className="error-message">* {errors.saleExpireDate}</p>}
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <br />
-                                        <div className='check_sec'>
-                                            <Switch color="warning"
-                                                id="isNew"
-                                                name="isNew"
-                                                checked={form.isNew}
-                                                onChange={handleChange} />
-                                            <h5><span>وصل حديثاً</span></h5>
-                                        </div>
-                                        <div className='optinalSec'>
-                                            <div className={`secBlocked ${form.isNew ? 'secUnBlock' : ''}`}> <p>تحديد المنتج في صفحة وصل حديثاً</p> </div>
-                                            <div className="addProducts-Org">
-                                                <label className="lable-col" htmlFor="newExpireDate">
-                                                    انتهاء الجديد
-                                                    <input type="date" disabled={!form.isNew} name="newExpireDate" id="newExpireDate" value={form.newExpireDate} onChange={handleChange} />
-                                                    {errors.newExpireDate && <p className="error-message">* {errors.newExpireDate}</p>}
-                                                </label>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div className="product-card" style={{ gridColumn: '1 / -1' }}>
-                                        <h5><span>صور المنتج</span></h5>
-                                        <div className='addProducts-Org-section'>
-                                            <div className='addProducts-Org'>
-                                                <div className="addImg" >
-                                                    <label htmlFor="mainImg" className="uploadBox">
-                                                        {imagePreview ? (
-                                                            <>
-                                                                <span className="text">تغيير الصورة</span>
-                                                                <span className="plus"><LuReplace /></span>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <span className="plus"><FaImage /></span>
-                                                                <span className="text">اختر صورة رئيسية</span>
-                                                            </>
-                                                        )}
-                                                        <input type="file" id="mainImg" accept="image/*" hidden onChange={handleImageChange} />
-                                                    </label>
-                                                    {errors.image && <p className="error-message">* {errors.image}</p>}
-                                                    {imagePreview && <img src={imagePreview} alt="Main" style={{ maxWidth: '200px', marginTop: '10px' }} />}
-                                                </div>
-
-                                                <div className="addImg">
-                                                    <label htmlFor="imagesUpload" className="uploadBox">
-                                                        <span className="plus"><FaImages /></span>
-                                                        {imagesPreview ? (
-                                                            <span className="text">تم اختيار <strong>{imagesPreview.length}</strong> صور</span>
-                                                        ) : (
-                                                            <span className="text">اختر صور متعددة</span>
-                                                        )}
-                                                        <input type="file" id="imagesUpload" accept="image/*" multiple hidden onChange={handleMultipleImagesChange} />
-                                                    </label>
-                                                    {errors.images && <p className="error-message">* {errors.images}</p>}
-                                                    {imagesPreview.length > 0 && (
-                                                        <div className="imgBox">
-                                                            {imagesPreview.map((src, idx) => (
-                                                                <img key={idx} src={src} alt={`product-${idx}`} style={{ maxWidth: '150px', margin: '5px' }} />
-                                                            ))}
-                                                        </div>
+                                </div>
+                                <div className="product-card" style={{ gridColumn: '1 / -1' }}>
+                                    <h5><span>صور المنتج</span></h5>
+                                    <div className='addProducts-Org-section'>
+                                        <div className='addProducts-Org'>
+                                            <div className="addImg" >
+                                                <label htmlFor="mainImg" className="uploadBox">
+                                                    {imagePreview ? (
+                                                        <>
+                                                            <span className="text">تغيير الصورة</span>
+                                                            <span className="plus"><LuReplace /></span>
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <span className="plus"><FaImage /></span>
+                                                            <span className="text">اختر صورة رئيسية</span>
+                                                        </>
                                                     )}
-                                                </div>
+                                                    <input type="file" id="mainImg" accept="image/*" hidden onChange={handleImageChange} />
+                                                </label>
+                                                {errors.image && <p className="error-message">* {errors.image}</p>}
+                                                {imagePreview && <img src={imagePreview} alt="Main" style={{ maxWidth: '200px', marginTop: '10px' }} />}
+                                            </div>
+
+                                            <div className="addImg">
+                                                <label htmlFor="imagesUpload" className="uploadBox">
+                                                    <span className="plus"><FaImages /></span>
+                                                    {imagesPreview ? (
+                                                        <span className="text">تم اختيار <strong>{imagesPreview.length}</strong> صور</span>
+                                                    ) : (
+                                                        <span className="text">اختر صور متعددة</span>
+                                                    )}
+                                                    <input type="file" id="imagesUpload" accept="image/*" multiple hidden onChange={handleMultipleImagesChange} />
+                                                </label>
+                                                {errors.images && <p className="error-message">* {errors.images}</p>}
+                                                {imagesPreview.length > 0 && (
+                                                    <div className="imgBox">
+                                                        {imagesPreview.map((src, idx) => (
+                                                            <img key={idx} src={src} alt={`product-${idx}`} style={{ maxWidth: '150px', margin: '5px' }} />
+                                                        ))}
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className='admin-btn-container'>
-                                    {checkLoading ? (
-                                        <ThreeDot color="#ff6f33" size="small" text="جاري الحفظ..." textColor="#ff6f33" />
-                                    ) :
-                                        (
-                                            <button type="button" onClick={handleSubmit} className='C-btn'>
-                                                حفظ
-                                            </button>
-                                        )}
-                                    <div className='admin-btn-groub'>
-                                        <Link to='/admin/productslist' className='C-btn'>كل المنتجات</Link>
-                                    </div>
+                            </div>
+                            <div className='admin-btn-container'>
+                                {checkLoading ? (
+                                    <ThreeDot color="#ff6f33" size="small" text="جاري الحفظ..." textColor="#ff6f33" />
+                                ) :
+                                    (
+                                        <button type="button" onClick={handleSubmit} className='C-btn'>
+                                            حفظ
+                                        </button>
+                                    )}
+                                <div className='admin-btn-groub'>
+                                    <Link to='/admin/productslist' className='C-btn'>كل المنتجات</Link>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+                        </form>
                     </div>
-                    <br />
                 </div>
+                <br />
+            </div>
         </>
     );
 };

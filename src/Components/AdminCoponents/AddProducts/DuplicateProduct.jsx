@@ -463,12 +463,12 @@ const DuplicateProduct = () => {
                         <form onSubmit={handleSubmit} className='mainCatForm'>
                             <h5><span>الفئة والصنف</span></h5>
                             <div className='addProducts-Org-section'>
-                                <div className="addProducts-Org selectCat ">
+                                <div className="addProducts-Org selectCat">
                                     {/* الفئة */}
                                     <label className="custom-select-wrapper noSelect">
                                         اختر الفئة <span className="star"><FaStarOfLife /></span>
                                         <Select
-                                            className="selector "
+                                            className="selector"
                                             options={categoryOptions}
                                             value={categoryOptions.find(option => option.value === form.categoryId)}
                                             onChange={handleCategoryChange}
@@ -486,7 +486,7 @@ const DuplicateProduct = () => {
                                     <label className="custom-select-wrapper noSelect">
                                         اختر الفئة الفرعية <span className="star"><FaStarOfLife /></span>
                                         <Select
-                                            className="selector "
+                                            className="selector"
                                             options={filteredSubcategoryOptions}
                                             value={filteredSubcategoryOptions.find(option => option.value === form.subcategoryId)}
                                             onChange={handleSubcategoryChange}
@@ -503,9 +503,9 @@ const DuplicateProduct = () => {
 
                                     {/* البراند */}
                                     <label className='custom-select-wrapper noSelect'>
-                                        اختر البراند <span className='star'><FaStarOfLife /></span>
+                                        اختر البائع <span className='star'><FaStarOfLife /></span>
                                         <Select
-                                            className='selector '
+                                            className='selector'
                                             options={brandOptions}
                                             value={brandOptions.find(option => option.value === form.brandId)}
                                             onChange={(selectedOption) => {
@@ -513,7 +513,7 @@ const DuplicateProduct = () => {
                                                 setForm(prev => ({ ...prev, brandId: value }));
                                                 setErrors(prev => ({ ...prev, brandId: '' }));
                                             }}
-                                            placeholder="اختر البراند..."
+                                            placeholder="اختر البائع..."
                                             noOptionsMessage={() => 'لا يوجد نتائج'}
                                             isClearable
                                             isSearchable
@@ -525,7 +525,7 @@ const DuplicateProduct = () => {
                                     <label className="custom-select-wrapper noSelect">
                                         اختر المنتج الرئيسي
                                         <Select
-                                            className="selector "
+                                            className="selector"
                                             options={filteredParentOptions}
                                             value={
                                                 filteredParentOptions.find(option => option.value === form.parentId) ||

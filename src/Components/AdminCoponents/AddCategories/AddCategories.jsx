@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 import { useSubCategories } from '../../../hooks/useCategories';
 import { ThreeDot } from 'react-loading-indicators';
 
@@ -63,7 +64,7 @@ const AddSubCategories = () => {
         }
 
         const formData = new FormData();
-        formData.append('name_ar', nameAr); 
+        formData.append('name_ar', nameAr);
         formData.append('image', subimageFile);
         formData.append('categoryId', categoryId);
 
@@ -81,7 +82,7 @@ const AddSubCategories = () => {
             setErrors({});
             setSubmitted(false);
             setCheckLoading(false);
-            
+
             fetchSubcategories();
 
         } catch (error) {
@@ -187,7 +188,7 @@ const AddSubCategories = () => {
                     <div className='addProducts-Org-section' style={{ flex: 1 }}>
                         <div className='lable-col'>
                             <label>
-                                اسم الفئة الفرعية <span className='star'><FaStarOfLife size={8}/></span>
+                                اسم الفئة الفرعية <span className='star'><FaStarOfLife size={8} /></span>
                             </label>
                             <input
                                 type="text"
@@ -204,7 +205,7 @@ const AddSubCategories = () => {
 
                         <div className='lable-col' style={{ marginTop: '15px' }}>
                             <label>
-                                اختر الفئة الرئيسية <span className='star'><FaStarOfLife size={8}/></span>
+                                اختر الفئة الرئيسية <span className='star'><FaStarOfLife size={8} /></span>
                             </label>
                             <Select className='selector'
                                 options={categoryOptions}
@@ -277,6 +278,21 @@ const AddBrand = () => {
     const { fetchBrands } = useSubCategories();
     const [checkLoading, setCheckLoading] = useState(false);
     const [nameAr, setNameAr] = useState('');
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/users`, { withCredentials: true });
+                const dataObj = res.data?.data;
+                const usersArray = Array.isArray(dataObj) ? dataObj : dataObj?.data || [];
+                setUsers(usersArray);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        };
+        fetchUsers();
+    }, []);
     const [brandimageFile, setBrandImageFile] = useState(null);
     const [brandimagePreview, setBrandImagePreview] = useState(null);
     const [errors, setErrors] = useState({});
@@ -299,6 +315,49 @@ const AddBrand = () => {
     };
 
 
+    const customStyles = {
+        menuPortal: base => ({ ...base, zIndex: 9999 }),
+        control: (provided, state) => ({
+            ...provided,
+            backgroundColor: 'var(--admin-card-bg, #ffffff)',
+            borderColor: state.isFocused ? 'var(--main-color, #ff6f33)' : 'var(--admin-border-light, #e2e8f0)',
+            boxShadow: state.isFocused ? '0 0 0 4px rgba(255, 111, 51, 0.15)' : 'none',
+            borderRadius: '12px',
+            padding: '4px',
+            color: 'var(--admin-text-main, #1e293b)',
+            minHeight: '50px',
+            transition: 'all 0.3s ease',
+            cursor: 'pointer',
+            '&:hover': { borderColor: 'var(--main-color, #ff6f33)' }
+        }),
+        menu: (provided) => ({
+            ...provided,
+            backgroundColor: 'var(--admin-card-bg, #ffffff)',
+            borderRadius: '12px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+            border: '1px solid var(--admin-border-light, #e2e8f0)',
+            overflow: 'hidden',
+            zIndex: 100,
+            direction: 'rtl'
+        }),
+        menuList: (provided) => ({ ...provided, padding: 0 }),
+        option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isSelected ? 'var(--main-color, #ff6f33)' : state.isFocused ? 'rgba(255, 111, 51, 0.1)' : 'transparent',
+            color: state.isSelected ? '#fff' : 'var(--admin-text-main, #1e293b)',
+            cursor: 'pointer',
+            padding: '12px 18px',
+            transition: 'all 0.2s ease',
+            '&:active': { backgroundColor: 'var(--main-color, #ff6f33)' }
+        }),
+        singleValue: (provided) => ({ ...provided, color: 'var(--admin-text-main, #1e293b)' }),
+        input: (provided) => ({ ...provided, color: 'var(--admin-text-main, #1e293b)' }),
+        placeholder: (provided) => ({ ...provided, color: 'var(--admin-text-muted, #64748b)' }),
+        noOptionsMessage: (base) => ({ ...base, color: 'red', textAlign: 'right' })
+    };
+
+    const userOptions = users.map(u => ({ label: u.name, value: u.name }));
+
     const handleBrandImageSubChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -313,7 +372,7 @@ const AddBrand = () => {
         setSubmitted(true);
         setCheckLoading(true);
         const newErrors = {};
-        if (!nameAr.trim()) newErrors.name_ar = 'الرجاء إدخال اسم البراند.';
+        if (!nameAr.trim()) newErrors.name_ar = 'الرجاء إدخال اسم البائع.';
         if (!brandimageFile) newErrors.image = 'الرجاء اختيار صورة.';
         setErrors(newErrors);
 
@@ -368,23 +427,27 @@ const AddBrand = () => {
 
     return (
         <div className='product-card' id='addBrand'>
-            <h5><span>3</span> إضافة براند</h5>
+            <h5><span>3</span> إضافة أسم بائع</h5>
             <form onSubmit={handleSubmit}>
                 <div className='addProducts-Org'>
                     <div className='addProducts-Org-section' style={{ flex: 1 }}>
                         <div className='lable-col'>
                             <label>
-                                اسم البراند <span className='star'><FaStarOfLife size={8}/></span>
+                                اسم البائع <span className='star'><FaStarOfLife size={8} /></span>
                             </label>
-                            <input
-                                type="text"
-                                placeholder="أدخل اسم البراند"
-                                value={nameAr}
-                                onChange={(e) => {
-                                    setNameAr(e.target.value);
+                            <CreatableSelect
+                                value={nameAr ? { label: nameAr, value: nameAr } : null}
+                                onChange={(selectedOption) => {
+                                    setNameAr(selectedOption ? selectedOption.value : '');
                                     setErrors((prev) => ({ ...prev, name_ar: '' }));
                                 }}
-                                className={submitted && errors.name_ar ? 'input-error' : ''}
+                                options={userOptions}
+                                placeholder="اختر اسم البائع (من الحسابات) أو اكتب اسماً جديداً"
+                                isClearable
+                                isSearchable
+                                formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
+                                noOptionsMessage={() => "لا توجد حسابات"}
+                                styles={customStyles}
                             />
                             {errors.name_ar && <small className="error-message">* {errors.name_ar}</small>}
                         </div>
@@ -537,7 +600,7 @@ const AddCategories = () => {
                 <div className='secHead'>
                     <h5>أقسام المتجر</h5>
                 </div>
-                
+
                 <div className='products-grid'>
                     {user?.role === 'superAdmin' && (
                         <div className='product-card'>
@@ -547,7 +610,7 @@ const AddCategories = () => {
                                     <div className='addProducts-Org-section' style={{ flex: 1 }}>
                                         <div className='lable-col'>
                                             <label>
-                                                اسم الفئة الرئيسي <span className='star'><FaStarOfLife size={8}/></span>
+                                                اسم الفئة الرئيسي <span className='star'><FaStarOfLife size={8} /></span>
                                             </label>
                                             <input
                                                 type="text"
@@ -602,13 +665,13 @@ const AddCategories = () => {
                                     <div className='admin-btn-groub' style={{ display: 'flex', gap: '10px' }}>
                                         <Link to='/' className='C-btn' style={{ background: 'transparent', color: 'var(--main-color)', border: '1px solid var(--main-color)' }}>كل الفئات</Link>
                                         <LinkS to='addSubCat' smooth={true} className='C-Sbtn' style={{ cursor: 'pointer' }}>إضافة فئة فرعية</LinkS>
-                                        <LinkS to='addBrand' smooth={true} className='C-Sbtn' style={{ cursor: 'pointer' }}>إضافة براند</LinkS>
+                                        <LinkS to='addBrand' smooth={true} className='C-Sbtn' style={{ cursor: 'pointer' }}>إضافة اسم بائع</LinkS>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     )}
-                    
+
                     {user?.role === 'superAdmin' && <br />}
                     <AddSubCategories />
                     {user?.role === 'superAdmin' && (

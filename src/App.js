@@ -55,6 +55,7 @@ import VendorsList from './Components/AdminCoponents/VendorsList/VendorsList';
 import UsersList from './Components/AdminCoponents/UsersList/UsersList';
 import MyAccount from './Components/AdminCoponents/MyAccount/MyAccount';
 import VendorProfile from './Pages/VendorProfile/VendorProfile';
+import VendorProducts from './Pages/VendorProfile/VendorProducts';
 
 function CategoryProductsWrapper() {
   const { subCatId, subCatName } = useParams();
@@ -173,7 +174,7 @@ function BrandProductsWrapper() {
         <meta name="bingbot" content="index, follow" />
 
         {/* Canonical */}
-        <link rel="canonical" href={`${process.env.REACT_APP_CLIENT_URL}/brand/${brandId}/${brandName}`} />
+        <link rel="canonical" href={`${process.env.REACT_APP_CLIENT_URL}/vendor/${brandId}/${brandName}`} />
         <link rel="manifest" href="https://hamsathome.com/site.webmanifest" />
 
         {/* OG Tags الأساسية */}
@@ -184,7 +185,7 @@ function BrandProductsWrapper() {
           content="تسوق أحدث منتجات همسات لتجهيز المنازل."
         />
         <meta property="og:site_name" content="همسات هوم" />
-        <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/brand/${brandId}/${brandName}`} />
+        <meta property="og:url" content={`${process.env.REACT_APP_CLIENT_URL}/vendor/${brandId}/${brandName}`} />
 
         {/* صور المنتجات */}
         {featuredProducts.map((product) => (
@@ -893,16 +894,16 @@ function App() {
             <CategoriesPage />
           </>
         } />
-        <Route path="/allbrands" element={
+        <Route path="/allvendor" element={
           <>
             <Helmet>
               {/* Title */}
-              <title>كل البراندات - همسات هوم</title>
+              <title>كل البائعين - همسات هوم</title>
 
               {/* Basic Meta */}
               <meta
                 name="description"
-                content="استعرض جميع الفئات المتوفرة في منصة همسات هوم لتجهيز المنازل. تسوق من مجموعات متنوعة تشمل أواني الطهي، أدوات المطبخ، أطقم تقديم، والمزيد بأفضل الأسعار."
+                content="استعرض جميع البائعين في منصة همسات هوم لتجهيز المنازل. تسوق من مجموعات متنوعة."
               />
               <meta name="keywords" content="همسات, همسات هوم, منصة همسات, تجهيز عرائس, اجهزة كهربائية, مفروشات, ادوات منزلية, ادوات مطبخ, مستلزمات العروسة, ديكورات, اطقم صيني, كاسات, اطقم عشاء, معرض تجهيز عرائس الشرقية, فاقوس, اثاث منزلي, اجهزة منزلية حديثة, اطقم طهي, طاسات جرانيت" />
 
@@ -922,7 +923,7 @@ function App() {
                 content="اكتشف جميع الفئات المتاحة في منصة همسات هوم. أدوات مطبخ، أواني طهي، أطقم تقديم والمزيد في مكان واحد."
               />
               <meta property="og:image" content="/Hamasat-ShowCase.webp" />
-              <meta property="og:url" content={`${process.env.REACT_APP_API_URL}/allbrands`} />
+              <meta property="og:url" content={`${process.env.REACT_APP_API_URL}/allvendor`} />
               <meta property="og:site_name" content="همسات هوم" />
 
               {/* Twitter Card */}
@@ -935,14 +936,14 @@ function App() {
               <meta name="twitter:image" content="/Hamasat-ShowCase.webp" />
 
               {/* Canonical URL */}
-              <link rel="canonical" href={`${process.env.REACT_APP_API_URL}/allbrands`} />
+              <link rel="canonical" href={`${process.env.REACT_APP_API_URL}/allvendor`} />
             </Helmet>
             <CategoriesPage />
           </>
         } />
         <Route path="/subcategory/:subCatId/:subCatName" element={<CategoryProductsWrapper />} />
 
-        <Route path="/brand/:brandId/:brandName" element={<BrandProductsWrapper />} />
+        <Route path="/vendor/:brandId/:brandName" element={<BrandProductsWrapper />} />
 
         <Route path="/category/:catId/:catName" element={<SubCategoriesPage />} />
 
@@ -957,6 +958,8 @@ function App() {
         <Route path="/followup" element={<TrackOrder />} />
         <Route path="/vendor-register" element={<VendorRegistration />} />
         <Route path="/vendor/:id" element={<VendorProfile />} />
+        <Route path="/vendor/:id/products" element={<VendorProducts products={products} />} />
+        <Route path="/vendor-terms" element={<VendorTerms />} />
         <Route path="/admin/*" element={<Admin />} />
 
         <Route path="/deliverypolicy" element={<DeliveryAndPrivacy />} />
@@ -973,9 +976,9 @@ function App() {
         brands.length >= 5 && (
           <Categories
             items={brands}
-            hotLink={'brand'}
-            mainHotLink={'allbrands'}
-            hotName={"تسوق بالبراند"}
+            hotLink={'vendor'}
+            mainHotLink={'allvendor'}
+            hotName={"البائعين"}
           />
         )
       }

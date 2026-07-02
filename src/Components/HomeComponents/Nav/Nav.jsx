@@ -169,7 +169,7 @@ const Nav = ({ searchBtn, offers }) => {
                             <li><Link to="/shop">المتجر</Link></li>
                             {offers.length > 0 && (<li><Link to="/offers">العروض</Link></li>)}
                             <li><Link to="/allsubcategories">الأقسام</Link></li>
-                            <li><Link to="/allbrands">البرندات</Link></li>
+                            <li><Link to="/allvendor">البرندات</Link></li>
                             <li><Link to="/bestselling">الأكثر مبيعاً</Link></li>
                             <li><Link to="/newarrival">وصل حديثاً</Link></li>
                             <li><Link to="/followup">متابعة الطلبات</Link></li>
@@ -227,16 +227,16 @@ const Nav = ({ searchBtn, offers }) => {
 
                     <nav>
                         <ul>
-                            <li><Link className={` ${isActive("/") ? "itemNav-active" : ""}`} to="/">الرئيسة</Link></li>
-                            {offers.length > 0 && (<li><Link className={` ${isActive("/offers") ? "itemNav-active" : ""}`} to="/offers">العروض</Link></li>)}
-                            <li><Link className={` ${isActive("/shop") ? "itemNav-active" : ""}`} to="/shop">المتجر</Link></li>
+                            <li><Link className={`${isActive("/") ? "itemNav-active" : ""}`} to="/">الرئيسة</Link></li>
+                            {offers.length > 0 && (<li><Link className={`${isActive("/offers") ? "itemNav-active" : ""}`} to="/offers">العروض</Link></li>)}
+                            <li><Link className={`${isActive("/shop") ? "itemNav-active" : ""}`} to="/shop">المتجر</Link></li>
                             <li>
                                 <LinkS className="scrollBtn" to="Contact">تواصل معنا</LinkS>
                             </li>
 
-                            <li><Link className={` ${isActive("/orders") ? "itemNav-active" : ""}`} to="/orders">الطلبات</Link></li>
+                            <li><Link className={`${isActive("/orders") ? "itemNav-active" : ""}`} to="/orders">الطلبات</Link></li>
                             <li className="cartNav">
-                                <Link className={` ${isActive("/cart") ? "itemNav-active" : ""}`} to="/cart">العربة
+                                <Link className={`${isActive("/cart") ? "itemNav-active" : ""}`} to="/cart">العربة
                                     {cartQuantity >= 1 && <span>{cartQuantity}</span>}
                                 </Link>
                             </li>

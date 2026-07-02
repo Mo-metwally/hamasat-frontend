@@ -162,7 +162,7 @@ const SearchComp = ({ autoFocus, closeModal }) => {
                                         <ul>
                                             {advancedResults.vendors.map(vendor => (
                                                 <li key={`ven-${vendor.id}`}>
-                                                    <Link className="suggestion-item" to={`/searchresults?vendorId=${vendor.id}`} onClick={() => { setShowSuggestions(false); closeModal(); }}>
+                                                    <Link className="suggestion-item" to={`/vendor/${vendor.id}/products`} onClick={() => { setShowSuggestions(false); closeModal(); }}>
                                                         {vendor.profileImage ? <img src={vendor.profileImage} alt={vendor.name} className="suggestion-img suggestion-img-rounded" /> : <div className="suggestion-img-placeholder">بائع</div>}
                                                         <span>{vendor.name}</span>
                                                     </Link>

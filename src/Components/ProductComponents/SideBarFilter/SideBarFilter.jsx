@@ -103,10 +103,10 @@ const SideBarFilter = ({ priceRange, setPriceRange, maxPrice, products, setFilte
                                 onClick={() => handleMaterialClick('')}
                             >
 
-                                جميع البراندات
+                                جميع البائعين
                             </li>
                             {uniqueMaterials.length === 0 ? (
-                                <li>لا توجد براندات</li>
+                                <li>لا توجد بائعين</li>
 
                             ) : (
                                 uniqueMaterials.map(material => (

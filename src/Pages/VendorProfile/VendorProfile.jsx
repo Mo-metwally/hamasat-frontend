@@ -112,7 +112,7 @@ const VendorProfile = () => {
           </div>
           <div className="header-actions" style={{ marginRight: 'auto', display: 'flex', alignItems: 'center' }}>
             <Link 
-              to={`/searchresults?vendorId=${id}`} 
+              to={`/vendor/${id}/products`} 
               className="C-btn" 
               style={{ padding: '10px 25px', fontSize: '1.1rem', borderRadius: '8px', fontWeight: 'bold' }}
             >

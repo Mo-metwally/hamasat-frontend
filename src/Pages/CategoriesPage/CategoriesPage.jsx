@@ -14,7 +14,7 @@ const CategoriesPage = () => {
     const itemsPerPage = 8;
 
     const location = useLocation();
-    const isBrandsPage = location.pathname === '/allbrands';
+    const isBrandsPage = location.pathname === '/allvendor';
     const isAllSubCatPage = location.pathname === '/allsubcategories';
 
     useTracking();
@@ -46,7 +46,7 @@ const CategoriesPage = () => {
                 &gt;
 
                 {isBrandsPage && (
-                    <p>كل البراندات</p>
+                    <p>كل البائعين</p>
                 )}
 
                 {isAllSubCatPage && (
@@ -58,7 +58,7 @@ const CategoriesPage = () => {
                 {currentItems.map((item) => (
                     <div className="grid-item" key={item.id}>
                         {isBrandsPage ? (
-                            <Link to={`/brand/${item.id}/${item.name_ar}`}>
+                            <Link to={`/vendor/${item.id}/${item.name_ar}`}>
                                 <MainCategory id={item.id} image={item.image} name={item.name_ar} />
                             </Link>
                         ) : (
