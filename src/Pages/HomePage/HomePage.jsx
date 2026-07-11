@@ -85,7 +85,7 @@ const HomePage = () => {
 
                 {/* Open Graph / Facebook / WhatsApp */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="منصة همسات لتجهيز المنازل" />
+                <meta property="og:title" content="منصة همسات" />
                 <meta
                     property="og:description"
                     content="منصة همسات هوم لتجهيز العرائس والمنزل العصري يقدم لكِ كل ما تحتاجينه تحت سقف واحد: أحدث الأجهزة الكهربائية، مفروشات راقية، وأدوات مطبخ متكاملة (زجاج، كاسات، أطقم صيني وخزف، أدوات المائدة، أطقم عشاء، والمزيد). استمتعي بتشكيلة واسعة من التصاميم الأنيقة، جودة عالية، وأسعار تنافسية تناسب جميع الأذواق."
@@ -97,7 +97,7 @@ const HomePage = () => {
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="منصة همسات لتجهيز المنازل" />
+                <meta name="twitter:title" content="منصة همسات" />
                 <meta
                     name="twitter:description"
                     content="منصة همسات يقدم كل ما يلزم المطبخ العصري من أواني، أطقم طهي، أدوات تقطيع وتقديم، بجودة عالية وتصاميم أنيقة وأفضل سعر."

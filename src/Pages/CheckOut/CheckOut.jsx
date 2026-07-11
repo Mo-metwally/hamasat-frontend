@@ -274,7 +274,7 @@ const CheckOut = () => {
 
                 {/* Open Graph / Facebook / WhatsApp */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="تأكيد الطلب - منصة همسات لتجهيز المنازل" />
+                <meta property="og:title" content="تأكيد الطلب - منصة همسات" />
                 <meta
                     property="og:description"
                     content="شكراً لتسوقك من منصة همسات هوم. تم تأكيد طلبك وسيتم تجهيز الشحنة الخاصة بك قريباً."
@@ -285,7 +285,7 @@ const CheckOut = () => {
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="تأكيد الطلب - منصة همسات لتجهيز المنازل" />
+                <meta name="twitter:title" content="تأكيد الطلب - منصة همسات" />
                 <meta
                     name="twitter:description"
                     content="تم تأكيد طلبك بنجاح من منصة همسات هوم. شكراً على ثقتك بنا."

@@ -16,7 +16,7 @@ const PrivacyPolicy = () => {
 
             <Helmet>
                 <title>سياسة الخصوصية - همسات لتجهيز المنازل</title>
-                <meta name="description" content="تعرف على سياسة الخصوصية وحماية بيانات العملاء وكيفية استخدام معلوماتهم في منصة همسات لتجهيز المنازل." />
+                <meta name="description" content="تعرف على سياسة الخصوصية وحماية بيانات العملاء وكيفية استخدام معلوماتهم في منصة همسات." />
                 <meta name="keywords" content="خصوصية, بيانات العملاء, حماية المعلومات, همسات, أدوات منزلية, مصر" />
                 <link rel="canonical" href={`${process.env.REACT_APP_API_URL}/privacypolicy`} />
             </Helmet>

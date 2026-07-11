@@ -147,7 +147,7 @@ const TrackOrder = () => {
 
                 {/* Open Graph / Facebook / WhatsApp */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="تتبع الطلب - منصة همسات لتجهيز المنازل" />
+                <meta property="og:title" content="تتبع الطلب - منصة همسات" />
                 <meta
                     property="og:description"
                     content="اعرض جميع طلباتك وتتبع حالتها في منصة همسات هوم لتجهيز المنازل."
@@ -158,7 +158,7 @@ const TrackOrder = () => {
 
                 {/* Twitter Card */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="تتبع الطلب - منصة همسات لتجهيز المنازل" />
+                <meta name="twitter:title" content="تتبع الطلب - منصة همسات" />
                 <meta
                     name="twitter:description"
                     content="تابع حالة طلباتك السابقة والجديدة في منصة همسات هوم بسهولة."

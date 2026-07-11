@@ -125,10 +125,10 @@ const CartPage = () => {
 
             {/* Open Graph / Facebook / WhatsApp */}
             <meta property="og:type" content="website" />
-            <meta property="og:title" content="عربة المشتريات - منصة همسات لتجهيز المنازل" />
+            <meta property="og:title" content="عربة المشتريات - منصة همسات" />
             <meta
                 property="og:description"
-                content="اعرض محتويات عربة التسوق الخاصة بك وأكمل عملية الشراء بسهولة مع منصة همسات لتجهيز المنازل."
+                content="اعرض محتويات عربة التسوق الخاصة بك وأكمل عملية الشراء بسهولة مع منصة همسات."
             />
             <meta property="og:image" content="/Hamasat-ShowCase.webp" />
             <meta property="og:url" content={`${process.env.REACT_APP_API_URL}/cart`} />
@@ -136,10 +136,10 @@ const CartPage = () => {
 
             {/* Twitter Card */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="عربة المشتريات - منصة همسات لتجهيز المنازل" />
+            <meta name="twitter:title" content="عربة المشتريات - منصة همسات" />
             <meta
                 name="twitter:description"
-                content="اعرض محتويات عربة التسوق الخاصة بك وأكمل عملية الشراء بسهولة مع منصة همسات لتجهيز المنازل."
+                content="اعرض محتويات عربة التسوق الخاصة بك وأكمل عملية الشراء بسهولة مع منصة همسات."
             />
             <meta name="twitter:image" content="/Hamasat-ShowCase.webp" />
 

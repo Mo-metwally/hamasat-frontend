@@ -870,7 +870,7 @@ function App() {
 
               {/* Open Graph / Facebook / WhatsApp */}
               <meta property="og:type" content="website" />
-              <meta property="og:title" content="كل الفئات - منصة همسات لتجهيز المنازل" />
+              <meta property="og:title" content="كل الفئات - منصة همسات" />
               <meta
                 property="og:description"
                 content="اكتشف جميع الفئات المتاحة في منصة همسات هوم. أدوات مطبخ، أواني طهي، أطقم تقديم والمزيد في مكان واحد."
@@ -881,7 +881,7 @@ function App() {
 
               {/* Twitter Card */}
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content="كل الفئات - منصة همسات لتجهيز المنازل" />
+              <meta name="twitter:title" content="كل الفئات - منصة همسات" />
               <meta
                 name="twitter:description"
                 content="تصفح جميع أقسام منصة همسات هوم لتجهيز المنازل بأفضل الأسعار والجودة العالية."
@@ -917,7 +917,7 @@ function App() {
 
               {/* Open Graph / Facebook / WhatsApp */}
               <meta property="og:type" content="website" />
-              <meta property="og:title" content="كل الفئات - منصة همسات لتجهيز المنازل" />
+              <meta property="og:title" content="كل الفئات - منصة همسات" />
               <meta
                 property="og:description"
                 content="اكتشف جميع الفئات المتاحة في منصة همسات هوم. أدوات مطبخ، أواني طهي، أطقم تقديم والمزيد في مكان واحد."
@@ -928,7 +928,7 @@ function App() {
 
               {/* Twitter Card */}
               <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content="كل الفئات - منصة همسات لتجهيز المنازل" />
+              <meta name="twitter:title" content="كل الفئات - منصة همسات" />
               <meta
                 name="twitter:description"
                 content="تصفح جميع أقسام منصة همسات هوم لتجهيز المنازل بأفضل الأسعار والجودة العالية."

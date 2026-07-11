@@ -17,7 +17,7 @@ const TermsAndConditions = () => {
         <>
             <Helmet>
                 <title>الشروط والأحكام - همسات لتجهيز المنازل</title>
-                <meta name="description" content="تعرف على الشروط والأحكام لمنصة همسات لتجهيز المنازل، بما في ذلك الطلبات، الدفع، التوصيل، وسياسة الاسترجاع." />
+                <meta name="description" content="تعرف على الشروط والأحكام لمنصة همسات، بما في ذلك الطلبات، الدفع، التوصيل، وسياسة الاسترجاع." />
                 <meta name="keywords" content="شروط, أحكام, سياسة الموقع, همسات, أدوات منزلية, مصر" />
                 <link rel="canonical" href={`${process.env.REACT_APP_API_URL}/termsandconditions`} />
             </Helmet>
