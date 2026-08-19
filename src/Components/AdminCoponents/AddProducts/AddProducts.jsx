@@ -63,7 +63,7 @@ const AddProducts = () => {
     const [errors, setErrors] = useState({});
     // eslint-disable-next-line no-unused-vars
     const [submitted, setSubmitted] = useState(false);
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, user } = useAuth();
     const navigate = useNavigate();
     const [form, setForm] = useState({
         name_ar: '',
@@ -89,6 +89,23 @@ const AddProducts = () => {
         size_ar: [],
         size_en: [],
     });
+
+    // ✅ فلترة البراندات: للبائع يظهر البراند المطابق لاسم حسابه فقط، وللمسؤول يظهر كل البراندات
+    const availableBrandOptions = (user && user.role !== 'superAdmin')
+        ? brandOptions.filter(b => (b.label || '').trim().toLowerCase() === (user.name || '').trim().toLowerCase())
+        : brandOptions;
+
+    // ✅ تحديد البراند تلقائياً للبائع إذا كان هناك براند يطابق اسمه
+    useEffect(() => {
+        if (user && user.role !== 'superAdmin' && brandOptions.length > 0 && !form.brandId) {
+            const matchingBrand = brandOptions.find(b =>
+                (b.label || '').trim().toLowerCase() === (user.name || '').trim().toLowerCase()
+            );
+            if (matchingBrand) {
+                setForm(prev => ({ ...prev, brandId: matchingBrand.value }));
+            }
+        }
+    }, [user, brandOptions, form.brandId]);
 
     useEffect(() => {
         if (selectedCategory) {
@@ -570,18 +587,19 @@ const AddProducts = () => {
                                                 اختر البائع <span className='star'><FaStarOfLife /></span>
                                                 <Select
                                                     className='selector'
-                                                    options={brandOptions}
+                                                    options={availableBrandOptions}
                                                     formatOptionLabel={formatOptionLabel}
-                                                    value={brandOptions.find(option => option.value === form.brandId)}
+                                                    value={availableBrandOptions.find(option => option.value === form.brandId) || (brandOptions.find(option => option.value === form.brandId) || null)}
                                                     onChange={(selectedOption) => {
                                                         const value = selectedOption ? selectedOption.value : '';
                                                         setForm(prev => ({ ...prev, brandId: value }));
                                                         setErrors(prev => ({ ...prev, brandId: '' }));
                                                     }}
                                                     placeholder="اختر البائع..."
-                                                    noOptionsMessage={() => 'لا يوجد نتائج'}
-                                                    isClearable
+                                                    noOptionsMessage={() => (user && user.role !== 'superAdmin') ? `لا يوجد براند مطابق لاسم الحساب (${user?.name})` : 'لا يوجد نتائج'}
+                                                    isClearable={user?.role === 'superAdmin'}
                                                     isSearchable
+                                                    isDisabled={user && user.role !== 'superAdmin' && availableBrandOptions.length === 1}
                                                     menuPortalTarget={document.body}
                                                     styles={customStyles}
                                                 />

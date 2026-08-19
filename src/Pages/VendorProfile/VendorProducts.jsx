@@ -5,14 +5,14 @@ import { Helmet } from 'react-helmet-async';
 import { FaSearch, FaStore, FaBriefcase, FaInfoCircle } from 'react-icons/fa';
 import ProdCard from '../../Components/HomeComponents/ProdCard/ProdCard';
 import Pagenation from '../../Components/ProductComponents/pagenation/Pagenation';
-import { ThreeDot } from 'react-loading-indicators';
+// import { ThreeDot } from 'react-loading-indicators';
 import { useSubCategories } from '../../hooks/useCategories';
 import './VendorProfile.scss'; // Reusing header styles from VendorProfile
 import './VendorProducts.scss'; // Grid and search bar styles
 
 const VendorProducts = ({ products = [] }) => {
   const { id } = useParams();
-  const { subcategories } = useSubCategories();
+  const { subcategories, brands } = useSubCategories();
   const [vendor, setVendor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -76,6 +76,14 @@ const VendorProducts = ({ products = [] }) => {
     return nameAr.includes(term) || nameEn.includes(term);
   });
 
+  // Find matching brand image for this vendor
+  const matchedBrand = brands?.find(b =>
+    (b.name && vendor?.name && b.name.trim().toLowerCase() === vendor.name.trim().toLowerCase()) ||
+    (b.name_ar && vendor?.name && b.name_ar.trim().toLowerCase() === vendor.name.trim().toLowerCase()) ||
+    (b.vendorId && vendor?.id && b.vendorId === vendor.id)
+  );
+  const brandImage = matchedBrand?.image || vendor?.profileImage || vendor?.image;
+
   const totalPages = Math.ceil(displayProducts.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -108,7 +116,11 @@ const VendorProducts = ({ products = [] }) => {
         <div className="profile-header glass-panel">
           <div className="header-info">
             <div className="avatar-placeholder">
-              <FaStore />
+              {brandImage ? (
+                <img src={brandImage} alt={vendor.name} />
+              ) : (
+                <FaStore />
+              )}
             </div>
             <div className="text-info">
               <h1>{vendor.name}</h1>
@@ -123,7 +135,7 @@ const VendorProducts = ({ products = [] }) => {
               )}
             </div>
           </div>
-          <div className="header-actions" style={{ marginRight: 'auto', display: 'flex', alignItems: 'center' }}>
+          <div className="header-actions" style={{ display: 'flex', alignItems: 'center' }}>
             <Link
               to={`/vendor/${id}`}
               className="C-btn"
@@ -179,30 +191,29 @@ const VendorProducts = ({ products = [] }) => {
         </div>
 
         {/* Products Grid */}
-        <div className="row">
+        <div className="productsContainer">
           {currentItems.length > 0 ? (
             currentItems.map((product) => {
               const subcategory = subcategories.find(sub => sub.id === product.subcategoryId);
               const subcategoryName = subcategory ? subcategory.name_ar : '';
 
               return (
-                <div className="mb-4 col-12 col-sm-6 col-md-4 col-lg-3" key={product.id}>
-                  <ProdCard
-                    link={`/subcategory/${product.subcategoryId}/${subcategoryName}/product/${product.id}/${product.name_ar}`}
-                    id={product.id}
-                    img={product.image}
-                    imgs={product.images}
-                    name={product.name_ar}
-                    description={product.slug}
-                    price={product.price}
-                    salePrice={product.salePrice}
-                    isNew={product.isNew}
-                    isSale={product.isSale}
-                    sizeAr={product.size_ar}
-                    sizeEn={product.size_en}
-                    remaining={product.remaining}
-                  />
-                </div>
+                <ProdCard
+                  link={`/subcategory/${product.subcategoryId}/${subcategoryName}/product/${product.id}/${product.name_ar}`}
+                  key={product.id}
+                  id={product.id}
+                  img={product.image}
+                  imgs={product.images}
+                  name={product.name_ar}
+                  description={product.slug}
+                  price={product.price}
+                  salePrice={product.salePrice}
+                  isNew={product.isNew}
+                  isSale={product.isSale}
+                  sizeAr={product.size_ar}
+                  sizeEn={product.size_en}
+                  remaining={product.remaining}
+                />
               );
             })
           ) : (

@@ -1,23 +1,217 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './ProductsList.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaEdit, FaSortAmountDownAlt, FaSortAmountUpAlt, FaTrash } from 'react-icons/fa';
+import { FaEdit, FaSortAmountDownAlt, FaSortAmountUpAlt, FaTrash, FaSearch, FaTimes, FaCheck, FaStore, FaUsers, FaFilter } from 'react-icons/fa';
 import { toast, ToastContainer } from 'react-toastify';
 import Pagenation from '../../ProductComponents/pagenation/Pagenation';
-import { MdAddToPhotos } from "react-icons/md";
+import { MdAddToPhotos, MdSettingsBackupRestore } from "react-icons/md";
+import { RiShieldUserFill } from "react-icons/ri";
 
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 import { useSubCategories } from '../../../hooks/useCategories';
-import { MdSettingsBackupRestore } from "react-icons/md";
 import RestockModel from './RestockModel';
 import { Switch } from '@mui/material';
 import { useProducts } from '../../../hooks/useProducts';
 import { useAuth } from '../../../Context/AuthContext';
-import { useEffect } from 'react';
 
 
+
+const PublisherSelector = ({ selectedId, onSelect, superAdmins, vendors }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const getSelectedItem = () => {
+        if (!selectedId) return { label: 'كل الناشرين', type: 'all' };
+        if (selectedId.startsWith('admin_') || selectedId === 'admin' || selectedId === 'hamasat') {
+            const adminId = selectedId.replace('admin_', '');
+            const admin = superAdmins.find(a => a.id === adminId);
+            return { label: admin ? admin.name : 'همسات هوم', type: 'admin' };
+        }
+        const vendor = vendors.find(v => v.id === selectedId);
+        return { label: vendor ? vendor.name : 'بائع محدد', type: 'vendor' };
+    };
+
+    const currentItem = getSelectedItem();
+
+    const effectiveAdmins = superAdmins.length > 0 ? superAdmins : [{ id: 'admin', name: 'همسات هوم' }];
+    const filteredAdmins = effectiveAdmins.filter(a =>
+        (a.name || '').toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const filteredVendors = vendors.filter(v =>
+        (v.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (v.storeName || '').toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    return (
+        <div className="custom-publisher-select" ref={dropdownRef}>
+            <div
+                className={`select-trigger ${isOpen ? 'active' : ''} ${selectedId ? 'has-value' : ''}`}
+                onClick={() => setIsOpen(!isOpen)}
+                title="تصفية حسب الناشر (مسؤول / بائع)"
+            >
+                <div className="selected-info">
+                    {currentItem.type === 'all' && <FaUsers className="type-icon all" />}
+                    {currentItem.type === 'admin' && <RiShieldUserFill className="type-icon admin" />}
+                    {currentItem.type === 'vendor' && <FaStore className="type-icon vendor" />}
+
+                    <span className="selected-text">{currentItem.label}</span>
+
+                    {currentItem.type === 'admin' && <span className="role-badge admin">مسؤول</span>}
+                    {currentItem.type === 'vendor' && <span className="role-badge vendor">بائع</span>}
+                </div>
+
+                <div className="trigger-actions">
+                    {selectedId && (
+                        <button
+                            type="button"
+                            className="clear-btn"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onSelect('');
+                            }}
+                            title="إلغاء التصفية"
+                        >
+                            <FaTimes />
+                        </button>
+                    )}
+                    <span className={`arrow ${isOpen ? 'open' : ''}`}>
+                        <IoIosArrowDown />
+                    </span>
+                </div>
+            </div>
+
+            {isOpen && (
+                <div className="publisher-dropdown-menu">
+                    <div className="dropdown-search-box" onClick={(e) => e.stopPropagation()}>
+                        <FaSearch className="search-icon" />
+                        <input
+                            type="text"
+                            placeholder="بحث بالاسم أو المتجر..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            autoFocus
+                        />
+                        {searchQuery && (
+                            <button
+                                type="button"
+                                className="search-clear"
+                                onClick={() => setSearchQuery('')}
+                            >
+                                <FaTimes />
+                            </button>
+                        )}
+                    </div>
+
+                    <div className="dropdown-options-list">
+                        {(!searchQuery || 'كل الناشرين مسؤولين بائعين'.includes(searchQuery.toLowerCase())) && (
+                            <div
+                                className={`dropdown-option ${!selectedId ? 'selected' : ''}`}
+                                onClick={() => {
+                                    onSelect('');
+                                    setIsOpen(false);
+                                }}
+                            >
+                                <div className="opt-left">
+                                    <div className="icon-wrapper all">
+                                        <FaUsers />
+                                    </div>
+                                    <span className="opt-name">كل الناشرين (مسؤولين وبائعين)</span>
+                                </div>
+                                {!selectedId && <FaCheck className="check-icon" />}
+                            </div>
+                        )}
+
+                        {filteredAdmins.length > 0 && (
+                            <div className="options-group">
+                                <div className="group-title">
+                                    <RiShieldUserFill className="group-icon admin" />
+                                    <span>المسؤولين ({filteredAdmins.length})</span>
+                                </div>
+                                {filteredAdmins.map(admin => {
+                                    const val = admin.id === 'admin' ? 'admin' : `admin_${admin.id}`;
+                                    const isSelected = selectedId === val;
+                                    return (
+                                        <div
+                                            key={admin.id}
+                                            className={`dropdown-option admin-option ${isSelected ? 'selected' : ''}`}
+                                            onClick={() => {
+                                                onSelect(val);
+                                                setIsOpen(false);
+                                            }}
+                                        >
+                                            <div className="opt-left">
+                                                <div className="icon-wrapper admin">
+                                                    <RiShieldUserFill />
+                                                </div>
+                                                <div className="opt-details">
+                                                    <span className="opt-name">{admin.name}</span>
+                                                    <span className="role-badge admin">مسؤول</span>
+                                                </div>
+                                            </div>
+                                            {isSelected && <FaCheck className="check-icon" />}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
+
+                        {filteredVendors.length > 0 && (
+                            <div className="options-group">
+                                <div className="group-title">
+                                    <FaStore className="group-icon vendor" />
+                                    <span>البائعين ({filteredVendors.length})</span>
+                                </div>
+                                {filteredVendors.map(vendor => {
+                                    const isSelected = selectedId === vendor.id;
+                                    return (
+                                        <div
+                                            key={vendor.id}
+                                            className={`dropdown-option vendor-option ${isSelected ? 'selected' : ''}`}
+                                            onClick={() => {
+                                                onSelect(vendor.id);
+                                                setIsOpen(false);
+                                            }}
+                                        >
+                                            <div className="opt-left">
+                                                <div className="icon-wrapper vendor">
+                                                    <FaStore />
+                                                </div>
+                                                <div className="opt-details">
+                                                    <span className="opt-name">{vendor.name}</span>
+                                                    <span className="role-badge vendor">بائع</span>
+                                                </div>
+                                            </div>
+                                            {isSelected && <FaCheck className="check-icon" />}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
+
+                        {filteredAdmins.length === 0 && filteredVendors.length === 0 && (
+                            <div className="empty-results">
+                                لا توجد نتائج مطابقة لـ "{searchQuery}"
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
 
 const ProductsList = () => {
     const getSavedState = () => {
@@ -33,7 +227,7 @@ const ProductsList = () => {
     const [showWholesale, setShowWholesale] = useState(false);
     // eslint-disable-next-line no-unused-vars
     const [showAdminEdite, setShowAdminEdite] = useState(false);
-    const [selectedProductId, setSelectedProductId] = useState(null);
+    // const [selectedProductId, setSelectedProductId] = useState(null);
     const [lowStockOnly, setLowStockOnly] = useState(savedState.lowStockOnly || false);
     const [typeSelector, setTypeSelector] = useState(savedState.typeSelector || ''); // إما "category" أو "subcategory"
     const [selectedId, setSelectedId] = useState(savedState.selectedId || '');
@@ -43,28 +237,38 @@ const ProductsList = () => {
     const [sortOrder, setSortOrder] = useState(savedState.sortOrder || 'desc');
     const [currentPage, setCurrentPage] = useState(savedState.currentPage || 1);
     const [productDetails, setProductDetails] = useState({});
-    const [pendingAction, setPendingAction] = useState(null);
+    // const [pendingAction, setPendingAction] = useState(null);
     const { user } = useAuth();
     const [vendors, setVendors] = useState([]);
+    const [superAdmins, setSuperAdmins] = useState([]);
     const [selectedVendorId, setSelectedVendorId] = useState(savedState.selectedVendorId || '');
-
-
+    const [selectedParentProduct, setSelectedParentProduct] = useState(null);
 
     useEffect(() => {
         if (user?.role === 'superAdmin') {
-            const fetchVendors = async () => {
+            const fetchPublishers = async () => {
+                // 1. جلب البائعين
                 try {
                     const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/admin/vendors`, { withCredentials: true });
                     if (res.data.success) {
-                        // handlersFactory.getAll returns { data: { results, pagination, data: [...] } }
                         const vendorData = res.data.data.data || res.data.data;
                         setVendors(Array.isArray(vendorData) ? vendorData : []);
                     }
                 } catch (err) {
                     console.error("خطأ في جلب البائعين", err);
                 }
+
+                // 2. جلب المسؤولين (superAdmins)
+                try {
+                    const usersRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/users`, { withCredentials: true });
+                    const usersData = Array.isArray(usersRes.data?.data) ? usersRes.data.data : usersRes.data?.data?.data || [];
+                    const admins = usersData.filter(u => u.role === 'superAdmin');
+                    setSuperAdmins(admins);
+                } catch (err) {
+                    console.error("خطأ في جلب المسؤولين", err);
+                }
             };
-            fetchVendors();
+            fetchPublishers();
         }
     }, [user]);
 
@@ -151,6 +355,13 @@ const ProductsList = () => {
             (item.name_ar || '').toLowerCase().includes(searchTerm.toLowerCase())
         )
         .filter((item) => {
+            if (selectedParentProduct) {
+                const pId = selectedParentProduct.id;
+                return item.id === pId || item.parentId === pId;
+            }
+            return true;
+        })
+        .filter((item) => {
             if (!selectedId && typeSelector !== "parent") return true;
 
             if (typeSelector === 'category') {
@@ -165,7 +376,10 @@ const ProductsList = () => {
         })
         .filter((item) => {
             if (selectedVendorId) {
-                if (selectedVendorId === 'hamasat') return item.vendorId === null;
+                if (selectedVendorId.startsWith('admin_') || selectedVendorId === 'admin' || selectedVendorId === 'hamasat') {
+                    const adminId = selectedVendorId.startsWith('admin_') ? selectedVendorId.replace('admin_', '') : null;
+                    return !item.vendorId || (adminId && item.vendorId === adminId);
+                }
                 return item.vendorId === selectedVendorId;
             }
             return true;
@@ -345,17 +559,12 @@ const ProductsList = () => {
                     </div>
                     {user?.role === 'superAdmin' && (
                         <div className='toolbarItm'>
-                            <select
-                                className="selector"
-                                value={selectedVendorId}
-                                onChange={(e) => setSelectedVendorId(e.target.value)}
-                            >
-                                <option value="">كل البائعين</option>
-                                <option value="hamasat">منصة همسات</option>
-                                {Array.isArray(vendors) && vendors.map(v => (
-                                    <option key={v.id} value={v.id}>{v.name}</option>
-                                ))}
-                            </select>
+                            <PublisherSelector
+                                selectedId={selectedVendorId}
+                                onSelect={setSelectedVendorId}
+                                superAdmins={superAdmins}
+                                vendors={vendors}
+                            />
                         </div>
                     )}
                     <input
@@ -367,11 +576,31 @@ const ProductsList = () => {
                     />
                 </div>
 
+                {selectedParentProduct && (
+                    <div className="active-family-banner">
+                        <div className="banner-text">
+                            <FaFilter className="banner-icon" />
+                            <span>
+                                يتم حالياً عرض عائلة المنتج: <strong>{selectedParentProduct.name_ar}</strong> (المنتج الأساسي والمنتجات الفرعية)
+                            </span>
+                        </div>
+                        <button
+                            type="button"
+                            className="clear-family-chip"
+                            onClick={() => setSelectedParentProduct(null)}
+                            title="إلغاء التصفية"
+                        >
+                            <FaTimes /> إلغاء الفلتر
+                        </button>
+                    </div>
+                )}
+
                 <div className="table-wrapper">
                     <table className="categories-table">
                         <thead>
                             <tr>
                                 <th>أدوات</th>
+                                <th>النوع</th>
                                 <th>الفئة الرئيسية</th>
                                 <th>الفئة الفرعية</th>
                                 <th>السعر</th>
@@ -425,6 +654,17 @@ const ProductsList = () => {
                                             </div>
                                         </td>
                                         <td>
+                                            {item.parentId ? (
+                                                <span className="product-type-pill child" title="منتج فرعي">
+                                                    فرعي
+                                                </span>
+                                            ) : (
+                                                <span className="product-type-pill parent" title="منتج أساسي (رئيسي)">
+                                                    أساسي
+                                                </span>
+                                            )}
+                                        </td>
+                                        <td>
                                             <p><strong>{getCategoryName(item.categoryId)}</strong></p>
                                         </td>
                                         <td>
@@ -474,26 +714,78 @@ const ProductsList = () => {
                                     </tr>
                                     {expanded === item.id && (
                                         <tr className="table-details" dir="rtl">
-                                            <td colSpan="9">
+                                            <td colSpan="10">
                                                 <div className="details-content">
                                                     <div className='detail-content'>
-                                                        <div className='children-products'>
-                                                            <p>
-                                                                <strong>
-                                                                    عدد المنتجات الفرعية: {productDetails[item.id]?.children?.length ?? 0}
-                                                                </strong>
-                                                            </p>
+                                                        {(() => {
+                                                            const parentId = item.parentId || item.id;
+                                                            const mainParent = item.parentId ? (products.find(p => p.id === item.parentId) || null) : item;
+                                                            const subProducts = products.filter(p => p.parentId === parentId);
+                                                            const isFamilyFiltered = selectedParentProduct?.id === parentId;
 
-                                                            <ul>
-                                                                {productDetails[item.id]?.children?.map((child) => (
-                                                                    <li key={child.id}>{child.name_ar}</li>
-                                                                ))}
-                                                            </ul>
-                                                        </div>
+                                                            return (
+                                                                <div className='children-products'>
+                                                                    <div className="children-header">
+                                                                        <div className="children-title-group">
+                                                                            <p style={{ marginBottom: '4px' }}>
+                                                                                <strong>حالة المنتج: </strong>
+                                                                                <span className={`product-type-pill ${item.parentId ? 'child' : 'parent'}`}>
+                                                                                    {item.parentId ? 'منتج فرعي' : 'منتج أساسي'}
+                                                                                </span>
+                                                                            </p>
+                                                                            {item.parentId && (
+                                                                                <p style={{ fontSize: '13px', color: '#64748b', marginBottom: '4px' }}>
+                                                                                    <strong>المنتج الأساسي: </strong> {mainParent?.name_ar || 'غير محدد'}
+                                                                                </p>
+                                                                            )}
+                                                                            <p style={{ margin: 0 }}>
+                                                                                <strong>عدد المنتجات الفرعية: </strong>
+                                                                                <span className="count-badge">{subProducts.length} منتج فرعي</span>
+                                                                            </p>
+                                                                        </div>
+
+                                                                        <button
+                                                                            type="button"
+                                                                            className={`family-filter-btn ${isFamilyFiltered ? 'active' : ''}`}
+                                                                            onClick={(e) => {
+                                                                                e.stopPropagation();
+                                                                                if (isFamilyFiltered) {
+                                                                                    setSelectedParentProduct(null);
+                                                                                } else {
+                                                                                    setSelectedParentProduct(mainParent || { id: parentId, name_ar: item.name_ar });
+                                                                                    setCurrentPage(1);
+                                                                                }
+                                                                            }}
+                                                                            title="عرض المنتج الأساسي وجميع منتجاته الفرعية معاً"
+                                                                        >
+                                                                            <FaFilter />
+                                                                            {isFamilyFiltered ? 'إلغاء تصفية العائلة' : 'عرض المنتج وفروعه فقط'}
+                                                                        </button>
+                                                                    </div>
+
+                                                                    {subProducts.length > 0 ? (
+                                                                        <div className="sub-products-list">
+                                                                            <span className="sub-list-title">المنتجات الفرعية التابعة:</span>
+                                                                            <ul>
+                                                                                {subProducts.map((child) => (
+                                                                                    <li key={child.id} className={child.id === item.id ? 'current-child' : ''}>
+                                                                                        {child.name_ar} {child.id === item.id ? '(المنتج الحالي)' : ''}
+                                                                                    </li>
+                                                                                ))}
+                                                                            </ul>
+                                                                        </div>
+                                                                    ) : (
+                                                                        <p className="no-children-text" style={{ fontSize: '12.5px', color: '#94a3b8', margin: '8px 0 0 0' }}>
+                                                                            لا توجد منتجات فرعية لهذا المنتج.
+                                                                        </p>
+                                                                    )}
+                                                                </div>
+                                                            );
+                                                        })()}
                                                         <p><strong>المنشأ/الخامة:</strong> {item.model_en || '—'}</p>
                                                         <p><strong>البراند:</strong> {item.model_ar || '—'}</p>
                                                         {user?.role === 'superAdmin' && (
-                                                            <p><strong>البائع:</strong> {item.vendor ? item.vendor.name : 'منصة همسات هوم'}</p>
+                                                            <p><strong>الناشر / البائع:</strong> {item.vendor?.name ? `البائع: ${item.vendor.name}` : 'الإدارة (المسؤولين)'}</p>
                                                         )}
                                                         <p>
                                                             <strong>السعر:</strong> {item.price ? Number(item.price).toLocaleString('en-EG') : '—'}

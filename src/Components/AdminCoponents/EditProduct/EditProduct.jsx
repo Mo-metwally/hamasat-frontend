@@ -5,6 +5,9 @@ import axios from 'axios';
 import CreatableSelect from 'react-select/creatable';
 import Switch from '@mui/material/Switch';
 import DescriptionForm from '../DescriptionForm/DescriptionForm';
+import { FaImage, FaImages, FaTimes } from 'react-icons/fa';
+import { LuReplace } from 'react-icons/lu';
+import '../AddProducts/AddProducts.css';
 
 import { useProducts } from '../../../hooks/useProducts';
 import { ThreeDot } from 'react-loading-indicators';
@@ -20,6 +23,14 @@ const EditProduct = () => {
     const [product, setProduct] = useState(null);
     const [selectedParent, setSelectedParent] = useState(null);
 
+    // 📸 حالات الصور
+    const [mainImageFile, setMainImageFile] = useState(null);
+    const [mainImagePreview, setMainImagePreview] = useState(null);
+    const [existingMainImage, setExistingMainImage] = useState(null);
+
+    const [existingImages, setExistingImages] = useState([]);
+    const [newImageFiles, setNewImageFiles] = useState([]);
+    const [newImagesPreview, setNewImagesPreview] = useState([]);
 
     const [form, setForm] = useState({
         parentId: '',
@@ -67,21 +78,35 @@ const EditProduct = () => {
         { value: 'ضخم', label: 'ضخم' },
     ];
 
+    // إعداد وتحديث صور المنتج عند التحميل أو التغيير
+    const setupProductImages = (prod) => {
+        if (!prod) return;
+        setExistingMainImage(prod.image || '');
+        setMainImagePreview(prod.image || '');
+        setMainImageFile(null);
+
+        setExistingImages(Array.isArray(prod.images) ? prod.images : []);
+        setNewImageFiles([]);
+        setNewImagesPreview([]);
+    };
+
     // جلب المنتج الأساسي عند فتح الصفحة
     useEffect(() => {
         const loadProduct = async () => {
-            await fetchProducts(); // لو fetchProducts ترجع المنتجات
-            await handleProductLoad(product || []); // اعمل default لمصفوفة فاضية
+            await fetchProducts();
+            await handleProductLoad(product || []);
         };
-        setSelectedParent(itemId)
+        setSelectedParent(itemId);
+
         const handleProductLoad = async (productsList) => {
             const prod = Array.isArray(productsList)
                 ? productsList.find((p) => p.id === itemId)
-                : productsList; // لو جاي كائن واحد من axios
+                : productsList;
             if (prod) {
                 setProduct(prod);
                 originalData.current = prod;
                 setForm(mapProductToForm(prod));
+                setupProductImages(prod);
             } else {
                 try {
                     const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/products/${itemId}`);
@@ -90,6 +115,7 @@ const EditProduct = () => {
                         setProduct(fetchedProduct);
                         originalData.current = fetchedProduct;
                         setForm(mapProductToForm(fetchedProduct));
+                        setupProductImages(fetchedProduct);
                     }
                 } catch (err) {
                     toast.error("فشل تحميل بيانات المنتج");
@@ -100,10 +126,9 @@ const EditProduct = () => {
         loadProduct();
     }, [itemId, product, fetchProducts]);
 
-
     // تحويل المنتج للفورم
     const mapProductToForm = (product) => ({
-        id: product.id, // ✅ لازم يتضاف
+        id: product.id,
         parentId: product.parentId || null,
         name_ar: product.name_ar || '',
         slug: product.slug || '',
@@ -150,28 +175,48 @@ const EditProduct = () => {
         }
     };
 
+    // معالجة تغيير الصورة الرئيسية
+    const handleMainImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setMainImageFile(file);
+            setMainImagePreview(URL.createObjectURL(file));
+            setErrors((prev) => ({ ...prev, image: '' }));
+        }
+    };
+
+    // حذف الصورة الرئيسية
+    const handleRemoveMainImage = () => {
+        setMainImageFile(null);
+        setMainImagePreview(null);
+        setExistingMainImage(null);
+    };
+
+    // معالجة إضافة صور متعددة جديدة
+    const handleMultipleImagesChange = (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length > 0) {
+            setNewImageFiles((prev) => [...prev, ...files]);
+            const newPreviews = files.map((file) => URL.createObjectURL(file));
+            setNewImagesPreview((prev) => [...prev, ...newPreviews]);
+            setErrors((prev) => ({ ...prev, images: '' }));
+        }
+    };
+
+    // حذف صورة من الصور القديمة المحفوظة
+    const handleRemoveExistingImage = (indexToRemove) => {
+        setExistingImages((prev) => prev.filter((_, idx) => idx !== indexToRemove));
+    };
+
+    // حذف صورة من الصور الجديدة المرفوعة
+    const handleRemoveNewImage = (indexToRemove) => {
+        setNewImageFiles((prev) => prev.filter((_, idx) => idx !== indexToRemove));
+        setNewImagesPreview((prev) => prev.filter((_, idx) => idx !== indexToRemove));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setCheckLoading(true);
-        const payload = {
-            ...form,
-            id: form.id, // 👈 هي دي اللي هتتغير حسب اختيار الـ Select
-            color_ar: form.color_ar || [],
-            size_ar: form.size_ar || [],
-            size_en: form.size_en || [],
-            keywords: form.keywords && form.keywords.trim() !== '' ? [form.keywords.trim()] : [],
-            basePrice: form.basePrice === '' ? originalData.current.basePrice : Number(form.basePrice),
-            price: form.price === '' ? originalData.current.price : Number(form.price),
-            stock: form.stock === '' ? originalData.current.stock : Number(form.stock),
-            sold: form.sold === '' ? originalData.current.sold : Number(form.sold),
-            salePrice: form.salePrice === '' ? originalData.current.salePrice : Number(form.salePrice),
-            isSale: Boolean(form.isSale),
-            isNew: Boolean(form.isNew),
-            saleExpireDate: form.isSale ? form.saleExpireDate : null,
-            newExpireDate: form.isNew ? form.newExpireDate : null,
-            parentId: form.parentId || null,
-        };
-
 
         const newErrors = {};
 
@@ -180,12 +225,19 @@ const EditProduct = () => {
         if (!form.model_ar) newErrors.model_ar = 'الرجاء إدخال موديل المنتج.';
         if (!form.model_en) newErrors.model_en = 'الرجاء إدخال المنشأ/الخامة';
         if (!form.description_ar) newErrors.description_ar = 'الرجاء إدخال وصف المنتج.';
-
         if (!form.stock) newErrors.stock = 'الرجاء إدخال الكمية.';
-        if (!form.color_ar) newErrors.color_ar = 'الرجاء أختيار اللون';
-        if (!form.size_en) newErrors.size_ar = 'الرجاء أختيار العدد القطع';
-        if (!form.size_ar) newErrors.size_ar = 'الرجاء أختيار الحجم.';
+        if (!form.color_ar || form.color_ar.length === 0) newErrors.color_ar = 'الرجاء أختيار اللون';
+        if (!form.size_en || form.size_en.length === 0) newErrors.size_en = 'الرجاء أختيار الحجم';
+        if (!form.size_ar || form.size_ar.length === 0) newErrors.size_ar = 'الرجاء أختيار عدد القطع';
 
+        if (!mainImageFile && !existingMainImage) {
+            newErrors.image = 'الرجاء اختيار صورة رئيسية للمنتج.';
+        }
+
+        const totalImagesCount = existingImages.length + newImageFiles.length;
+        if (totalImagesCount > 8) {
+            newErrors.images = `إجمالي الصور متعددة هو ${totalImagesCount}، برجاء ألا يتجاوز 8 صور.`;
+        }
 
         if (form.isSale) {
             if (!form.salePrice) newErrors.salePrice = 'الرجاء إدخال السعر بعد الخصم.';
@@ -227,8 +279,59 @@ const EditProduct = () => {
             }
         }
 
+        const payload = {
+            ...form,
+            id: form.id,
+            color_ar: form.color_ar || [],
+            size_ar: form.size_ar || [],
+            size_en: form.size_en || [],
+            keywords: form.keywords && typeof form.keywords === 'string' && form.keywords.trim() !== '' ? [form.keywords.trim()] : (Array.isArray(form.keywords) ? form.keywords : []),
+            basePrice: form.basePrice === '' ? originalData.current.basePrice : Number(form.basePrice),
+            price: form.price === '' ? originalData.current.price : Number(form.price),
+            stock: form.stock === '' ? originalData.current.stock : Number(form.stock),
+            sold: form.sold === '' ? originalData.current.sold : Number(form.sold),
+            salePrice: form.salePrice === '' ? originalData.current.salePrice : Number(form.salePrice),
+            isSale: Boolean(form.isSale),
+            isNew: Boolean(form.isNew),
+            saleExpireDate: form.isSale ? form.saleExpireDate : null,
+            newExpireDate: form.isNew ? form.newExpireDate : null,
+            parentId: form.parentId || null,
+        };
+
+        // تحضير FormData لإرسال البيانات
+        const formData = new FormData();
+        Object.entries(payload).forEach(([key, val]) => {
+            if (key === 'image' || key === 'images') return;
+            if (Array.isArray(val)) {
+                val.forEach((item) => formData.append(`${key}[]`, item));
+            } else {
+                if ((key === "saleExpireDate" || key === "newExpireDate") && !val) {
+                    return;
+                }
+                if (val !== null && val !== undefined) {
+                    formData.append(key, val);
+                }
+            }
+        });
+
+        // 📸 الصورة الرئيسية: إذا تم اختيار ملف جديد نرسل الملف، وإذا لم تتغير نرسل الرابط الحالي
+        if (mainImageFile instanceof File) {
+            formData.append('image', mainImageFile);
+        } else if (existingMainImage) {
+            formData.append('image', existingMainImage);
+        }
+
+        // 📸 الصور الإضافية (المعرض): إرسال الملفات الجديدة والصور المحتفظ بها
+        newImageFiles.forEach((file) => {
+            formData.append('images', file);
+        });
+
+        existingImages.forEach((imgUrl) => {
+            formData.append('images', imgUrl);
+        });
+
         try {
-            await axios.put(`${process.env.REACT_APP_API_URL}/api/v1/products/${form.id}`, payload, {
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/v1/products/${form.id}`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
                 withCredentials: true,
             });
@@ -277,12 +380,11 @@ const EditProduct = () => {
                     <form onSubmit={handleSubmit} className='mainCatForm'>
 
                         {/* سيليكتور لو المنتج الحالي أساسي → نعرض الأبناء */}
-
                         {product && (
                             <Select
                                 className="selector"
                                 options={[
-                                    { value: product.id, label: `${product.name_ar || product.name_en} (الأساسي)` }, // المنتج الأب مع كلمة الأساسي
+                                    { value: product.id, label: `${product.name_ar || product.name_en} (الأساسي)` },
                                     ...(product.children || []).map(child => ({
                                         value: child.id,
                                         label: child.name_ar || child.name_en
@@ -310,22 +412,21 @@ const EditProduct = () => {
                                     }
 
                                     if (selectedOption.value === product.id) {
-                                        // لو الأب
                                         setForm({
-                                            ...mapProductToForm(product) // جلب بيانات الأب كاملة
+                                            ...mapProductToForm(product)
                                         });
+                                        setupProductImages(product);
                                     } else {
-                                        // لو ابن
                                         const child = (product.children || []).find(c => c.id === selectedOption.value);
                                         if (child) {
                                             setForm({
                                                 ...mapProductToForm(child),
-                                                parentId: product.id // تأكد من حفظ parentId
+                                                parentId: product.id
                                             });
+                                            setupProductImages(child);
                                         }
                                     }
                                 }}
-
                             />
                         )}
 
@@ -345,7 +446,6 @@ const EditProduct = () => {
                                 </label>
                             </div>
                             <div className="addProducts-Org">
-
                                 <label className="lable-col" htmlFor='model_ar'>
                                     البراند
                                     <input name="model_ar" value={form.model_ar || ''} onChange={handleChange} />
@@ -360,7 +460,6 @@ const EditProduct = () => {
                             </div>
 
                             <div className="addProducts-Org">
-
                                 <label className="lable-col" htmlFor='basePrice'>
                                     السعر الأساسي
                                     <input name="basePrice" type="number" value={form.basePrice || ''} onChange={handleChange} />
@@ -372,9 +471,9 @@ const EditProduct = () => {
                                     <input name="price" type="number" value={form.price || ''} onChange={handleChange} />
                                     {errors.price && <p className="error-message">* {errors.price}</p>}
                                 </label>
-
                             </div>
                         </div>
+
                         <div className="addProducts-Org">
                             <label className="lable-col" htmlFor='stock'>
                                 المخزون - المتبقي: {form.stock - form.sold}
@@ -395,17 +494,16 @@ const EditProduct = () => {
                                     className="selector"
                                     name="size_ar"
                                     options={sizeOptions}
-                                    value={form.size_ar?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
+                                    value={form.size_ar?.map((v) => ({ value: v, label: v }))}
                                     onChange={(selected) =>
                                         setForm({
                                             ...form,
-                                            size_ar: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
+                                            size_ar: selected ? [selected.value] : [],
                                         })
                                     }
                                     placeholder="اختر عدد القطع"
                                     isClearable
                                     formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
-
                                     styles={{
                                         input: (base) => ({ ...base, direction: 'rtl' }),
                                         menu: (base) => ({ ...base, direction: 'rtl' }),
@@ -419,17 +517,16 @@ const EditProduct = () => {
                                     className="selector"
                                     name="size_en"
                                     options={size2Options}
-                                    value={form.size_en?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
+                                    value={form.size_en?.map((v) => ({ value: v, label: v }))}
                                     onChange={(selected) =>
                                         setForm({
                                             ...form,
-                                            size_en: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
+                                            size_en: selected ? [selected.value] : [],
                                         })
                                     }
-                                    placeholder="اختر عدد القطع"
+                                    placeholder="اختر الحجم"
                                     isClearable
                                     formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
-
                                     styles={{
                                         input: (base) => ({ ...base, direction: 'rtl' }),
                                         menu: (base) => ({ ...base, direction: 'rtl' }),
@@ -437,24 +534,24 @@ const EditProduct = () => {
                                 />
                                 {errors.size_en && <p className="error-message">* {errors.size_en}</p>}
                             </label>
-                        </div> *
+                        </div>
+
                         <label className="lable-col" htmlFor="color_ar">
                             <p>اللون <small>(يمكن ادخال قيمة جديدة)</small></p>
                             <CreatableSelect
                                 className="selector"
                                 name="color_ar"
                                 options={colorOptions}
-                                value={form.color_ar?.map((v) => ({ value: v, label: v }))} // علشان يقرأ القيم القديمة من الـ form
+                                value={form.color_ar?.map((v) => ({ value: v, label: v }))}
                                 onChange={(selected) =>
                                     setForm({
                                         ...form,
-                                        color_ar: selected ? [selected.value] : [], // يرجع Array فيها قيمة واحدة
+                                        color_ar: selected ? [selected.value] : [],
                                     })
                                 }
-                                placeholder="اختر عدد القطع"
+                                placeholder="اختر اللون"
                                 isClearable
                                 formatCreateLabel={(inputValue) => `إضافة "${inputValue}"`}
-
                                 styles={{
                                     input: (base) => ({ ...base, direction: 'rtl' }),
                                     menu: (base) => ({ ...base, direction: 'rtl' }),
@@ -463,17 +560,7 @@ const EditProduct = () => {
                             {errors.color_ar && <p className="error-message">* {errors.color_ar}</p>}
                         </label>
                         <br />
-                        {/* <label className="lable-col" htmlFor='keywords'>
-                            بندل
-                            <input
-                                type="text"
-                                name="keywords"
-                                value={form.keywords}
-                                onChange={(e) => setForm({ ...form, keywords: e.target.value })}
-                                placeholder="ادخل كلمات دلالية"
-                            />
-                        </label> */}
-                        <br />
+
                         <div className="addProducts-Org">
                             <div className='lable-col'>
                                 <strong style={{ paddingBottom: '0.8rem' }}>الوصف</strong>
@@ -532,20 +619,108 @@ const EditProduct = () => {
                                     <input type="date" name="newExpireDate" id="newExpireDate" value={form.newExpireDate || ''} onChange={handleChange} />
                                     {errors.newExpireDate && <p className="error-message">* {errors.newExpireDate}</p>}
                                 </label>
+                            </div>
+                        </div>
 
+                        <br />
+                        {/* 📸 بطاقة إدارة وتعديل صور المنتج */}
+                        <div className="product-card" style={{ gridColumn: '1 / -1' }}>
+                            <h5><span>صور المنتج</span></h5>
+                            <div className='addProducts-Org-section'>
+                                <div className='addProducts-Org'>
+                                    {/* الصورة الرئيسية */}
+                                    <div className="addImg">
+                                        <label htmlFor="mainImg" className="uploadBox">
+                                            {mainImagePreview ? (
+                                                <>
+                                                    <span className="text">تغيير الصورة الرئيسية</span>
+                                                    <span className="plus"><LuReplace /></span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <span className="plus"><FaImage /></span>
+                                                    <span className="text">اختر صورة رئيسية</span>
+                                                </>
+                                            )}
+                                            <input type="file" id="mainImg" accept="image/*" hidden onChange={handleMainImageChange} />
+                                        </label>
+                                        {errors.image && <p className="error-message">* {errors.image}</p>}
+                                        {mainImagePreview && (
+                                            <div className="image-preview-item main-preview" style={{ marginTop: '15px' }}>
+                                                <img src={mainImagePreview} alt="الصورة الرئيسية" />
+                                                <span className="img-tag">الصورة الرئيسية</span>
+                                                <button
+                                                    type="button"
+                                                    className="remove-img-btn"
+                                                    title="إزالة الصورة الرئيسية"
+                                                    onClick={handleRemoveMainImage}
+                                                >
+                                                    <FaTimes />
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* الصور الإضافية المتعددة */}
+                                    <div className="addImg">
+                                        <label htmlFor="imagesUpload" className="uploadBox">
+                                            <span className="plus"><FaImages /></span>
+                                            <span className="text">
+                                                {existingImages.length + newImagesPreview.length > 0
+                                                    ? `إضافة صور أخرى (تم تحديد ${existingImages.length + newImagesPreview.length} صور)`
+                                                    : 'اختر صور متعددة للمنتج'}
+                                            </span>
+                                            <input type="file" id="imagesUpload" accept="image/*" multiple hidden onChange={handleMultipleImagesChange} />
+                                        </label>
+                                        {errors.images && <p className="error-message">* {errors.images}</p>}
+
+                                        {(existingImages.length > 0 || newImagesPreview.length > 0) && (
+                                            <div className="imgBox">
+                                                {/* الصور القديمة المحفوظة مسبقاً */}
+                                                {existingImages.map((src, idx) => (
+                                                    <div key={`existing-${idx}`} className="image-preview-item">
+                                                        <img src={src} alt={`محفوظة ${idx + 1}`} />
+                                                        <span className="img-tag existing">محفوظة</span>
+                                                        <button
+                                                            type="button"
+                                                            className="remove-img-btn"
+                                                            title="حذف هذه الصورة"
+                                                            onClick={() => handleRemoveExistingImage(idx)}
+                                                        >
+                                                            <FaTimes />
+                                                        </button>
+                                                    </div>
+                                                ))}
+
+                                                {/* الصور الجديدة التي تم اختيارها للرفع */}
+                                                {newImagesPreview.map((src, idx) => (
+                                                    <div key={`new-${idx}`} className="image-preview-item">
+                                                        <img src={src} alt={`جديدة ${idx + 1}`} />
+                                                        <span className="img-tag new">جديدة +</span>
+                                                        <button
+                                                            type="button"
+                                                            className="remove-img-btn"
+                                                            title="إلغاء الصورة الجديدة"
+                                                            onClick={() => handleRemoveNewImage(idx)}
+                                                        >
+                                                            <FaTimes />
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <br />
                         <div className='admin-btn-container'>
-
                             {checkLoading ? (
-
                                 <ThreeDot color="#ff6f33" size="small" text="جاري الحفظ..." textColor="#ff6f33" />
-                            ) :
-                                (
-                                    <button type="submit" className='C-btn'>حفظ</button>
-                                )}
+                            ) : (
+                                <button type="submit" className='C-btn'>حفظ</button>
+                            )}
                             <div className='admin-btn-groub'>
                                 <button
                                     type="button"
@@ -554,7 +729,6 @@ const EditProduct = () => {
                                 >
                                     إلغاء
                                 </button>
-
                             </div>
                         </div>
                     </form>

@@ -1,42 +1,122 @@
-#AdminSidebar {
-    width: 320px;
-    height: 100vh;
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    z-index: 10000;
+/* Backdrop Overlay for mobile & clicking outside */
+.adminSidebarOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.35);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    z-index: 990;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
 }
 
-.inerAdminSidebar {
+.adminSidebarOverlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Sidebar Outer Container - Always Fixed to Viewport */
+#AdminSidebar {
     position: fixed;
-    width: 320px;
+    top: 0;
+    right: 0;
+    width: 290px;
+    max-width: 85vw;
     height: 100vh;
-    padding: 1.5rem 1.2rem;
-    background: var(--admin-card-bg, rgba(255, 255, 255, 0.85));
+    z-index: 1000; /* Low enough so Toast notifications (9999) and modals are always on top */
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: transform;
+}
+
+#AdminSidebar.sidebarShow {
+    transform: translate3d(0, 0, 0);
+}
+
+#AdminSidebar.sidebarHide {
+    transform: translate3d(100%, 0, 0);
+}
+
+/* Toggle Button - Fixed horizontally to the sidebar edge, never scrolls with page */
+.sidebarHead {
+    position: absolute;
+    top: 5.2rem;
+    left: -44px;
+    z-index: 1005;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .listIcon {
+        background: linear-gradient(135deg, var(--main-color, #ff4b00) 0%, #e64300 100%);
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.4rem;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        outline: none;
+        box-shadow: -3px 4px 14px rgba(0, 0, 0, 0.15), 0 2px 8px var(--main-color-op, rgba(255, 75, 0, 0.25));
+        transform: rotate(180deg);
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, background 0.3s ease;
+
+        &:hover {
+            transform: rotate(180deg) scale(1.08);
+            box-shadow: -4px 6px 18px rgba(0, 0, 0, 0.22), 0 4px 12px var(--main-color-op, rgba(255, 75, 0, 0.35));
+        }
+    }
+
+    .listIcon.rotated {
+        transform: rotate(0deg);
+
+        &:hover {
+            transform: rotate(0deg) scale(1.08);
+        }
+    }
+}
+
+/* Inner Scrollable Sidebar Content */
+.inerAdminSidebar {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 5.5rem 1.2rem 2.5rem 1.2rem;
+    background: var(--admin-card-bg, rgba(255, 255, 255, 0.95));
+    -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
-    box-shadow: var(--admin-shadow, 4px 0 30px rgba(0, 0, 0, 0.08));
-    border-left: 1px solid var(--admin-border-light, rgba(255, 255, 255, 0.3));
-    scrollbar-color: var(--main-color-op) transparent;
-    border-radius: 0 0 0 20px;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.07);
+    border-left: 1px solid var(--admin-border-light, rgba(0, 0, 0, 0.08));
+    scrollbar-color: var(--main-color-op, #ff4b0040) transparent;
     scrollbar-width: thin;
     overflow-y: auto;
     overflow-x: hidden;
-    direction: ltr;
+    direction: ltr; /* Keeps scrollbar on left */
 
     .section-header {
         direction: rtl;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         font-weight: 800;
         color: var(--admin-text-main, #2c3e50);
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
         margin-top: 0.5rem;
         display: flex;
         align-items: center;
         gap: 0.6rem;
         letter-spacing: 0.5px;
         text-transform: uppercase;
-        background: linear-gradient(to left, var(--main-color-op), transparent);
+        background: linear-gradient(to left, var(--main-color-op, rgba(255, 75, 0, 0.08)), transparent);
         padding: 8px 12px;
         border-radius: 8px;
-        border-right: 3px solid var(--main-color);
+        border-right: 3px solid var(--main-color, #ff4b00);
 
         strong {
             color: var(--admin-text-main, var(--main-text-color));
@@ -44,23 +124,24 @@
     }
 
     .listItems {
-        padding-right: 0.5rem;
+        padding-right: 0.4rem;
+        margin: 0;
 
         a {
             color: var(--admin-text-sec, #444);
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
             width: 100%;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             text-decoration: none;
 
             .link-icon {
                 font-size: 1.1rem;
                 opacity: 0.8;
-                transition: transform 0.3s ease;
+                transition: transform 0.25s ease;
             }
         }
     }
@@ -75,61 +156,8 @@
 }
 
 .inerAdminSidebar::-webkit-scrollbar-thumb {
-    background-color: var(--main-color-op);
+    background-color: var(--main-color-op, rgba(255, 75, 0, 0.3));
     border-radius: 10px;
-}
-
-.sidebarShow {
-    position: relative;
-}
-
-.sidebarHide {
-    position: fixed;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-    .sidebarHead {
-        transition: transform 0.4s ease;
-        left: -3.5rem;
-        top: 1.5rem;
-    }
-}
-
-.sidebarHead {
-    position: absolute;
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    left: -1.2rem;
-    top: 1.5rem;
-
-    .listIcon {
-        background: linear-gradient(135deg, var(--main-color) 0%, #e64300 100%);
-        border-radius: 50%;
-        padding: 0.4rem;
-        width: 42px;
-        height: 42px;
-        z-index: 9;
-        color: #ffffff;
-        font-size: 1.5rem;
-        transform: rotate(180deg);
-        cursor: pointer;
-        box-shadow: 0 4px 15px var(--main-color-op);
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-        &:hover {
-            transform: rotate(180deg) scale(1.1);
-            box-shadow: 0 6px 20px var(--main-color-op);
-        }
-    }
-
-    .rotated {
-        transform: rotate(0deg);
-
-        &:hover {
-            transform: rotate(0deg) scale(1.1);
-        }
-    }
 }
 
 .listhead {
@@ -137,52 +165,53 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.5rem;
+    padding: 0.75rem 0.9rem;
+    margin-bottom: 0.4rem;
     border-radius: 10px;
     background-color: transparent;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
     color: var(--admin-text-main, var(--main-text-color));
     font-weight: 700;
+    font-size: 0.92rem;
 }
 
 .listhead.active {
-    background: linear-gradient(135deg, rgba(255, 111, 51, 0.1) 0%, rgba(255, 111, 51, 0.02) 100%);
-    color: var(--main-color);
-    border-right: 4px solid var(--main-color);
+    background: linear-gradient(135deg, rgba(255, 111, 51, 0.12) 0%, rgba(255, 111, 51, 0.02) 100%);
+    color: var(--main-color, #ff4b00);
+    border-right: 4px solid var(--main-color, #ff4b00);
     padding-right: 0.8rem;
 }
 
 .listhead:hover {
     background-color: var(--admin-hover-bg, rgba(0, 0, 0, 0.03));
-    color: var(--main-color);
+    color: var(--main-color, #ff4b00);
     transform: translateX(-4px);
 }
 
 .listItems.active {
-    color: var(--main-color);
+    color: var(--main-color, #ff4b00);
 }
 
 .listItems li {
     list-style: none !important;
-    padding: 0.6rem 1rem;
-    margin: 0.4rem 0;
-    border-radius: 10px;
-    transition: all 0.3s ease;
+    padding: 0.55rem 0.85rem;
+    margin: 0.35rem 0;
+    border-radius: 8px;
+    transition: all 0.25s ease;
     position: relative;
 
     &::before {
         content: '';
         position: absolute;
-        right: -8px;
+        right: -6px;
         top: 50%;
         transform: translateY(-50%);
-        width: 6px;
-        height: 6px;
+        width: 5px;
+        height: 5px;
         border-radius: 50%;
-        background-color: var(--main-color-variant);
+        background-color: var(--main-color-variant, #ff4b00);
         opacity: 0.3;
-        transition: all 0.3s ease;
+        transition: all 0.25s ease;
     }
 }
 
@@ -190,48 +219,48 @@
     width: 100%;
     height: 1px;
     background: linear-gradient(to right, transparent, var(--admin-border-light, rgba(0, 0, 0, 0.08)), transparent);
-    margin: 1.5rem 0;
+    margin: 1.2rem 0;
 }
 
 .listItems li:hover {
-    background-color: var(--admin-hover-bg, rgba(255, 111, 51, 0.05));
-    transform: translateX(-4px);
+    background-color: var(--admin-hover-bg, rgba(255, 111, 51, 0.06));
+    transform: translateX(-3px);
 
     &::before {
-        background-color: var(--main-color);
+        background-color: var(--main-color, #ff4b00);
         opacity: 1;
-        transform: translateY(-50%) scale(1.5);
+        transform: translateY(-50%) scale(1.4);
     }
 
     a {
-        color: var(--main-color);
+        color: var(--main-color, #ff4b00);
 
         .link-icon {
             transform: scale(1.1);
-            color: var(--main-color);
+            color: var(--main-color, #ff4b00);
             opacity: 1;
         }
     }
 }
 
 .listItems li.active-link {
-    background: linear-gradient(to right, rgba(255, 111, 51, 0.1), transparent);
-    border-right: 3px solid var(--main-color);
-    transform: translateX(-4px);
+    background: linear-gradient(to right, rgba(255, 111, 51, 0.12), transparent);
+    border-right: 3px solid var(--main-color, #ff4b00);
+    transform: translateX(-3px);
 
     &::before {
-        background-color: var(--main-color);
+        background-color: var(--main-color, #ff4b00);
         opacity: 1;
-        transform: translateY(-50%) scale(1.5);
-        right: -11px;
+        transform: translateY(-50%) scale(1.4);
+        right: -9px;
     }
 
     a {
-        color: var(--main-color);
+        color: var(--main-color, #ff4b00);
         font-weight: 800;
 
         .link-icon {
-            color: var(--main-color);
+            color: var(--main-color, #ff4b00);
             opacity: 1;
         }
     }
@@ -239,20 +268,25 @@
 
 .listContainer {
     direction: rtl;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.6rem;
 }
 
 .listContainer.active {
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .iconAmindTitel {
-    font-size: 1.4rem;
-    color: var(--main-color);
+    font-size: 1.3rem;
+    color: var(--main-color, #ff4b00);
     display: flex;
     align-items: center;
     justify-content: center;
     background: rgba(255, 111, 51, 0.1);
-    padding: 6px;
-    border-radius: 8px;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+/* Ensure toast notifications always render on top */
+.Toastify__toast-container {
+    z-index: 99999 !important;
 }

@@ -18,7 +18,7 @@ import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import { useProducts } from '../../hooks/useProducts';
 import useTracking from '../../utils/useTracking';
-import { normalizedText } from '../../utils/normalizeText';
+// import { normalizedText } from '../../utils/normalizeText';
 import { useAuth } from '../../Context/AuthContext';
 import AddToOrderModal from './AddToOrderModal';
 
@@ -28,13 +28,14 @@ const ProductDetails = () => {
     const origin = location.state?.from || null; // الصفحة اللي جينا منها (مثلاً "/shop")
 
     const { products } = useProducts();
-    const { subcategories } = useSubCategories();
+    const { subcategories, brands } = useSubCategories();
     const { productId, subCatId, productName } = useParams();
     const currentProductId = productId;
     const { watchedProducts, addProduct } = useRecentlyWatched();
     const { addInterest } = useUserInterests();
 
     const [product, setProduct] = useState(null);
+    const [vendorInfo, setVendorInfo] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -55,6 +56,21 @@ const ProductDetails = () => {
         };
         fetchProduct();
     }, [productId]);
+
+    useEffect(() => {
+        const vId = product?.vendorId || product?.vendor?.id;
+        if (vId) {
+            axios.get(`${process.env.REACT_APP_API_URL}/api/v1/users/vendor/${vId}`)
+                .then((res) => {
+                    if (res.data?.data) {
+                        setVendorInfo(res.data.data);
+                    }
+                })
+                .catch((err) => console.error("Error fetching vendor info:", err));
+        } else {
+            setVendorInfo(null);
+        }
+    }, [product]);
 
 
     const bestselling = products.filter(product => product.sold > 5);
@@ -587,39 +603,59 @@ const ProductDetails = () => {
                         </div>
 
                         {/* Vendor Section */}
-                        <div className="vendor-info-card">
-                            <div className="vendor-icon">
-                                <FaStore />
-                            </div>
-                            <div className="vendor-details">
-                                <h4>{filteredProduct.vendor ? filteredProduct.vendor.name : "منصة همسات هوم"}</h4>
+                        {(() => {
+                            const currentVendor = vendorInfo || filteredProduct?.vendor;
+                            const vendorId = currentVendor?.id || filteredProduct?.vendorId;
+                            const vendorName = currentVendor?.name || "منصة همسات هوم";
 
-                                {filteredProduct.vendor && (
-                                    <div className="vendor-contact">
-                                        {filteredProduct.vendor.phone && (
-                                            <span className="contact-item"><FaPhone /> {filteredProduct.vendor.phone}</span>
-                                        )}
-                                        {filteredProduct.vendor.email && (
-                                            <span className="contact-item"><FaEnvelope /> {filteredProduct.vendor.email}</span>
+                            const matchedBrand = brands?.find(b =>
+                                (b.name && vendorName && b.name.trim().toLowerCase() === vendorName.trim().toLowerCase()) ||
+                                (b.name_ar && vendorName && b.name_ar.trim().toLowerCase() === vendorName.trim().toLowerCase()) ||
+                                (b.vendorId && vendorId && b.vendorId === vendorId)
+                            );
+
+                            const brandImage = matchedBrand?.image || currentVendor?.profileImage || currentVendor?.image || null;
+
+                            return (
+                                <div className="vendor-info-card">
+                                    <div className="vendor-icon">
+                                        {brandImage ? (
+                                            <img src={brandImage} alt={vendorName} />
+                                        ) : (
+                                            <FaStore />
                                         )}
                                     </div>
-                                )}
+                                    <div className="vendor-details">
+                                        <h4>{vendorName}</h4>
 
-                                <div className="vendor-field">
-                                    {filteredProduct.vendor?.businessField || "الأدوات المنزلية"}
-                                </div>
-                                <div className="vendor-desc">
-                                    {filteredProduct.vendor?.productDescription || "نوفر لك أفضل المنتجات المنزلية العصرية بجودة ممتازة وبأسعار تنافسية تناسب الجميع."}
-                                </div>
-                                {filteredProduct.vendor && filteredProduct.vendor.id && (
-                                    <div className="vendor-action" style={{ marginTop: '15px' }}>
-                                        <Link to={`/vendor/${filteredProduct.vendor.id}`} className="C-btn" style={{ padding: '8px 20px', fontSize: '14px', borderRadius: '8px', display: 'inline-block' }}>
-                                            تفاصيل البائع
-                                        </Link>
+                                        {currentVendor && (
+                                            <div className="vendor-contact">
+                                                {currentVendor.phone && (
+                                                    <span className="contact-item"><FaPhone /> {currentVendor.phone}</span>
+                                                )}
+                                                {currentVendor.email && (
+                                                    <span className="contact-item"><FaEnvelope /> {currentVendor.email}</span>
+                                                )}
+                                            </div>
+                                        )}
+
+                                        <div className="vendor-field">
+                                            {currentVendor?.businessField || "الأدوات المنزلية"}
+                                        </div>
+                                        <div className="vendor-desc">
+                                            {currentVendor?.productDescription || currentVendor?.vendorDescription || "نوفر لك أفضل المنتجات المنزلية العصرية بجودة ممتازة وبأسعار تنافسية تناسب الجميع."}
+                                        </div>
+                                        {vendorId && (
+                                            <div className="vendor-action" style={{ marginTop: '15px' }}>
+                                                <Link to={`/vendor/${vendorId}`} className="C-btn" style={{ padding: '8px 20px', fontSize: '14px', borderRadius: '8px', display: 'inline-block' }}>
+                                                    تفاصيل البائع
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
-                                )}
-                            </div>
-                        </div>
+                                </div>
+                            );
+                        })()}
                         {/* End Vendor Section */}
 
                         <p><strong>الوصف</strong><br />{filteredProduct.slug}</p>

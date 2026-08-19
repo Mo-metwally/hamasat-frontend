@@ -8,10 +8,12 @@ import { FaEdit, FaSortAmountDownAlt, FaSortAmountUpAlt, FaTrash } from 'react-i
 import { toast, ToastContainer } from 'react-toastify';
 import Pagenation from '../../ProductComponents/pagenation/Pagenation';
 import { useProducts } from '../../../hooks/useProducts';
+import { useSubCategories } from '../../../hooks/useCategories';
 import { useAuth } from '../../../Context/AuthContext';
 
 const CategoriesList = () => {
     const { products } = useProducts();
+    const { categories } = useSubCategories();
     const { user } = useAuth();
     const [sortKey, setSortKey] = useState('createdAt');
     const [sortOrder, setSortOrder] = useState('desc');
@@ -19,6 +21,7 @@ const CategoriesList = () => {
 
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
     const [dataSource, setDataSource] = useState('categories');
     const [currentPage, setCurrentPage] = useState(1);
     const [editingId, setEditingId] = useState(null);
@@ -48,9 +51,15 @@ const CategoriesList = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dataSource]);
 
-    const filteredData = data.filter((item) =>
-        (item.name || item.name_ar || '').toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredData = data.filter((item) => {
+        const matchesSearch = (item.name || item.name_ar || '').toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesCategory =
+            dataSource !== 'subcategories' ||
+            !selectedCategory ||
+            item.categoryId === selectedCategory ||
+            item.category?.id === selectedCategory;
+        return matchesSearch && matchesCategory;
+    });
 
     const getProductCount = (id) => {
         if (!products) return 0;
@@ -118,10 +127,12 @@ const CategoriesList = () => {
                 formData.append("image", editedImage);
             }
 
-            await axios.put(url, formData, {
+            const res = await axios.put(url, formData, {
                 withCredentials: true,
                 headers: { "Content-Type": "multipart/form-data" },
             });
+
+            const serverItem = res.data?.data;
 
             setData((prev) =>
                 prev.map((item) =>
@@ -129,9 +140,10 @@ const CategoriesList = () => {
                         ? {
                             ...item,
                             name_ar: editedName,
-                            image: editedImage instanceof File
-                                ? URL.createObjectURL(editedImage) // preview مؤقت
-                                : editedImage,
+                            name: editedName,
+                            image: serverItem?.image || (editedImage instanceof File
+                                ? URL.createObjectURL(editedImage)
+                                : item.image),
                         }
                         : item
                 )
@@ -194,7 +206,10 @@ const CategoriesList = () => {
                             name="dataSource"
                             value="categories"
                             checked={dataSource === 'categories'}
-                            onChange={(e) => setDataSource(e.target.value)}
+                            onChange={(e) => {
+                                setDataSource(e.target.value);
+                                setSelectedCategory('');
+                            }}
                         />
                         فئات رئيسية
                     </label>
@@ -204,7 +219,10 @@ const CategoriesList = () => {
                             name="dataSource"
                             value="subcategories"
                             checked={dataSource === 'subcategories'}
-                            onChange={(e) => setDataSource(e.target.value)}
+                            onChange={(e) => {
+                                setDataSource(e.target.value);
+                                setSelectedCategory('');
+                            }}
                         />
                         فئات فرعية
                     </label>
@@ -214,11 +232,32 @@ const CategoriesList = () => {
                             name="dataSource"
                             value="brands"
                             checked={dataSource === 'brands'}
-                            onChange={(e) => setDataSource(e.target.value)}
+                            onChange={(e) => {
+                                setDataSource(e.target.value);
+                                setSelectedCategory('');
+                            }}
                         />
                         البائعين
                     </label>
                 </div>
+
+                {dataSource === 'subcategories' && (
+                    <select
+                        className="selector"
+                        value={selectedCategory}
+                        onChange={(e) => {
+                            setSelectedCategory(e.target.value);
+                            setCurrentPage(1);
+                        }}
+                    >
+                        <option value="">كل الفئات الرئيسية</option>
+                        {Array.isArray(categories) && categories.map((cat) => (
+                            <option key={cat.id} value={cat.id}>
+                                {cat.name_ar || cat.name}
+                            </option>
+                        ))}
+                    </select>
+                )}
 
                 <div className="sort-icons">
                     <FaSortAmountUpAlt
@@ -259,6 +298,7 @@ const CategoriesList = () => {
                         <tr>
                             <th>الأدوات</th>
                             <th>بواسطة</th>
+                            {dataSource === 'subcategories' && <th>الفئة الرئيسية</th>}
                             <th>عدد المنتجات</th>
                             <th>الأسم</th>
                             <th>الصورة</th>
@@ -307,7 +347,7 @@ const CategoriesList = () => {
                                                             title="تعديل"
                                                             onClick={(e) => {
                                                                 e.stopPropagation();
-                                                                handleEdit(item.id, item.name_ar);
+                                                                handleEdit(item.id, item.name_ar, item.image);
                                                             }}
                                                         />
                                                     )}
@@ -322,6 +362,13 @@ const CategoriesList = () => {
                                             <span className="creator-badge admin">الإدارة</span>
                                         )}
                                     </td>
+                                    {dataSource === 'subcategories' && (
+                                        <td>
+                                            <span className="creator-badge main-cat-badge">
+                                                {item.category?.name_ar || item.category?.name || categories.find(c => c.id === item.categoryId)?.name_ar || '—'}
+                                            </span>
+                                        </td>
+                                    )}
                                     <td>{getProductCount(item.id)} منتج </td>
                                     <td className="expand-cell">
                                         {editingId === item.id ? (

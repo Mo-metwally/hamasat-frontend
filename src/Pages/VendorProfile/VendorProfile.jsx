@@ -3,10 +3,12 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { Helmet } from 'react-helmet-async';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaFacebook, FaInstagram, FaTiktok, FaBriefcase, FaStore } from 'react-icons/fa';
+import { useSubCategories } from '../../hooks/useCategories';
 import './VendorProfile.scss';
 
 const VendorProfile = () => {
   const { id } = useParams();
+  const { brands } = useSubCategories();
   const [vendor, setVendor] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -62,6 +64,13 @@ const VendorProfile = () => {
   const canonicalUrl = `${process.env.REACT_APP_CLIENT_URL || 'https://hamsathome.com'}/vendor/${id}`;
   const vendorDesc = vendor.vendorDescription ? vendor.vendorDescription.replace(/<[^>]*>?/gm, '').substring(0, 160) : `تسوق من متجر ${vendor.name} على همسات هوم. اكتشف أفضل المنتجات بأسعار تنافسية.`;
 
+  const matchedBrand = brands?.find(b =>
+    (b.name && vendor?.name && b.name.trim().toLowerCase() === vendor.name.trim().toLowerCase()) ||
+    (b.name_ar && vendor?.name && b.name_ar.trim().toLowerCase() === vendor.name.trim().toLowerCase()) ||
+    (b.vendorId && vendor?.id && b.vendorId === vendor.id)
+  );
+  const brandImage = matchedBrand?.image || vendor?.profileImage || vendor?.image;
+
   return (
     <div className="vendor-profile-page">
       <Helmet>
@@ -101,7 +110,11 @@ const VendorProfile = () => {
         <div className="profile-header glass-panel">
           <div className="header-info">
             <div className="avatar-placeholder">
-              <FaStore />
+              {brandImage ? (
+                <img src={brandImage} alt={vendor.name} />
+              ) : (
+                <FaStore />
+              )}
             </div>
             <div className="text-info">
               <h1>{vendor.name}</h1>
